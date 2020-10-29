@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -14,12 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Fakes.fs" />
+    <Compile Include="Spies.fs" />
+    <Compile Include="Stubs.fs" />
     <Compile Include="Program.fs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Splorr.Kibbutz\Splorr.Kibbutz.fsproj" />
-    <ProjectReference Include="..\Splorr.Tests.Common\Splorr.Tests.Common.fsproj" />
   </ItemGroup>
 
 </Project>

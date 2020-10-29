@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Messages.fs" />
+    <Compile Include="Output.fs" />
+    <Compile Include="Game.fs" />
+    <Compile Include="PresentationContext.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Splorr.Common\Splorr.Common.fsproj" />
+  </ItemGroup>
+
+</Project>

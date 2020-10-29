@@ -14,11 +14,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Contexts.fs" />
+    <Compile Include="GameLoadTests.fs" />
+    <Compile Include="GameNewTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Splorr.Kibbutz\Splorr.Kibbutz.fsproj" />
+    <ProjectReference Include="..\Splorr.Kibbutz.Presentation\Splorr.Kibbutz.Presentation.fsproj" />
     <ProjectReference Include="..\Splorr.Tests.Common\Splorr.Tests.Common.fsproj" />
   </ItemGroup>
 
