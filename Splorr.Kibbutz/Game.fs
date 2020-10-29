@@ -24,12 +24,13 @@ module Game =
             (context : CommonContext)
             (gameState : Gamestate)
             : unit =
-        ()
+        Output.Write context "Hello, world!\n"
 
     let private PollForCommand
             (context : CommonContext)
             : Command option =
-        None
+        Console.ReadLine() |> ignore
+        Some Quit
 
     let private HandleCommand
             (context : CommonContext)
