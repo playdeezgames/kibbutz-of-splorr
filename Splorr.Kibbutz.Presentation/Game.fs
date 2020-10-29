@@ -3,28 +3,30 @@
 open Splorr.Common
 open System
 
-
 module Game = 
-    type private Gamestate = Guid
 
     type Command =
         | Quit
 
     let Load
             (context : CommonContext)
-            : Gamestate option =
+            : SessionIdentifier option =
         None
 
     let New
             (context: CommonContext)
-            : Gamestate =
-        Guid.NewGuid()
+            : SessionIdentifier =
+        let session = Guid.NewGuid()
+        Messages.Purge context session
+        Messages.Put context (session, ["Welcome to Kibbutz of SPLORR!!"])
+        session
 
     let private UpdateDisplay
             (context : CommonContext)
-            (gameState : Gamestate)
+            (session : SessionIdentifier)
             : unit =
-        Output.Write context "Hello, world!\n"
+        Messages.Get context session
+        |> List.iter (Output.Write context)
 
     type CommandSource = unit -> Command option
     type PollForCommandContext =
@@ -37,14 +39,14 @@ module Game =
     let private HandleCommand
             (context : CommonContext)
             (command : Command)
-            (gameState : Gamestate)
-            : Gamestate option =
+            (session : SessionIdentifier)
+            : SessionIdentifier option =
         None
 
     let private RunLoop
             (context : CommonContext)
-            (gamestate : Gamestate)
-            : Gamestate option =
+            (gamestate : SessionIdentifier)
+            : SessionIdentifier option =
         UpdateDisplay context gamestate
         match PollForCommand context with
         | Some command ->
@@ -54,7 +56,7 @@ module Game =
 
     let rec Run
             (context : CommonContext)
-            (gamestate : Gamestate)
+            (gamestate : SessionIdentifier)
             : unit =
         match RunLoop context gamestate with
         | Some nextState ->

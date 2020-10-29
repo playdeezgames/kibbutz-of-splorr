@@ -15,6 +15,12 @@ type internal KibbutzContext() =
                 (fun () -> 
                     Console.ReadLine() |> ignore
                     Some Game.Command.Quit)
+    interface Messages.GetContext with
+        member this.sessionMessageSource = ref MessagesImplementation.Get
+    interface Messages.PutContext with
+        member this.sessionMessagesSink = ref MessagesImplementation.Put
+    interface Messages.PurgeContext with
+        member this.sessionMessagesPurge = ref MessagesImplementation.Purge
 
 
 

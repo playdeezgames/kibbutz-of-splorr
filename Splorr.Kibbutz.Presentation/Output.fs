@@ -3,7 +3,7 @@
 open Splorr.Common
 
 module Output =
-    type WriteSink = string -> unit
+    type WriteSink = Message -> unit
     type WriteContext =
         abstract member writeSink : WriteSink ref
     let internal Write
