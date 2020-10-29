@@ -1,6 +1,7 @@
 ﻿open System
 open Splorr.Common
 open Splorr.Kibbutz
+open Splorr.Kibbutz.Presentation
 
 [<EntryPoint>]
 let main argv =

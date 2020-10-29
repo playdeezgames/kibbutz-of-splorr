@@ -1,4 +1,4 @@
-﻿namespace Splorr.Kibbutz
+﻿namespace Splorr.Kibbutz.Presentation
 
 open Splorr.Common
 open System
@@ -10,12 +10,12 @@ module Game =
     type private Command =
         | Quit
 
-    let internal Load
+    let Load
             (context : CommonContext)
             : Gamestate option =
         None
 
-    let internal New
+    let New
             (context: CommonContext)
             : Gamestate =
         Guid.NewGuid()
@@ -50,7 +50,7 @@ module Game =
         | _ ->
             Some gamestate
 
-    let rec internal Run
+    let rec Run
             (context : CommonContext)
             (gamestate : Gamestate)
             : unit =

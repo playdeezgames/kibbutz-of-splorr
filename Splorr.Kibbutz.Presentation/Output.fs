@@ -1,4 +1,4 @@
-﻿namespace Splorr.Kibbutz
+﻿namespace Splorr.Kibbutz.Presentation
 
 open Splorr.Common
 

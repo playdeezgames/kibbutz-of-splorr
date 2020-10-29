@@ -6,14 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Output.fs" />
-    <Compile Include="Game.fs" />
     <Compile Include="KibbutzContext.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Splorr.Common\Splorr.Common.fsproj" />
+    <ProjectReference Include="..\Splorr.Kibbutz.Presentation\Splorr.Kibbutz.Presentation.fsproj" />
   </ItemGroup>
 
 </Project>
