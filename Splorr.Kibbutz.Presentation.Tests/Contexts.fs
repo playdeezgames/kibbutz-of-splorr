@@ -17,3 +17,5 @@ type TestContext() =
         member val sessionMessageSource = ref (Fakes.Source ("Messages.GetContext", []))
     interface Messages.PurgeContext with
         member val sessionMessagesPurge = ref (Fakes.Sink "Messages.PurgeContext")
+    interface Game.HandleInvalidCommandContext with
+        member val invalidCommandSink = ref (Fakes.Sink "Game.HandleInvalidCommandContext")

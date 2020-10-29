@@ -43,6 +43,15 @@ module Game =
             : SessionIdentifier option =
         None
 
+    type InvalidCommandSink = unit -> unit
+    type HandleInvalidCommandContext =
+        abstract member invalidCommandSink : InvalidCommandSink ref
+    let private HandleInvalidCommand
+            (context : CommonContext)
+            : unit =
+        (context :?> HandleInvalidCommandContext).invalidCommandSink.Value()
+
+
     let private RunLoop
             (context : CommonContext)
             (gamestate : SessionIdentifier)
@@ -52,6 +61,7 @@ module Game =
         | Some command ->
             HandleCommand context command gamestate
         | _ ->
+            HandleInvalidCommand context 
             Some gamestate
 
     let rec Run

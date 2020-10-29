@@ -8,6 +8,7 @@
   <ItemGroup>
     <Compile Include="MessagesImplementation.fs" />
     <Compile Include="OutputImplementation.fs" />
+    <Compile Include="GameImplementation.fs" />
     <Compile Include="KibbutzContext.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
