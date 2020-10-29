@@ -25,7 +25,6 @@ module OutputImplementation =
         | Light Yellow -> ConsoleColor.Yellow
         | Light Gray -> ConsoleColor.White
         | Light inner -> getConsoleColorForHue inner
-
     let rec internal Write
             (message : Message)
             : unit =
