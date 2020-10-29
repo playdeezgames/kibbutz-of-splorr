@@ -4,7 +4,10 @@ open Splorr.Common
 open System
 
 type SessionIdentifier = Guid
-type Message = string
+type Message = 
+    | Text of string
+    | Line of string
+
 
 module Messages =
     type SessionMessageSource = SessionIdentifier -> Message list

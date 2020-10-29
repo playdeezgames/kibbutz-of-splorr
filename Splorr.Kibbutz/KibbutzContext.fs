@@ -8,7 +8,7 @@ type internal KibbutzContext() =
     interface CommonContext
     interface PresentationContext
     interface Output.WriteContext with
-        member this.writeSink = ref Console.Write
+        member this.writeSink = ref OutputImplementation.Write
     interface Game.PollForCommandContext with
         member this.commandSource = 
             ref 
