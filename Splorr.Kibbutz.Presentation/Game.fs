@@ -7,7 +7,7 @@ open System
 module Game = 
     type private Gamestate = Guid
 
-    type private Command =
+    type Command =
         | Quit
 
     let Load
@@ -26,11 +26,13 @@ module Game =
             : unit =
         Output.Write context "Hello, world!\n"
 
+    type CommandSource = unit -> Command option
+    type PollForCommandContext =
+        abstract member commandSource : CommandSource ref
     let private PollForCommand
             (context : CommonContext)
             : Command option =
-        Console.ReadLine() |> ignore
-        Some Quit
+        (context :?> PollForCommandContext).commandSource.Value()
 
     let private HandleCommand
             (context : CommonContext)

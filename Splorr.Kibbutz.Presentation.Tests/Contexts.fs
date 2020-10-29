@@ -9,3 +9,5 @@ type TestContext() =
     interface PresentationContext
     interface Output.WriteContext with
         member val writeSink = ref (Fakes.Sink "Output.WriteContext")
+    interface Game.PollForCommandContext with
+        member val commandSource = ref (Fakes.Source ("Game.PollForCommandContext", None))

@@ -9,6 +9,12 @@ type internal KibbutzContext() =
     interface PresentationContext
     interface Output.WriteContext with
         member this.writeSink = ref Console.Write
+    interface Game.PollForCommandContext with
+        member this.commandSource = 
+            ref 
+                (fun () -> 
+                    Console.ReadLine() |> ignore
+                    Some Game.Command.Quit)
 
 
 
