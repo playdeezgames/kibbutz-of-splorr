@@ -4,12 +4,6 @@ open Splorr.Common
 open System
 
 module internal CommandHandler =
-    let private HandleQuitCommand
-            (context : CommonContext)
-            (session : SessionIdentifier)
-            : SessionIdentifier option =
-        None
-
     let private HandleStandardCommand
             (context : CommonContext)
             (session : SessionIdentifier)
@@ -20,6 +14,18 @@ module internal CommandHandler =
         Messages.Put context session messages
         Explainer.Explain context session
         Some session
+
+    let private HandleQuitCommand
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : SessionIdentifier option =
+        if Settlement.HasSettlementForSession context session then
+            [
+                Hued (Red, Line "You cannot quit without first abandoning the settlement.")
+            ]
+            |> HandleStandardCommand context session
+        else
+            None
 
     let private HandleInvalidCommand
             (context : CommonContext)
@@ -48,16 +54,25 @@ module internal CommandHandler =
         Settlement.StartSettlementForSession context session
         |> HandleStandardCommand context session
 
+    let private HandleAbandonSettlementCommand
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : SessionIdentifier option =
+        Settlement.AbandonSettlementForSession context session
+        |> HandleStandardCommand context session
+
     let internal HandleCommand
             (context : CommonContext)
             (command : Command)
             (session : SessionIdentifier)
             : SessionIdentifier option =
         match command with
-        | Invalid text ->
-            HandleInvalidCommand context text session
+        | AbandonSettlement ->
+            HandleAbandonSettlementCommand context session
         | Help ->
             HandleHelpCommand context session
+        | Invalid text ->
+            HandleInvalidCommand context text session
         | Quit ->
             HandleQuitCommand context session
         | StartSettlement ->

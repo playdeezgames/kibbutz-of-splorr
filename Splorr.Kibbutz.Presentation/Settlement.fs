@@ -15,6 +15,12 @@ module Settlement =
             (context : CommonContext)=
         (context :?> GetSettlementForSessionContext).settlementSource.Value
 
+    let internal HasSettlementForSession
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : bool =
+        (GetSettlementForSession context session).IsSome
+
     type SettlementSink = SessionIdentifier * Settlement option -> unit
     type PutSettlementForSessionContext =
         abstract member settlementSink : SettlementSink ref
@@ -32,22 +38,64 @@ module Settlement =
             iExistOnlyToHaveAFieldInTheRecord = 0
         }
 
+    let private SettlementAlreadyExistsMessages = 
+        [
+            Hued (Red, Line ("You already have a settlement!"))
+        ]
+
+    let private AbandonedSettlementMessages = 
+        [
+            Hued (Green, Line ("You abandon yer settlement!"))
+        ]
+
+
+    let private NoSettlementExistsMessages = 
+        [
+            Hued (Red, Line ("You don't have a settlement!"))
+        ]
+
+    let private SettlementStartedMessages =
+        [
+            Hued (Green, Line ("You start a new settlement!"))
+        ]
+
+    let private GenerateAndPutNewSettlementForSession
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : Message list = 
+        GenerateSettlement context
+        |> Some
+        |> PutSettlementForSession context session
+        SettlementStartedMessages 
+
     let internal StartSettlementForSession
             (context : CommonContext)
             (session : SessionIdentifier)
             : Message list =
-        match GetSettlementForSession context session with
-        | Some _ ->
-            [
-                Hued (Red, Line ("You already have a settlement!"))
-            ]
-        | None ->
-            GenerateSettlement context
-            |> Some
-            |> PutSettlementForSession context session
-            [
-                Hued (Green, Line ("You start a new settlement!"))
-            ]
+        if HasSettlementForSession context session then
+            SettlementAlreadyExistsMessages   
+        else
+            GenerateAndPutNewSettlementForSession context session
+
+    let internal ActuallyAbandonSettlementForSession
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : Message list =
+        PutSettlementForSession context session None
+        AbandonedSettlementMessages
+
+    let internal AbandonSettlementForSession
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : Message list =
+        if HasSettlementForSession context session then
+            ActuallyAbandonSettlementForSession context session
+        else
+            NoSettlementExistsMessages
+            
+
+
+            
 
     
 

@@ -8,6 +8,9 @@ module GameImplementation =
             (tokens : string list)
             : Command option =
         match tokens with
+        | [ "abandon" ] 
+        | [ "abandon"; "settlement" ] ->
+            Some Command.AbandonSettlement
         | [ "start" ]
         | [ "start"; "settlement" ] ->
             Some Command.StartSettlement
