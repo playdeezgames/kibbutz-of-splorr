@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -17,9 +17,10 @@
     <Compile Include="Contexts.fs" />
     <Compile Include="Dummies.fs" />
     <Compile Include="Messages\GetTests.fs" />
-    <Compile Include="Settlement\AbandonSettlementForSessionTests.fs" />
-    <Compile Include="Settlement\StartSettlementForSessionTests.fs" />
-    <Compile Include="Settlement\HasSettlementForSessionTests.fs" />
+    <Compile Include="Settlement\ExplainTests.fs" />
+    <Compile Include="Settlement\AbandonForSessionTests.fs" />
+    <Compile Include="Settlement\StartForSessionTests.fs" />
+    <Compile Include="Settlement\HasForSessionTests.fs" />
     <Compile Include="Messages\PutTests.fs" />
     <Compile Include="Messages\PurgeTests.fs" />
     <Compile Include="Program.fs" />

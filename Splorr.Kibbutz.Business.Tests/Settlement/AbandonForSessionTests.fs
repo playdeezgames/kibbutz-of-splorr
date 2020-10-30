@@ -1,4 +1,4 @@
-﻿module Settlement.AbandonSettlementForSessionTests
+﻿module Settlement.AbandonForSessionTests
 
 open NUnit.Framework
 open Splorr.Kibbutz.Business

@@ -17,7 +17,7 @@ module Game =
         let session = Guid.NewGuid()
         Messages.Purge context session
         Messages.Put context session [Hued (Light Cyan, Line "Welcome to Kibbutz of SPLORR!!")]
-        Explainer.Explain context session
+        Settlement.Explain context session
         session
 
     let private UpdateDisplay

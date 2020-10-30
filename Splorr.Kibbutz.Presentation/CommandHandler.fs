@@ -13,7 +13,7 @@ module internal CommandHandler =
         Messages.Purge context session
         Messages.Put context session [Line ""]
         Messages.Put context session messages
-        Explainer.Explain context session
+        Settlement.Explain context session
         Some session
 
     let private HandleQuitCommand

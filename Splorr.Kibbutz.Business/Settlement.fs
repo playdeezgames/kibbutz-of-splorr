@@ -92,6 +92,28 @@ module Settlement =
             ActuallyAbandonSettlementForSession context session
         else
             NoSettlementExistsMessages
+
+    let private ExplainSettlement
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : unit =
+        Messages.Put context session [Line "(the settlement will be explained here)"]
+
+    let private ExplainNoSettlement
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : unit =
+        Messages.Put context session [Hued (Blue, Line "You have no settlement.")]
+
+    let Explain
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : unit =
+        Messages.Put context session [Line ""]
+        if HasSettlementForSession context session then
+            ExplainSettlement context session
+        else
+            ExplainNoSettlement context session
             
 
 
