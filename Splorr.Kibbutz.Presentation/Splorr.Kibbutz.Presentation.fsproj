@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Include="Messages.fs" />
     <Compile Include="Output.fs" />
+    <Compile Include="Explainer.fs" />
+    <Compile Include="CommandHandler.fs" />
     <Compile Include="Game.fs" />
     <Compile Include="PresentationContext.fs" />
   </ItemGroup>

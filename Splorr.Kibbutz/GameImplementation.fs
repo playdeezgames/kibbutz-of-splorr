@@ -6,18 +6,18 @@ open System
 module GameImplementation =
     let private ParseCommand
             (tokens : string list)
-            : Game.Command option =
+            : Command option =
         match tokens with
         | [ "quit" ] ->
-            Some Game.Command.Quit
+            Some Command.Quit
         | _ ->
             tokens
             |> List.reduce
                 (fun a b -> a + " " + b)
-            |> Game.Command.Invalid 
+            |> Command.Invalid 
             |> Some
 
-    let internal PollForCommand() : Game.Command option =
+    let internal PollForCommand() : Command option =
         let oldColor = Console.ForegroundColor
         Console.ForegroundColor <- ConsoleColor.Gray
         Console.Write "\n>"
