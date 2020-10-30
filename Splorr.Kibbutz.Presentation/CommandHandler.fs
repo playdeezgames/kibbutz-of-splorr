@@ -3,10 +3,6 @@
 open Splorr.Common
 open System
 
-type Command =
-    | Quit
-    | Invalid of string
-
 module internal CommandHandler =
     let private HandleQuitCommand
             (context : CommonContext)
