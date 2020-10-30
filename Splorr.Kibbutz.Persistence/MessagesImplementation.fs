@@ -1,18 +1,18 @@
-﻿namespace Splorr.Kibbutz
+﻿namespace Splorr.Kibbutz.Persistence
 
 open Splorr.Kibbutz.Business
 
 module MessagesImplementation =
     let private messages : Map<SessionIdentifier, Message list> ref = ref Map.empty
 
-    let internal Get 
+    let Get 
             (session : SessionIdentifier)
             : Message list =
         messages.Value
         |> Map.tryFind session
         |> Option.defaultValue []
 
-    let internal Put
+    let Put
             (session: SessionIdentifier, 
                 newMessages:Message list)
             : unit =
@@ -21,7 +21,7 @@ module MessagesImplementation =
             messages.Value
             |> Map.add session combinedMessages
 
-    let internal Purge
+    let Purge
             (session: SessionIdentifier)
             : unit =
         messages := 

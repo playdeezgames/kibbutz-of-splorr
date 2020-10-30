@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="MessagesImplementation.fs" />
     <Compile Include="OutputImplementation.fs" />
     <Compile Include="GameImplementation.fs" />
     <Compile Include="SettlementImplementation.fs" />
@@ -18,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Splorr.Common\Splorr.Common.fsproj" />
+    <ProjectReference Include="..\Splorr.Kibbutz.Persistence\Splorr.Kibbutz.Persistence.fsproj" />
     <ProjectReference Include="..\Splorr.Kibbutz.Presentation\Splorr.Kibbutz.Presentation.fsproj" />
   </ItemGroup>
 
