@@ -1,6 +1,7 @@
 ﻿namespace Splorr.Kibbutz.Presentation
 
 open Splorr.Common
+open Splorr.Kibbutz.Business
 open System
 
 module internal CommandHandler =

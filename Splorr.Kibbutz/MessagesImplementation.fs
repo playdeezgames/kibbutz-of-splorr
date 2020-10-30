@@ -1,6 +1,6 @@
 ﻿namespace Splorr.Kibbutz
 
-open Splorr.Kibbutz.Presentation
+open Splorr.Kibbutz.Business
 
 module MessagesImplementation =
     let private messages : Map<SessionIdentifier, Message list> ref = ref Map.empty

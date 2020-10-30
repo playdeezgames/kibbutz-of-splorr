@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Messages.fs" />
     <Compile Include="Output.fs" />
-    <Compile Include="Settlement.fs" />
     <Compile Include="Explainer.fs" />
     <Compile Include="Command.fs" />
     <Compile Include="CommandHandler.fs" />
@@ -17,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Splorr.Common\Splorr.Common.fsproj" />
+    <ProjectReference Include="..\Splorr.Kibbutz.Business\Splorr.Kibbutz.Business.fsproj" />
   </ItemGroup>
 
 </Project>

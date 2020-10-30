@@ -1,4 +1,4 @@
-﻿namespace Splorr.Kibbutz.Presentation
+﻿namespace Splorr.Kibbutz.Business
 
 open Splorr.Common
 
@@ -15,7 +15,7 @@ module Settlement =
             (context : CommonContext)=
         (context :?> GetSettlementForSessionContext).settlementSource.Value
 
-    let internal HasSettlementForSession
+    let HasSettlementForSession
             (context : CommonContext)
             (session : SessionIdentifier)
             : bool =
@@ -68,7 +68,7 @@ module Settlement =
         |> PutSettlementForSession context session
         SettlementStartedMessages 
 
-    let internal StartSettlementForSession
+    let StartSettlementForSession
             (context : CommonContext)
             (session : SessionIdentifier)
             : Message list =
@@ -84,7 +84,7 @@ module Settlement =
         PutSettlementForSession context session None
         AbandonedSettlementMessages
 
-    let internal AbandonSettlementForSession
+    let AbandonSettlementForSession
             (context : CommonContext)
             (session : SessionIdentifier)
             : Message list =

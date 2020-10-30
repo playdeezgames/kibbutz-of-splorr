@@ -3,6 +3,7 @@
 open Splorr.Common
 open System
 open Splorr.Kibbutz.Presentation
+open Splorr.Kibbutz.Business
 
 type internal KibbutzContext() =
     interface CommonContext

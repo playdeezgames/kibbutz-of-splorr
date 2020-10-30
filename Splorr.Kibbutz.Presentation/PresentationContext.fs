@@ -1,10 +1,8 @@
 ﻿namespace Splorr.Kibbutz.Presentation
 
+open Splorr.Kibbutz.Business
+
 type PresentationContext =
+    inherit BusinessContext
     inherit Game.PollForCommandContext
-    inherit Messages.GetContext
-    inherit Messages.PurgeContext
-    inherit Messages.PutContext
     inherit Output.WriteContext
-    inherit Settlement.GetSettlementForSessionContext
-    inherit Settlement.PutSettlementForSessionContext

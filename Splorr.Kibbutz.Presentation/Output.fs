@@ -1,6 +1,7 @@
 ﻿namespace Splorr.Kibbutz.Presentation
 
 open Splorr.Common
+open Splorr.Kibbutz.Business
 
 module Output =
     type WriteSink = Message -> unit

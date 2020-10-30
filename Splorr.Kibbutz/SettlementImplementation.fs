@@ -1,6 +1,6 @@
 ﻿namespace Splorr.Kibbutz
 
-open Splorr.Kibbutz.Presentation
+open Splorr.Kibbutz.Business
 open System
 
 module SettlementImplementation = 

@@ -1,13 +1,13 @@
 ﻿namespace Splorr.Kibbutz.Presentation
 
 open Splorr.Common
+open Splorr.Kibbutz.Business
 open System
 
 module internal Explainer =
     let private ExplainSettlement
             (context : CommonContext)
             (session : SessionIdentifier)
-            (settlement : Settlement)
             : unit =
         Messages.Put context session [Line "(the settlement will be explained here)"]
 
@@ -22,10 +22,9 @@ module internal Explainer =
             (session : SessionIdentifier)
             : unit =
         Messages.Put context session [Line ""]
-        match Settlement.GetSettlementForSession context session with
-        | Some settlement ->
-            ExplainSettlement context session settlement
-        | None ->
+        if Settlement.HasSettlementForSession context session then
+            ExplainSettlement context session
+        else
             ExplainNoSettlement context session
 
 
