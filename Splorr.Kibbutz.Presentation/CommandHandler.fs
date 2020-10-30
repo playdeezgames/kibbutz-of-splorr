@@ -10,20 +10,37 @@ module internal CommandHandler =
             : SessionIdentifier option =
         None
 
+    let private HandleStandardCommand
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            (messages : Message list)
+            : SessionIdentifier option=
+        Messages.Purge context session
+        Messages.Put context (session, messages)
+        Explainer.Explain context session
+        Some session
+
     let private HandleInvalidCommand
             (context : CommonContext)
             (invalidText : string)
             (session : SessionIdentifier)
             : SessionIdentifier option =
-        Messages.Purge context session
-        Messages.Put context (session, 
-            [
-                Line ""
-                Hued (Red, Line (sprintf "I don't know what '%s' means." invalidText))
-                Hued (Red, Line "Maybe you should try 'help'.")
-            ])
-        Explainer.Explain context session
-        Some session
+        [
+            Line ""
+            Hued (Red, Line (sprintf "I don't know what '%s' means." invalidText))
+            Hued (Red, Line "Maybe you should try 'help'.")
+        ]
+        |> HandleStandardCommand context session
+
+    let private HandleHelpCommand
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : SessionIdentifier option =
+        [
+            Line ""
+            Hued (Yellow, Line ("(there will be helpful content here at some point, I assure you."))
+        ]
+        |> HandleStandardCommand context session
 
     let internal HandleCommand
             (context : CommonContext)
@@ -31,9 +48,11 @@ module internal CommandHandler =
             (session : SessionIdentifier)
             : SessionIdentifier option =
         match command with
-        | Quit ->
-            HandleQuitCommand context session
         | Invalid text ->
             HandleInvalidCommand context text session
+        | Help ->
+            HandleHelpCommand context session
+        | Quit ->
+            HandleQuitCommand context session
 
 

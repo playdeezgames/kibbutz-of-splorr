@@ -10,6 +10,8 @@ module GameImplementation =
         match tokens with
         | [ "quit" ] ->
             Some Command.Quit
+        | [ "help" ] ->
+            Some Command.Help
         | _ ->
             tokens
             |> List.reduce

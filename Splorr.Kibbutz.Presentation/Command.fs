@@ -4,5 +4,6 @@ open Splorr.Common
 open System
 
 type Command =
-    | Quit
+    | Help
     | Invalid of string
+    | Quit
