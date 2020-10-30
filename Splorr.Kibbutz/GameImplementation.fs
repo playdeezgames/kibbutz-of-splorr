@@ -11,7 +11,11 @@ module GameImplementation =
         | [ "quit" ] ->
             Some Game.Command.Quit
         | _ ->
-            None
+            tokens
+            |> List.reduce
+                (fun a b -> a + " " + b)
+            |> Game.Command.Invalid 
+            |> Some
 
     let internal PollForCommand() : Game.Command option =
         let oldColor = Console.ForegroundColor
@@ -25,9 +29,6 @@ module GameImplementation =
         result
 
     let internal HandleInvalidCommand() : unit =
-        let oldColor = Console.ForegroundColor
-        Console.ForegroundColor <- ConsoleColor.Red
-        Console.WriteLine("\nI have no idea what you mean!")
-        Console.ForegroundColor <- oldColor
+        ()
 
 

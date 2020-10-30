@@ -18,7 +18,5 @@ type internal KibbutzContext() =
         member this.sessionMessagesSink = ref MessagesImplementation.Put
     interface Messages.PurgeContext with
         member this.sessionMessagesPurge = ref MessagesImplementation.Purge
-    interface Game.HandleInvalidCommandContext with
-        member this.invalidCommandSink = ref GameImplementation.HandleInvalidCommand
 
 
