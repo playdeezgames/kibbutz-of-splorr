@@ -17,7 +17,7 @@ let ``HasSettlementForSession.It returns false when there is no settlement for t
 let ``HasSettlementForSession.It returns true when there is a settlement for the session.`` () =
     let calledGetSettlement = ref false
     let context = Contexts.TestContext()
-    (context :> Settlement.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, Some { iExistOnlyToHaveAFieldInTheRecord=0 })
+    (context :> Settlement.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, Some { turnCounter=0UL })
     let actual = Settlement.HasSettlementForSession context Dummies.ValidSessionIdentifier
     Assert.IsTrue(actual)
     Assert.IsTrue(calledGetSettlement.Value)

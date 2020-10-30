@@ -18,7 +18,7 @@ let ``AbandonSettlementForSession.It abandons a settlement when a settlement exi
     let calledGetSettlement = ref false
     let calledPutSettlement = ref false
     let context = Contexts.TestContext()
-    (context :> Settlement.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, Some { iExistOnlyToHaveAFieldInTheRecord=0})
+    (context :> Settlement.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, Some { turnCounter=0UL})
     (context :> Settlement.PutSettlementForSessionContext).settlementSink := Spies.Expect(calledPutSettlement, (Dummies.ValidSessionIdentifier, None))
     let actual = Settlement.AbandonSettlementForSession context Dummies.ValidSessionIdentifier
     Assert.AreEqual(1, actual.Length)

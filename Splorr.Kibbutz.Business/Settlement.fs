@@ -4,7 +4,7 @@ open Splorr.Common
 
 type Settlement = 
     {
-        iExistOnlyToHaveAFieldInTheRecord : int
+        turnCounter : uint64
     }
 
 module Settlement =
@@ -35,7 +35,7 @@ module Settlement =
             (context : CommonContext)
             : Settlement =
         {
-            iExistOnlyToHaveAFieldInTheRecord = 0
+            turnCounter = 0UL
         }
 
     let private SettlementAlreadyExistsMessages = 
