@@ -10,7 +10,6 @@
   <ItemGroup>
     <Compile Include="OutputImplementation.fs" />
     <Compile Include="GameImplementation.fs" />
-    <Compile Include="SettlementImplementation.fs" />
     <Compile Include="KibbutzContext.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

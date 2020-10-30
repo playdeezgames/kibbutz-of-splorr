@@ -1,4 +1,4 @@
-﻿namespace Splorr.Kibbutz
+﻿namespace Splorr.Kibbutz.Persistence
 
 open Splorr.Kibbutz.Business
 open System
@@ -6,13 +6,13 @@ open System
 module SettlementImplementation = 
     let private settlements : Map<SessionIdentifier, Settlement> ref = ref Map.empty
 
-    let internal GetSettlementForSession
+    let GetSettlementForSession
             (session : SessionIdentifier)
             : Settlement option =
         settlements.Value
         |> Map.tryFind session
 
-    let internal PutSettlementForSession
+    let PutSettlementForSession
             (session : SessionIdentifier,
                 settlement : Settlement option)
             : unit =
