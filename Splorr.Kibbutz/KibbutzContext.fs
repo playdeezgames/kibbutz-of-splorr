@@ -20,5 +20,7 @@ type internal KibbutzContext() =
         member this.sessionMessagesPurge = ref MessagesImplementation.Purge
     interface Settlement.GetSettlementForSessionContext with
         member this.settlementSource = ref SettlementImplementation.GetSettlementForSession
+    interface Settlement.PutSettlementForSessionContext with
+        member this.settlementSink = ref SettlementImplementation.PutSettlementForSession
 
 

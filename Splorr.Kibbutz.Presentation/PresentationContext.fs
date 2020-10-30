@@ -7,3 +7,4 @@ type PresentationContext =
     inherit Messages.PutContext
     inherit Output.WriteContext
     inherit Settlement.GetSettlementForSessionContext
+    inherit Settlement.PutSettlementForSessionContext

@@ -7,3 +7,4 @@ type Command =
     | Help
     | Invalid of string
     | Quit
+    | StartSettlement

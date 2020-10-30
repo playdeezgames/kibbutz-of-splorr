@@ -32,8 +32,11 @@ module Messages =
     type PutContext =
         abstract member sessionMessagesSink : SessionMessagesSink ref
     let internal Put
-            (context : CommonContext) =
-        (context :?> PutContext).sessionMessagesSink.Value
+            (context : CommonContext) 
+            (session : SessionIdentifier)
+            (messages : Message list)
+            : unit =
+        (context :?> PutContext).sessionMessagesSink.Value (session, messages)
 
     type SessionMessagesPurge = SessionIdentifier -> unit
     type PurgeContext = 

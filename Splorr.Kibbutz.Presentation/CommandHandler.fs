@@ -16,7 +16,8 @@ module internal CommandHandler =
             (messages : Message list)
             : SessionIdentifier option=
         Messages.Purge context session
-        Messages.Put context (session, messages)
+        Messages.Put context session [Line ""]
+        Messages.Put context session messages
         Explainer.Explain context session
         Some session
 
@@ -26,7 +27,6 @@ module internal CommandHandler =
             (session : SessionIdentifier)
             : SessionIdentifier option =
         [
-            Line ""
             Hued (Red, Line (sprintf "I don't know what '%s' means." invalidText))
             Hued (Red, Line "Maybe you should try 'help'.")
         ]
@@ -37,9 +37,15 @@ module internal CommandHandler =
             (session : SessionIdentifier)
             : SessionIdentifier option =
         [
-            Line ""
             Hued (Yellow, Line ("(there will be helpful content here at some point, I assure you."))
         ]
+        |> HandleStandardCommand context session
+
+    let private HandleStartSettlementCommand
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : SessionIdentifier option =
+        Settlement.StartSettlementForSession context session
         |> HandleStandardCommand context session
 
     let internal HandleCommand
@@ -54,5 +60,7 @@ module internal CommandHandler =
             HandleHelpCommand context session
         | Quit ->
             HandleQuitCommand context session
+        | StartSettlement ->
+            HandleStartSettlementCommand context session
 
 
