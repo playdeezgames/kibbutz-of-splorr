@@ -1,6 +1,5 @@
 ﻿namespace Splorr.Kibbutz
 
-open Splorr.Kibbutz.Presentation
 open System
 open Splorr.Kibbutz.Business
 

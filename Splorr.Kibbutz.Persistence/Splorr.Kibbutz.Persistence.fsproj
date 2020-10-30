@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="SettlementImplementation.fs" />
-    <Compile Include="MessagesImplementation.fs" />
+    <Compile Include="SettlementStore.fs" />
+    <Compile Include="MessagesStore.fs" />
   </ItemGroup>
 
   <ItemGroup>

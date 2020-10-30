@@ -7,6 +7,6 @@ open Splorr.Kibbutz.Business
 
 [<Test>]
 let ``GetSettlementForSession.It retrieves the current settlement for the given session.`` () =
-    SettlementImplementation.PutSettlementForSession(Dummies.ValidSessionIdentfier, Some { iExistOnlyToHaveAFieldInTheRecord=0})
-    let  actual = SettlementImplementation.GetSettlementForSession Dummies.ValidSessionIdentfier
+    SettlementStore.PutSettlementForSession(Dummies.ValidSessionIdentfier, Some { iExistOnlyToHaveAFieldInTheRecord=0})
+    let  actual = SettlementStore.GetSettlementForSession Dummies.ValidSessionIdentfier
     Assert.AreEqual(Some { iExistOnlyToHaveAFieldInTheRecord=0}, actual)

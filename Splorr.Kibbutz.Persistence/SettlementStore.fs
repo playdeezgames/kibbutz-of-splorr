@@ -3,7 +3,7 @@
 open Splorr.Kibbutz.Business
 open System
 
-module SettlementImplementation = 
+module SettlementStore = 
     let private settlements : Map<SessionIdentifier, Settlement> ref = ref Map.empty
 
     let GetSettlementForSession

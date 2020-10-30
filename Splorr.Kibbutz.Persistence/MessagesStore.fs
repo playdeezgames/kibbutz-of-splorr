@@ -2,7 +2,7 @@
 
 open Splorr.Kibbutz.Business
 
-module MessagesImplementation =
+module MessagesStore =
     let private messages : Map<SessionIdentifier, Message list> ref = ref Map.empty
 
     let Get 

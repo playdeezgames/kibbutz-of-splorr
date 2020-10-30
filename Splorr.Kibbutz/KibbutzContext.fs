@@ -15,14 +15,14 @@ type internal KibbutzContext() =
         member this.commandSource = 
             ref GameImplementation.PollForCommand
     interface Messages.GetContext with
-        member this.sessionMessageSource = ref MessagesImplementation.Get
+        member this.sessionMessageSource = ref MessagesStore.Get
     interface Messages.PutContext with
-        member this.sessionMessagesSink = ref MessagesImplementation.Put
+        member this.sessionMessagesSink = ref MessagesStore.Put
     interface Messages.PurgeContext with
-        member this.sessionMessagesPurge = ref MessagesImplementation.Purge
+        member this.sessionMessagesPurge = ref MessagesStore.Purge
     interface Settlement.GetSettlementForSessionContext with
-        member this.settlementSource = ref SettlementImplementation.GetSettlementForSession
+        member this.settlementSource = ref SettlementStore.GetSettlementForSession
     interface Settlement.PutSettlementForSessionContext with
-        member this.settlementSink = ref SettlementImplementation.PutSettlementForSession
+        member this.settlementSink = ref SettlementStore.PutSettlementForSession
 
 

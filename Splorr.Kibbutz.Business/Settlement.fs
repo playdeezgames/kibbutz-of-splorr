@@ -11,7 +11,7 @@ module Settlement =
     type SettlementSource = SessionIdentifier -> Settlement option
     type GetSettlementForSessionContext =
         abstract member settlementSource : SettlementSource ref
-    let internal GetSettlementForSession
+    let private GetSettlementForSession
             (context : CommonContext)=
         (context :?> GetSettlementForSessionContext).settlementSource.Value
 
@@ -77,7 +77,7 @@ module Settlement =
         else
             GenerateAndPutNewSettlementForSession context session
 
-    let internal ActuallyAbandonSettlementForSession
+    let private ActuallyAbandonSettlementForSession
             (context : CommonContext)
             (session : SessionIdentifier)
             : Message list =
