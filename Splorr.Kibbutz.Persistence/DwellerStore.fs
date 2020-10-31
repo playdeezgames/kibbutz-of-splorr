@@ -22,3 +22,29 @@ module DwellerStore =
             : Dweller option =
         dwellers.Value
         |> Map.tryFind identifier
+
+    let AssignToSession
+            (identifier : DwellerIdentifier, session : SessionIdentifier option)
+            : unit =
+        match session with
+        | Some s ->
+            dwellerIdentifiers :=
+                dwellerIdentifiers.Value
+                |> Map.add identifier s
+        | None ->
+            dwellerIdentifiers :=
+                dwellerIdentifiers.Value
+                |> Map.remove identifier
+
+    let Put
+            (identifier : DwellerIdentifier, dweller : Dweller option)
+            : unit =
+        match dweller with
+        | Some d ->
+            dwellers :=
+                dwellers.Value
+                |> Map.add identifier d
+        | None ->
+            dwellers :=
+                dwellers.Value
+                |> Map.remove identifier

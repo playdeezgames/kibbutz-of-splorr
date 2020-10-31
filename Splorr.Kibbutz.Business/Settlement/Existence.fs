@@ -39,6 +39,18 @@ module internal SettlementExistence =
             Hued (Green, Line ("You start a new settlement!"))
         ]
 
+    let private GenerateDwellers
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : unit =
+        let dweller = 
+            Dweller.Create context
+        let identifier =
+            Guid.NewGuid()//TODO : hide that this is a guid?
+        DwellerRepository.Put context identifier (Some dweller)
+        DwellerRepository.AssignToSession context session identifier
+            
+
     let private GenerateAndPutNewSettlementForSession
             (context : CommonContext)
             (session : SessionIdentifier)
@@ -46,7 +58,7 @@ module internal SettlementExistence =
         GenerateSettlement context
         |> Some
         |> SettlementRepository.PutSettlementForSession context session
-        //TODO: generate citizens
+        GenerateDwellers context session
         SettlementStartedMessages 
 
     let internal StartSettlementForSession

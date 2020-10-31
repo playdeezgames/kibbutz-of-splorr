@@ -21,3 +21,7 @@ type TestContext() =
         member val sessionDwellerSource = ref (Fakes.Source ("DwellerRepository.GetListForSessionContext", []))
     interface DwellerRepository.GetContext with
         member val dwellerSingleSource = ref (Fakes.Source ("DwellerRepository.GetContext", None))
+    interface DwellerRepository.AssignToSessionContext with
+        member val dwellerSessionSink = ref (Fakes.Sink "DwellerRepository.AssignToSessionContext")
+    interface DwellerRepository.PutContext with
+        member val dwellerSingleSink = ref (Fakes.Sink "DwellerRepository.PutContext")

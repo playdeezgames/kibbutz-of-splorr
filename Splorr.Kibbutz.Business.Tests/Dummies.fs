@@ -10,5 +10,5 @@ let internal ValidDwellerTable : Map<DwellerIdentifier, Dweller option> =
     ValidDwellerIdentifiers
     |> List.map
         (fun identifier ->
-            (identifier, Some {sexGenes = XX}))
+            (identifier, Some {sexGenes = None}))
     |> Map.ofList

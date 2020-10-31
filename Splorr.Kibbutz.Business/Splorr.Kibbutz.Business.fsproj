@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Include="Messages\Messages.fs" />
+    <Compile Include="Dweller\Repository.fs" />
     <Compile Include="Dweller\Dweller.fs" />
     <Compile Include="Settlement\Repository.fs" />
     <Compile Include="Settlement\Advancer.fs" />

@@ -28,5 +28,9 @@ type internal KibbutzContext() =
         member this.sessionDwellerSource = ref DwellerStore.GetListForSession
     interface DwellerRepository.GetContext with
         member this.dwellerSingleSource = ref DwellerStore.Get
+    interface DwellerRepository.AssignToSessionContext with
+        member this.dwellerSessionSink = ref DwellerStore.AssignToSession
+    interface DwellerRepository.PutContext with
+        member this.dwellerSingleSink = ref DwellerStore.Put
 
 

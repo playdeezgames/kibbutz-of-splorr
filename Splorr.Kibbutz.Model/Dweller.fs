@@ -8,7 +8,7 @@ type SexGenes =
 
 type Dweller = 
     {
-        sexGenes : SexGenes
+        sexGenes : SexGenes option
     }
 
 type DwellerIdentifier = Guid
