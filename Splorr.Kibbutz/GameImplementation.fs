@@ -8,6 +8,7 @@ module GameImplementation =
         [
             [ "abandon" ], Command.AbandonSettlement
             [ "abandon"; "settlement" ], Command.AbandonSettlement
+            [ "advance" ], Command.Advance
             [ "help" ], Command.Help
             [ "quit" ], Command.Quit
             [ "start" ], Command.StartSettlement

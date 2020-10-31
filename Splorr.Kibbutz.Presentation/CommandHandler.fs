@@ -44,7 +44,11 @@ module internal CommandHandler =
             (session : SessionIdentifier)
             : SessionIdentifier option =
         [
-            Hued (Yellow, Line ("(there will be helpful content here at some point, I assure you."))
+            Hued (Yellow, Line ("abandon - abandons a settlement"))
+            Hued (Yellow, Line ("advance - advances a settlement by one turn"))
+            Hued (Yellow, Line ("help - shows help"))
+            Hued (Yellow, Line ("start - starts a settlement"))
+            Hued (Yellow, Line ("quit - quits the game"))
         ]
         |> HandleStandardCommand context session
 
@@ -62,6 +66,13 @@ module internal CommandHandler =
         Settlement.AbandonSettlementForSession context session
         |> HandleStandardCommand context session
 
+    let private HandleAdvance
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : SessionIdentifier option =
+        Settlement.Advance context session
+        |> HandleStandardCommand context session
+
     let internal HandleCommand
             (context : CommonContext)
             (command : Command)
@@ -70,6 +81,8 @@ module internal CommandHandler =
         match command with
         | AbandonSettlement ->
             HandleAbandonSettlementCommand context session
+        | Advance ->
+            HandleAdvance context session
         | Help ->
             HandleHelpCommand context session
         | Invalid text ->

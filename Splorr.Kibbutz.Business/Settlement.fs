@@ -1,6 +1,7 @@
 ﻿namespace Splorr.Kibbutz.Business
 
 open Splorr.Common
+open System
 
 type Settlement = 
     {
@@ -12,7 +13,7 @@ module Settlement =
     type GetSettlementForSessionContext =
         abstract member settlementSource : SettlementSource ref
     let private GetSettlementForSession
-            (context : CommonContext)=
+            (context : CommonContext) =
         (context :?> GetSettlementForSessionContext).settlementSource.Value
 
     let HasSettlementForSession
@@ -96,8 +97,9 @@ module Settlement =
     let private ExplainSettlement
             (context : CommonContext)
             (session : SessionIdentifier)
+            (settlement : Settlement)
             : unit =
-        Messages.Put context session [Line "(the settlement will be explained here)"]
+        Messages.Put context session [Line (sprintf "Turn# %u" settlement.turnCounter)]
 
     let private ExplainNoSettlement
             (context : CommonContext)
@@ -110,10 +112,23 @@ module Settlement =
             (session : SessionIdentifier)
             : unit =
         Messages.Put context session [Line ""]
-        if HasSettlementForSession context session then
-            ExplainSettlement context session
-        else
+        match GetSettlementForSession context session with
+        | Some settlement ->
+            ExplainSettlement context session settlement
+        | _ ->
             ExplainNoSettlement context session
+
+    let Advance
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : Message list =
+        match GetSettlementForSession context session with
+        | Some settlement ->
+            PutSettlementForSession context session (Some {settlement with turnCounter = settlement.turnCounter + 1UL})
+            [Hued (Green, Line "You advance your settlement to the next turn.")]
+        | _ ->
+            [Hued (Red, Line "You have no settlement to advance.")]
+            
             
 
 

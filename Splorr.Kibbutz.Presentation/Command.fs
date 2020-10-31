@@ -5,6 +5,7 @@ open System
 
 type Command =
     | AbandonSettlement
+    | Advance
     | Help
     | Invalid of string
     | Quit
