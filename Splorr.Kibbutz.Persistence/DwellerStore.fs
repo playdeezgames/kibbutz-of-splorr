@@ -5,15 +5,17 @@ open Splorr.Kibbutz.Model
 open System
 
 module DwellerStore =
-    let private dwellerIdentifiers : Map<SessionIdentifier, DwellerIdentifier list> ref = ref Map.empty
+    let private dwellerIdentifiers : Map<DwellerIdentifier, SessionIdentifier> ref = ref Map.empty
     let private dwellers : Map<DwellerIdentifier, Dweller> ref = ref Map.empty
 
     let GetListForSession
             (session : SessionIdentifier)
             : DwellerIdentifier list =
         dwellerIdentifiers.Value
-        |> Map.tryFind session
-        |> Option.defaultValue []
+        |> Map.filter
+            (fun _ s -> s = session)
+        |> Map.toList
+        |> List.map fst
 
     let Get
             (identifier : DwellerIdentifier)
