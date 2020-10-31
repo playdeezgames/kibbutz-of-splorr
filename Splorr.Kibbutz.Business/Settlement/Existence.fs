@@ -26,6 +26,7 @@ module internal SettlementExistence =
 
     let private AbandonedSettlementMessages = 
         [
+            Hued (Yellow, Line ("I'm sure those people will be fine and not starve to death or anything bad like that."))
             Hued (Green, Line ("You abandon yer settlement!"))
         ]
 
