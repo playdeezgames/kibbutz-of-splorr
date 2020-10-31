@@ -6,11 +6,13 @@
 
   <ItemGroup>
     <Compile Include="Messages.fs" />
+    <Compile Include="Dweller\Model.fs" />
+    <Compile Include="Dweller\Dweller.fs" />
     <Compile Include="Settlement\Model.fs" />
     <Compile Include="Settlement\Repository.fs" />
+    <Compile Include="Settlement\Advancer.fs" />
     <Compile Include="Settlement\Existence.fs" />
     <Compile Include="Settlement\Explainer.fs" />
-    <Compile Include="Settlement\Advancer.fs" />
     <Compile Include="Settlement\Settlement.fs" />
     <Compile Include="BusinessContext.fs" />
   </ItemGroup>

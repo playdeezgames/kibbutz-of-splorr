@@ -22,3 +22,7 @@ type TestContext() =
         member val settlementSource = ref (Fakes.Source ("Settlement.GetSettlementForSessionContext", None))
     interface SettlementRepository.PutSettlementForSessionContext with
         member val settlementSink = ref (Fakes.Sink "Settlement.PutSettlementForSessionContext")
+    interface DwellerRepository.GetListForSessionContext with
+        member val sessionDwellerSource = ref (Fakes.Source ("DwellerRepository.GetListForSessionContext", []))
+    interface DwellerRepository.GetContext with
+        member val dwellerSingleSource = ref (Fakes.Source ("DwellerRepository.GetContext", None))

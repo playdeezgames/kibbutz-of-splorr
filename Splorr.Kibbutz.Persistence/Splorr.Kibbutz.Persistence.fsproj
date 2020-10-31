@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="DwellerStore.fs" />
     <Compile Include="SettlementStore.fs" />
     <Compile Include="MessagesStore.fs" />
   </ItemGroup>

@@ -46,6 +46,7 @@ module internal SettlementExistence =
         GenerateSettlement context
         |> Some
         |> SettlementRepository.PutSettlementForSession context session
+        //TODO: generate citizens
         SettlementStartedMessages 
 
     let internal StartSettlementForSession
