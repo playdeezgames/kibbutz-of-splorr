@@ -1,23 +1,8 @@
 ﻿namespace Splorr.Kibbutz.Business
 
 open Splorr.Common
+open Splorr.Kibbutz.Model
 open System
-
-type SessionIdentifier = Guid
-type Hue =
-    | Black
-    | Blue
-    | Green
-    | Cyan
-    | Red
-    | Magenta
-    | Yellow
-    | Gray
-    | Light of Hue
-type Message = 
-    | Text of string
-    | Line of string
-    | Hued of Hue * Message
 
 module Messages =
     type SessionMessageSource = SessionIdentifier -> Message list

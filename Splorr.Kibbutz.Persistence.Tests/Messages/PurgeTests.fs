@@ -3,6 +3,7 @@
 open NUnit.Framework
 open Splorr.Kibbutz.Persistence
 open Splorr.Kibbutz.Business
+open Splorr.Kibbutz.Model
 
 [<Test>]
 let ``Purge.It purges messages for the given session.``() =

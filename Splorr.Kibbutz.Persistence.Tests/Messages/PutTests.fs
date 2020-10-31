@@ -3,6 +3,7 @@
 open NUnit.Framework
 open Splorr.Kibbutz.Persistence
 open Splorr.Kibbutz.Business
+open Splorr.Kibbutz.Model
 
 [<Test>]
 let ``Put.It puts a message for the given session.``() =

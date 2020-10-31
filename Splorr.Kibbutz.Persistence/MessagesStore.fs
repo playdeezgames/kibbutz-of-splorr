@@ -1,6 +1,7 @@
 ﻿namespace Splorr.Kibbutz.Persistence
 
 open Splorr.Kibbutz.Business
+open Splorr.Kibbutz.Model
 
 module MessagesStore =
     let private messages : Map<SessionIdentifier, Message list> ref = ref Map.empty

@@ -2,6 +2,7 @@
 
 open System
 open Splorr.Kibbutz.Business
+open Splorr.Kibbutz.Model
 
 module OutputImplementation =
     let rec private getConsoleColorForHue

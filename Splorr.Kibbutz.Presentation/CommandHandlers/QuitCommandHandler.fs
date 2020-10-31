@@ -3,6 +3,7 @@
 open Splorr.Common
 open Splorr.Kibbutz.Business
 open System
+open Splorr.Kibbutz.Model
 
 module internal QuitCommandHandler =
     let internal Handle
