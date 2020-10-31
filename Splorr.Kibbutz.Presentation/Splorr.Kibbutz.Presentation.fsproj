@@ -7,7 +7,14 @@
   <ItemGroup>
     <Compile Include="Output.fs" />
     <Compile Include="Command.fs" />
-    <Compile Include="CommandHandler.fs" />
+    <Compile Include="CommandHandlers\CommandHandlerUtility.fs" />
+    <Compile Include="CommandHandlers\AbandonSettlementCommandHandler.fs" />
+    <Compile Include="CommandHandlers\AdvanceCommandHandler.fs" />
+    <Compile Include="CommandHandlers\HelpCommandHandler.fs" />
+    <Compile Include="CommandHandlers\InvalidCommandHandler.fs" />
+    <Compile Include="CommandHandlers\QuitCommandHandler.fs" />
+    <Compile Include="CommandHandlers\StartSettlementCommandHandler.fs" />
+    <Compile Include="CommandHandlers\CommandHandler.fs" />
     <Compile Include="Game.fs" />
     <Compile Include="PresentationContext.fs" />
   </ItemGroup>
