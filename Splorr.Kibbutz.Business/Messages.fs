@@ -19,7 +19,6 @@ type Message =
     | Line of string
     | Hued of Hue * Message
 
-
 module Messages =
     type SessionMessageSource = SessionIdentifier -> Message list
     type GetContext =

@@ -13,7 +13,7 @@ type TestContext() =
         member val sessionMessagesPurge = ref (Fakes.Sink "Messages.PurgeContext")
     interface Messages.PutContext with
         member val sessionMessagesSink = ref (Fakes.Sink "Messages.PutContext")
-    interface Settlement.GetSettlementForSessionContext with
+    interface SettlementRepository.GetSettlementForSessionContext with
         member val settlementSource = ref (Fakes.Source ("Settlement.GetSettlementForSessionContext", None))
-    interface Settlement.PutSettlementForSessionContext with
+    interface SettlementRepository.PutSettlementForSessionContext with
         member val settlementSink = ref (Fakes.Sink "Settlement.PutSettlementForSessionContext")

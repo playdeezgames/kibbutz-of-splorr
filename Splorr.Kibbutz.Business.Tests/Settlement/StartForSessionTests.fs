@@ -8,7 +8,7 @@ open Splorr.Tests.Common
 let ``StartSettlementForSession.It does nothing when a settlement already exists.`` () =
     let calledGetSettlement = ref false
     let context = Contexts.TestContext()
-    (context :> Settlement.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, Some {turnCounter=0UL})
+    (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, Some {turnCounter=0UL})
     let actual =
         Settlement.StartSettlementForSession context Dummies.ValidSessionIdentifier
     Assert.AreEqual(1, actual.Length)
@@ -20,8 +20,8 @@ let ``StartSettlementForSession.It creates a new settlement when a settlement do
     let calledPutContext = ref false
     let calledGetSettlement = ref false
     let context = Contexts.TestContext()
-    (context :> Settlement.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, None)
-    (context :> Settlement.PutSettlementForSessionContext).settlementSink := Spies.Expect(calledPutContext, (Dummies.ValidSessionIdentifier, Some { turnCounter=0UL}))
+    (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, None)
+    (context :> SettlementRepository.PutSettlementForSessionContext).settlementSink := Spies.Expect(calledPutContext, (Dummies.ValidSessionIdentifier, Some { turnCounter=0UL}))
     let actual =
         Settlement.StartSettlementForSession context Dummies.ValidSessionIdentifier
     Assert.AreEqual(1, actual.Length)

@@ -4,6 +4,6 @@ type BusinessContext =
     inherit Messages.GetContext
     inherit Messages.PurgeContext
     inherit Messages.PutContext
-    inherit Settlement.GetSettlementForSessionContext
-    inherit Settlement.PutSettlementForSessionContext
+    inherit SettlementRepository.GetSettlementForSessionContext
+    inherit SettlementRepository.PutSettlementForSessionContext
 

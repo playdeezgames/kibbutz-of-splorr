@@ -1,6 +1,7 @@
 ﻿namespace Splorr.Kibbutz.Persistence
 
 open Splorr.Kibbutz.Business
+open Splorr.Kibbutz.Model
 open System
 
 module SettlementStore = 

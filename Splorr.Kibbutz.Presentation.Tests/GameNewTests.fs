@@ -14,7 +14,7 @@ let ``New.It generates a new session.`` () =
     let context = Contexts.TestContext()
     (context :> Messages.PurgeContext).sessionMessagesPurge := Spies.Sink(calledPurgeMessages)
     (context :> Messages.PutContext).sessionMessagesSink := Spies.Sink(calledPutMessages)
-    (context :> Settlement.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlementForSession, None)
+    (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlementForSession, None)
     let actual = Game.New context
     Assert.AreNotEqual(Guid.Empty, actual)
     Assert.IsTrue(calledPurgeMessages.Value)

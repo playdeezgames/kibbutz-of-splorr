@@ -4,6 +4,7 @@
 open NUnit.Framework
 open Splorr.Kibbutz.Persistence
 open Splorr.Kibbutz.Business
+open Splorr.Kibbutz.Model
 
 [<Test>]
 let ``GetSettlementForSession.It retrieves the current settlement for the given session.`` () =
