@@ -44,6 +44,12 @@ module internal Dweller =
     let internal Create
             (context : CommonContext)
             : Dweller =
+        let random = Random()
+        let sexGenes = 
+            match random.Next(101) with
+            | x when x < 50 -> Some XX
+            | x when x < 100 -> Some XY
+            | _ -> None
         {
-            sexGenes = None
+            sexGenes = sexGenes
         }

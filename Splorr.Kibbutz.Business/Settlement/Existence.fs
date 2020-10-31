@@ -39,17 +39,23 @@ module internal SettlementExistence =
             Hued (Green, Line ("You start a new settlement!"))
         ]
 
-    let private GenerateDwellers
+    let private GenerateDweller
             (context : CommonContext)
             (session : SessionIdentifier)
             : unit =
         let dweller = 
             Dweller.Create context
-        let identifier =
-            Guid.NewGuid()//TODO : hide that this is a guid?
+        let identifier = DwellerRepository.GenerateIdentifier()
         DwellerRepository.Put context identifier (Some dweller)
         DwellerRepository.AssignToSession context session identifier
-            
+
+    let private GenerateDwellers
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : unit =
+        [1..3]
+        |> List.iter
+            (fun _ -> GenerateDweller context session)
 
     let private GenerateAndPutNewSettlementForSession
             (context : CommonContext)
@@ -74,6 +80,11 @@ module internal SettlementExistence =
             (context : CommonContext)
             (session : SessionIdentifier)
             : Message list =
+        DwellerRepository.GetListForSession context session
+        |> List.iter
+            (fun identifier ->
+                DwellerRepository.Put context identifier None
+                DwellerRepository.RemoveFromSession context identifier)
         SettlementRepository.PutSettlementForSession context session None
         AbandonedSettlementMessages
 

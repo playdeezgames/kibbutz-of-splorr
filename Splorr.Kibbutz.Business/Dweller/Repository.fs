@@ -5,6 +5,8 @@ open System
 open Splorr.Kibbutz.Model
 
 module DwellerRepository =
+    let internal GenerateIdentifier () : DwellerIdentifier = Guid.NewGuid()
+
     type SessionDwellerSource = SessionIdentifier -> DwellerIdentifier list
     type GetListForSessionContext =
         abstract member sessionDwellerSource : SessionDwellerSource ref
@@ -32,9 +34,14 @@ module DwellerRepository =
     type DwellerSessionSink = DwellerIdentifier * SessionIdentifier option -> unit
     type AssignToSessionContext =
         abstract member dwellerSessionSink : DwellerSessionSink ref
-    let AssignToSession 
+    let internal AssignToSession 
             (context : CommonContext)
             (session : SessionIdentifier)
             (identifier : DwellerIdentifier)
             : unit =
         (context :?> AssignToSessionContext).dwellerSessionSink.Value (identifier, Some session)
+    let internal RemoveFromSession
+            (context : CommonContext)
+            (identifier : DwellerIdentifier)
+            : unit =
+        (context :?> AssignToSessionContext).dwellerSessionSink.Value (identifier, None)
