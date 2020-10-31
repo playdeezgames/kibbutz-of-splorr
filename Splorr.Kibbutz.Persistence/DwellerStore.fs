@@ -4,9 +4,9 @@ open Splorr.Kibbutz.Business
 open Splorr.Kibbutz.Model
 open System
 
-module DwellerStore =
+
+module DwellerIdentifierStore =
     let private dwellerIdentifiers : Map<DwellerIdentifier, SessionIdentifier> ref = ref Map.empty
-    let private dwellers : Map<DwellerIdentifier, Dweller> ref = ref Map.empty
 
     let GetListForSession
             (session : SessionIdentifier)
@@ -16,12 +16,6 @@ module DwellerStore =
             (fun _ s -> s = session)
         |> Map.toList
         |> List.map fst
-
-    let Get
-            (identifier : DwellerIdentifier)
-            : Dweller option =
-        dwellers.Value
-        |> Map.tryFind identifier
 
     let AssignToSession
             (identifier : DwellerIdentifier, session : SessionIdentifier option)
@@ -35,6 +29,15 @@ module DwellerStore =
             dwellerIdentifiers :=
                 dwellerIdentifiers.Value
                 |> Map.remove identifier
+
+module DwellerStore =
+    let private dwellers : Map<DwellerIdentifier, Dweller> ref = ref Map.empty
+
+    let Get
+            (identifier : DwellerIdentifier)
+            : Dweller option =
+        dwellers.Value
+        |> Map.tryFind identifier
 
     let Put
             (identifier : DwellerIdentifier, dweller : Dweller option)

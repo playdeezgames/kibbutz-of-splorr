@@ -7,5 +7,8 @@ open Splorr.Kibbutz.Model
 
 [<Test>]
 let ``GetListForSession.It gets a list of dwellers for a session.`` () =
-    let actual = DwellerStore.GetListForSession Dummies.ValidSessionIdentfier
+    DwellerIdentifierStore.GetListForSession Dummies.ValidSessionIdentfier
+    |> List.iter
+        (fun identifier -> DwellerIdentifierStore.AssignToSession (identifier, None))
+    let actual = DwellerIdentifierStore.GetListForSession Dummies.ValidSessionIdentfier
     Assert.AreEqual([], actual)

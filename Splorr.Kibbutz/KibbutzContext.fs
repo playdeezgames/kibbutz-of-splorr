@@ -25,11 +25,11 @@ type internal KibbutzContext() =
     interface SettlementRepository.PutSettlementForSessionContext with
         member this.settlementSink = ref SettlementStore.PutSettlementForSession
     interface DwellerRepository.GetListForSessionContext with
-        member this.sessionDwellerSource = ref DwellerStore.GetListForSession
+        member this.sessionDwellerSource = ref DwellerIdentifierStore.GetListForSession
     interface DwellerRepository.GetContext with
         member this.dwellerSingleSource = ref DwellerStore.Get
     interface DwellerRepository.AssignToSessionContext with
-        member this.dwellerSessionSink = ref DwellerStore.AssignToSession
+        member this.dwellerSessionSink = ref DwellerIdentifierStore.AssignToSession
     interface DwellerRepository.PutContext with
         member this.dwellerSingleSink = ref DwellerStore.Put
 

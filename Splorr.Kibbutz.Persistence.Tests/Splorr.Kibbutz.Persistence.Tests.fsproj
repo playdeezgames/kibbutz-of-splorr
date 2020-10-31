@@ -15,8 +15,10 @@
 
   <ItemGroup>
     <Compile Include="Dummies.fs" />
-    <Compile Include="Dweller\GetTests.fs" />
     <Compile Include="Dweller\GetListForSessionTests.fs" />
+    <Compile Include="Dweller\AssignToSessionTests.fs" />
+    <Compile Include="Dweller\GetTests.fs" />
+    <Compile Include="Dweller\PutTests.fs" />
     <Compile Include="Settlement\PutForSessionTests.fs" />
     <Compile Include="Settlement\GetForSessionTests.fs" />
     <Compile Include="Messages\PutTests.fs" />

@@ -7,5 +7,6 @@ open Splorr.Kibbutz.Model
 
 [<Test>]
 let ``Get.It gets dweller.`` () =
+    DwellerStore.Put (Dummies.ValidDwellerIdentifier, None)
     let actual = DwellerStore.Get Dummies.ValidDwellerIdentifier
     Assert.AreEqual(None, actual)
