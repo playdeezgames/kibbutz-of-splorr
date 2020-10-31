@@ -10,6 +10,7 @@ type Hue =
     | Yellow
     | Gray
     | Light of Hue
+
 type Message = 
     | Text of string
     | Line of string

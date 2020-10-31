@@ -5,12 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Session\Model.fs" />
-    <Compile Include="Messages\Model.fs" />
     <Compile Include="Messages\Messages.fs" />
-    <Compile Include="Dweller\Model.fs" />
     <Compile Include="Dweller\Dweller.fs" />
-    <Compile Include="Settlement\Model.fs" />
     <Compile Include="Settlement\Repository.fs" />
     <Compile Include="Settlement\Advancer.fs" />
     <Compile Include="Settlement\Existence.fs" />
@@ -21,6 +17,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Splorr.Common\Splorr.Common.fsproj" />
+    <ProjectReference Include="..\Splorr.Kibbutz.Model\Splorr.Kibbutz.Model.fsproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Session\" />
   </ItemGroup>
 
 </Project>

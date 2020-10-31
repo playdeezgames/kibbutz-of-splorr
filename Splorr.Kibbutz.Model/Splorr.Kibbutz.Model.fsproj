@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Dweller.fs" />
+    <Compile Include="Message.fs" />
+    <Compile Include="Session.fs" />
+    <Compile Include="Settlement.fs" />
+  </ItemGroup>
+
+</Project>
