@@ -27,7 +27,7 @@ let ``AbandonSettlementForSession.It abandons a settlement when a settlement exi
     (context :> DwellerRepository.PutContext).dwellerSingleSink := Spies.SinkCounter(callsForPutDweller)
     (context :> DwellerRepository.AssignToSessionContext).dwellerSessionSink := Spies.SinkCounter(callsForAssignToSession)
     let actual = Settlement.AbandonSettlementForSession context Dummies.ValidSessionIdentifier
-    Assert.AreEqual(1, actual.Length)
+    Assert.AreEqual(2, actual.Length)
     Assert.IsTrue(calledGetSettlement.Value)
     Assert.IsTrue(calledPutSettlement.Value)
     Assert.IsTrue(calledGetDwellerList.Value)

@@ -30,4 +30,6 @@ type TestContext() =
         member val dwellerSessionSink = ref (Fakes.Sink "DwellerRepository.AssignToSessionContext")
     interface DwellerRepository.PutContext with
         member val dwellerSingleSink = ref (Fakes.Sink "DwellerRepository.PutContext")
+    interface DwellerRepository.GenerateIdentifierContext with
+        member val dwellerIdentifierSource = ref (Fakes.Source ("DwellerRepository.GenerateIdentifierContext", ""))
 

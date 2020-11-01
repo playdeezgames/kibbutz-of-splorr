@@ -5,7 +5,12 @@ open System
 open Splorr.Kibbutz.Model
 
 module DwellerRepository =
-    let internal GenerateIdentifier () : DwellerIdentifier = Guid.NewGuid()
+    type DwellerIdentifierSource = unit -> DwellerIdentifier
+    type GenerateIdentifierContext =
+        abstract member dwellerIdentifierSource : DwellerIdentifierSource ref
+    let internal GenerateIdentifier
+            (context : CommonContext) =
+        (context :?> GenerateIdentifierContext).dwellerIdentifierSource.Value()
 
     type SessionDwellerSource = SessionIdentifier -> DwellerIdentifier list
     type GetListForSessionContext =

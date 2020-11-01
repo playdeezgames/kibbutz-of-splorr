@@ -3,6 +3,7 @@
 open NUnit.Framework
 open Splorr.Kibbutz.Business
 open Splorr.Tests.Common
+open System
 
 [<Test>]
 let ``StartSettlementForSession.It does nothing when a settlement already exists.`` () =
@@ -21,7 +22,9 @@ let ``StartSettlementForSession.It creates a new settlement when a settlement do
     let calledGetSettlement = ref false
     let calledPutDweller = ref false
     let calledAssignDwellerSession = ref false
+    let callsForGenerateIdentifier = ref 0UL
     let context = Contexts.TestContext()
+    (context :> DwellerRepository.GenerateIdentifierContext).dwellerIdentifierSource := Spies.SourceHook(callsForGenerateIdentifier, fun () -> Guid.NewGuid().ToString())
     (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, None)
     (context :> SettlementRepository.PutSettlementForSessionContext).settlementSink := Spies.Expect(calledPutContext, (Dummies.ValidSessionIdentifier, Some { turnCounter=0UL}))
     (context :> DwellerRepository.PutContext).dwellerSingleSink := Spies.Sink(calledPutDweller)
@@ -33,5 +36,6 @@ let ``StartSettlementForSession.It creates a new settlement when a settlement do
     Assert.IsTrue(calledPutContext.Value)
     Assert.IsTrue(calledPutDweller.Value)
     Assert.IsTrue(calledAssignDwellerSession.Value)
+    Assert.AreEqual(3UL, callsForGenerateIdentifier.Value)
 
 

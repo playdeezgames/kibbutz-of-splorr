@@ -11,4 +11,4 @@ type Dweller =
         sexGenes : SexGenes option
     }
 
-type DwellerIdentifier = Guid
+type DwellerIdentifier = string

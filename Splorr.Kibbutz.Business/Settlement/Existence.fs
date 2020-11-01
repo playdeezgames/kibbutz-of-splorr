@@ -46,7 +46,7 @@ module internal SettlementExistence =
             : unit =
         let dweller = 
             Dweller.Create context
-        let identifier = DwellerRepository.GenerateIdentifier()
+        let identifier = DwellerRepository.GenerateIdentifier context
         DwellerRepository.Put context identifier (Some dweller)
         DwellerRepository.AssignToSession context session identifier
 

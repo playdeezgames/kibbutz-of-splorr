@@ -8,6 +8,9 @@ open System
 module DwellerIdentifierStore =
     let private dwellerIdentifiers : Map<DwellerIdentifier, SessionIdentifier> ref = ref Map.empty
 
+    let GenerateIdentifier() : DwellerIdentifier =
+        Guid.NewGuid().ToString()
+
     let GetListForSession
             (session : SessionIdentifier)
             : DwellerIdentifier list =

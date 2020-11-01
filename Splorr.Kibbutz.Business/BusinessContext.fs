@@ -2,6 +2,7 @@
 
 type BusinessContext = 
     inherit DwellerRepository.AssignToSessionContext
+    inherit DwellerRepository.GenerateIdentifierContext
     inherit DwellerRepository.GetContext
     inherit DwellerRepository.GetListForSessionContext
     inherit DwellerRepository.PutContext
