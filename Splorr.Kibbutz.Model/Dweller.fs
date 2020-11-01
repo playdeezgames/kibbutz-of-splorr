@@ -8,6 +8,7 @@ type SexGenes =
 
 type Dweller = 
     {
+        name : string
         sexGenes : SexGenes option
     }
 

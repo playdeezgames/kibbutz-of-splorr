@@ -16,7 +16,6 @@ let ``StartSettlementForSession.It does nothing when a settlement already exists
     Assert.AreEqual(1, actual.Length)
     Assert.IsTrue(calledGetSettlement.Value)
 
-
 [<Test>]
 let ``StartSettlementForSession.It creates a new settlement when a settlement does not exist.`` () =
     let callsForPutContext = ref 0UL

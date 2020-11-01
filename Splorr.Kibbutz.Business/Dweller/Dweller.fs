@@ -60,5 +60,6 @@ module internal Dweller =
         let sexGenes = 
             RandomUtility.GenerateFromWeightedValues context sexGenesTable
         {
+            name = ""
             sexGenes = sexGenes
         }
