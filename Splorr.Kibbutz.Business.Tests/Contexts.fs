@@ -3,6 +3,7 @@
 open Splorr.Kibbutz.Business
 open Splorr.Tests.Common
 open Splorr.Common
+open System
 
 type TestContext() =
     interface CommonContext
@@ -26,4 +27,4 @@ type TestContext() =
     interface DwellerRepository.PutContext with
         member val dwellerSingleSink = ref (Fakes.Sink "DwellerRepository.PutContext")
     interface DwellerRepository.GenerateIdentifierContext with
-        member val dwellerIdentifierSource = ref (Fakes.Source ("DwellerRepository.GenerateIdentifierContext", ""))
+        member val dwellerIdentifierSource = ref (Fakes.Source ("DwellerRepository.GenerateIdentifierContext", Guid.Empty))

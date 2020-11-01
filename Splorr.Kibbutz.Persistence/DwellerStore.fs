@@ -9,7 +9,7 @@ module DwellerIdentifierStore =
     let private dwellerIdentifiers : Map<DwellerIdentifier, SessionIdentifier> ref = ref Map.empty
 
     let GenerateIdentifier() : DwellerIdentifier =
-        Guid.NewGuid().ToString()
+        Guid.NewGuid()
 
     let GetListForSession
             (session : SessionIdentifier)
