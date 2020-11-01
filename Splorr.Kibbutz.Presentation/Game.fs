@@ -1,12 +1,11 @@
 ﻿namespace Splorr.Kibbutz.Presentation
 
 open Splorr.Common
+open Splorr.Kibbutz.Business
 open System
+open Splorr.Kibbutz.Model
 
 module Game = 
-
-    type Command =
-        | Quit
 
     let Load
             (context : CommonContext)
@@ -16,9 +15,10 @@ module Game =
     let New
             (context: CommonContext)
             : SessionIdentifier =
-        let session = Guid.NewGuid()
+        let session = Session.GenerateIdentifier context
         Messages.Purge context session
-        Messages.Put context (session, [Hued (Light Cyan, Line "Welcome to Kibbutz of SPLORR!!")])
+        Messages.Put context session [Hued (Light Cyan, Line "Welcome to Kibbutz of SPLORR!!")]
+        Settlement.Explain context session
         session
 
     let private UpdateDisplay
@@ -36,22 +36,6 @@ module Game =
             : Command option =
         (context :?> PollForCommandContext).commandSource.Value()
 
-    let private HandleCommand
-            (context : CommonContext)
-            (command : Command)
-            (session : SessionIdentifier)
-            : SessionIdentifier option =
-        None
-
-    type InvalidCommandSink = unit -> unit
-    type HandleInvalidCommandContext =
-        abstract member invalidCommandSink : InvalidCommandSink ref
-    let private HandleInvalidCommand
-            (context : CommonContext)
-            : unit =
-        (context :?> HandleInvalidCommandContext).invalidCommandSink.Value()
-
-
     let private RunLoop
             (context : CommonContext)
             (gamestate : SessionIdentifier)
@@ -59,9 +43,8 @@ module Game =
         UpdateDisplay context gamestate
         match PollForCommand context with
         | Some command ->
-            HandleCommand context command gamestate
+            CommandHandler.HandleCommand context command gamestate
         | _ ->
-            HandleInvalidCommand context 
             Some gamestate
 
     let rec Run

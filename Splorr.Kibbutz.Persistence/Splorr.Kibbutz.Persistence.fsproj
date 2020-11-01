@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="SessionNamesStore.fs" />
+    <Compile Include="DwellerStore.fs" />
+    <Compile Include="SettlementStore.fs" />
+    <Compile Include="SessionIdentifierStore.fs" />
+    <Compile Include="MessagesStore.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Splorr.Kibbutz.Business\Splorr.Kibbutz.Business.fsproj" />
+  </ItemGroup>
+
+</Project>

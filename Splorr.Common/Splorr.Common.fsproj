@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Include="CommonContext.fs" />
+    <Compile Include="RandomUtility.fs" />
   </ItemGroup>
 
 </Project>

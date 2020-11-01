@@ -1,7 +1,8 @@
 ﻿namespace Splorr.Kibbutz
 
-open Splorr.Kibbutz.Presentation
 open System
+open Splorr.Kibbutz.Business
+open Splorr.Kibbutz.Model
 
 module OutputImplementation =
     let rec private getConsoleColorForHue
@@ -25,6 +26,7 @@ module OutputImplementation =
         | Light Yellow -> ConsoleColor.Yellow
         | Light Gray -> ConsoleColor.White
         | Light inner -> getConsoleColorForHue inner
+
     let rec internal Write
             (message : Message)
             : unit =

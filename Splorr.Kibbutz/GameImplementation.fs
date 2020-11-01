@@ -4,16 +4,31 @@ open Splorr.Kibbutz.Presentation
 open System
 
 module GameImplementation =
+    let private fixedCommandTable : Map<string list, Command> =
+        [
+            [ "abandon" ], Command.AbandonSettlement
+            [ "abandon"; "settlement" ], Command.AbandonSettlement
+            [ "advance" ], Command.Advance
+            [ "help" ], Command.Help
+            [ "quit" ], Command.Quit
+            [ "start" ], Command.StartSettlement
+            [ "start"; "settlement" ], Command.StartSettlement
+        ]
+        |> Map.ofList
+
     let private ParseCommand
             (tokens : string list)
-            : Game.Command option =
-        match tokens with
-        | [ "quit" ] ->
-            Some Game.Command.Quit
-        | _ ->
-            None
+            : Command option =
+        fixedCommandTable
+        |> Map.tryFind tokens
+        |> Option.defaultValue
+            (tokens
+            |> List.reduce
+                (fun a b -> a + " " + b)
+            |> Command.Invalid)
+        |> Some
 
-    let internal PollForCommand() : Game.Command option =
+    let internal PollForCommand() : Command option =
         let oldColor = Console.ForegroundColor
         Console.ForegroundColor <- ConsoleColor.Gray
         Console.Write "\n>"
@@ -23,11 +38,5 @@ module GameImplementation =
             |> ParseCommand
         Console.ForegroundColor <- oldColor
         result
-
-    let internal HandleInvalidCommand() : unit =
-        let oldColor = Console.ForegroundColor
-        Console.ForegroundColor <- ConsoleColor.Red
-        Console.WriteLine("\nI have no idea what you mean!")
-        Console.ForegroundColor <- oldColor
 
 

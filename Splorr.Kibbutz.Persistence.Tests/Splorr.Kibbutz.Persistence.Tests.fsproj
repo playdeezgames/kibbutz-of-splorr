@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+    <GenerateProgramFile>false</GenerateProgramFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Dummies.fs" />
+    <Compile Include="Session\CheckSssionNameTests.fs" />
+    <Compile Include="Session\AddSessionNameTests.fs" />
+    <Compile Include="Session\ClearSessionNamesTests.fs" />
+    <Compile Include="Session\GenerateIdentifierTests.fs" />
+    <Compile Include="Dweller\GenerateIdentifierTests.fs" />
+    <Compile Include="Dweller\GetListForSessionTests.fs" />
+    <Compile Include="Dweller\AssignToSessionTests.fs" />
+    <Compile Include="Dweller\GetTests.fs" />
+    <Compile Include="Dweller\PutTests.fs" />
+    <Compile Include="Settlement\PutForSessionTests.fs" />
+    <Compile Include="Settlement\GetForSessionTests.fs" />
+    <Compile Include="Messages\PutTests.fs" />
+    <Compile Include="Messages\PurgeTests.fs" />
+    <Compile Include="Messages\GetTests.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Splorr.Kibbutz.Persistence\Splorr.Kibbutz.Persistence.fsproj" />
+    <ProjectReference Include="..\Splorr.Kibbutz.Tests\Splorr.Kibbutz.Tests.fsproj" />
+  </ItemGroup>
+
+</Project>

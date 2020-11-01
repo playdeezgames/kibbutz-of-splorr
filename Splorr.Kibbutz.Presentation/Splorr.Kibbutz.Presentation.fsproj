@@ -5,14 +5,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Messages.fs" />
     <Compile Include="Output.fs" />
+    <Compile Include="Command.fs" />
+    <Compile Include="CommandHandlers\CommandHandlerUtility.fs" />
+    <Compile Include="CommandHandlers\AbandonSettlementCommandHandler.fs" />
+    <Compile Include="CommandHandlers\AdvanceCommandHandler.fs" />
+    <Compile Include="CommandHandlers\HelpCommandHandler.fs" />
+    <Compile Include="CommandHandlers\InvalidCommandHandler.fs" />
+    <Compile Include="CommandHandlers\QuitCommandHandler.fs" />
+    <Compile Include="CommandHandlers\StartSettlementCommandHandler.fs" />
+    <Compile Include="CommandHandlers\CommandHandler.fs" />
     <Compile Include="Game.fs" />
     <Compile Include="PresentationContext.fs" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Splorr.Common\Splorr.Common.fsproj" />
+    <ProjectReference Include="..\Splorr.Kibbutz.Business\Splorr.Kibbutz.Business.fsproj" />
   </ItemGroup>
 
 </Project>

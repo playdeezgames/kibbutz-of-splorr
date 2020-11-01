@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Session\SessionRepository.fs" />
+    <Compile Include="Messages\Messages.fs" />
+    <Compile Include="Dweller\Repository.fs" />
+    <Compile Include="Dweller\Dweller.fs" />
+    <Compile Include="Settlement\Repository.fs" />
+    <Compile Include="Settlement\Advancer.fs" />
+    <Compile Include="Settlement\Existence.fs" />
+    <Compile Include="Settlement\Explainer.fs" />
+    <Compile Include="Settlement\Settlement.fs" />
+    <Compile Include="BusinessContext.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Splorr.Common\Splorr.Common.fsproj" />
+    <ProjectReference Include="..\Splorr.Kibbutz.Model\Splorr.Kibbutz.Model.fsproj" />
+  </ItemGroup>
+
+</Project>

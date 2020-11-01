@@ -5,6 +5,7 @@ open Splorr.Kibbutz.Presentation
 
 [<EntryPoint>]
 let main argv =
+    Console.Title <- "Kibbutz of SPLORR!!"
     let context = KibbutzContext() 
 
     Game.Load context
