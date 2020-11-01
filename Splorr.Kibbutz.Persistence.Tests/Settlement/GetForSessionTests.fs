@@ -8,6 +8,6 @@ open Splorr.Kibbutz.Model
 
 [<Test>]
 let ``GetSettlementForSession.It retrieves the current settlement for the given session.`` () =
-    SettlementStore.PutSettlementForSession(Dummies.ValidSessionIdentfier, Some { turnCounter=0UL})
+    SettlementStore.PutSettlementForSession(Dummies.ValidSessionIdentfier, Some Dummies.ValidSettlement)
     let  actual = SettlementStore.GetSettlementForSession Dummies.ValidSessionIdentfier
-    Assert.AreEqual(Some { turnCounter=0UL}, actual)
+    Assert.AreEqual(Some Dummies.ValidSettlement, actual)

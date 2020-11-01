@@ -17,6 +17,28 @@ module internal SettlementExistence =
             : Settlement =
         {
             turnCounter = 0UL
+            vowels = ["a";"e";"i";"o";"u"]
+            consonants=["h";"k";"l";"m";"p"]
+            nameLengthGenerator = 
+                [
+                    3, 1.0
+                    4, 3.0
+                    5, 6.0
+                    6, 10.0
+                    7, 12.0
+                    8, 12.0
+                    9, 10.0
+                    10, 6.0
+                    11, 3.0
+                    12, 1.0
+                ]
+                |> Map.ofList
+            nameStartGenerator = 
+                [
+                    true, 1.0
+                    false, 1.0
+                ]
+                |> Map.ofList
         }
 
     let private SettlementAlreadyExistsMessages = 

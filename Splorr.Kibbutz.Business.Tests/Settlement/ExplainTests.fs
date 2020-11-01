@@ -23,7 +23,7 @@ let ``Explain.It explains the state of the settlement when the settlement exists
     let callsForGetDweller = ref 0UL
     let context = Contexts.TestContext()
     (context :> Messages.PutContext).sessionMessagesSink := Spies.Sink(calledPutMessages)
-    (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, Some { turnCounter = 0UL })
+    (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, Some Dummies.ValidSettlement)
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource := Spies.Source(calledGetDwellerList, Dummies.ValidDwellerIdentifiers)
     (context :> DwellerRepository.GetContext).dwellerSingleSource := Spies.SourceTable(callsForGetDweller, Dummies.ValidDwellerTable)
     Settlement.Explain context Dummies.ValidSessionIdentifier

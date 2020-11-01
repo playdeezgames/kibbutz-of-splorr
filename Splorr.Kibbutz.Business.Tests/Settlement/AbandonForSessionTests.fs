@@ -21,7 +21,7 @@ let ``AbandonSettlementForSession.It abandons a settlement when a settlement exi
     let callsForPutDweller = ref 0UL
     let callsForAssignToSession = ref 0UL
     let context = Contexts.TestContext()
-    (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, Some { turnCounter=0UL})
+    (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, Some Dummies.ValidSettlement)
     (context :> SettlementRepository.PutSettlementForSessionContext).settlementSink := Spies.Expect(calledPutSettlement, (Dummies.ValidSessionIdentifier, None))
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource := Spies.Source(calledGetDwellerList, Dummies.ValidDwellerIdentifiers)
     (context :> DwellerRepository.PutContext).dwellerSingleSink := Spies.SinkCounter(callsForPutDweller)

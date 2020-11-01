@@ -12,3 +12,11 @@ let internal ValidDwellerTable : Map<DwellerIdentifier, Dweller option> =
         (fun identifier ->
             (identifier, Some {sexGenes = None}))
     |> Map.ofList
+let ValidSettlement : Settlement =
+    {
+        turnCounter = 0UL
+        vowels = []
+        consonants = []
+        nameLengthGenerator = Map.empty
+        nameStartGenerator = Map.empty
+    }
