@@ -1,6 +1,8 @@
 Day #4: Test Driven Development in F# of a Text-Based City Management Game
 # Day 4 - 20201101
 
+* names for dwellers
+
 # Day 3 - 20201031
 
 * dwellers
