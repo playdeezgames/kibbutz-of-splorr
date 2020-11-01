@@ -3,7 +3,9 @@
 open Splorr.Common
 open Splorr.Kibbutz.Model
 open System
-
+//TODO: move interface out of implementation
+//there should be a MessagesRepository that does the work
+//and Messages just exposes the interface
 module Messages =
     type SessionMessageSource = SessionIdentifier -> Message list
     type GetContext =

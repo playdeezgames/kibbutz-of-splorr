@@ -15,7 +15,7 @@ module Game =
     let New
             (context: CommonContext)
             : SessionIdentifier =
-        let session = Guid.NewGuid()
+        let session = Session.GenerateIdentifier context
         Messages.Purge context session
         Messages.Put context session [Hued (Light Cyan, Line "Welcome to Kibbutz of SPLORR!!")]
         Settlement.Explain context session

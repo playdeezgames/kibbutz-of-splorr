@@ -28,3 +28,5 @@ type TestContext() =
         member val dwellerSingleSink = ref (Fakes.Sink "DwellerRepository.PutContext")
     interface DwellerRepository.GenerateIdentifierContext with
         member val dwellerIdentifierSource = ref (Fakes.Source ("DwellerRepository.GenerateIdentifierContext", Guid.Empty))
+    interface SessionRepository.GenerateIdentifierContext with
+        member val sessionIdentifierSource = ref (Fakes.Source ("SessionRepository.GenerateIdentifierContext", Guid.Empty))

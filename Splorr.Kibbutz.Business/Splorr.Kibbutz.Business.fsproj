@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Session\SessionRepository.fs" />
     <Compile Include="Messages\Messages.fs" />
     <Compile Include="Dweller\Repository.fs" />
     <Compile Include="Dweller\Dweller.fs" />
@@ -19,10 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Splorr.Common\Splorr.Common.fsproj" />
     <ProjectReference Include="..\Splorr.Kibbutz.Model\Splorr.Kibbutz.Model.fsproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Session\" />
   </ItemGroup>
 
 </Project>
