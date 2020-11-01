@@ -15,8 +15,8 @@ let internal ValidDwellerTable : Map<DwellerIdentifier, Dweller option> =
 let ValidSettlement : Settlement =
     {
         turnCounter = 0UL
-        vowels = []
-        consonants = []
+        vowels = Map.empty
+        consonants = Map.empty
         nameLengthGenerator = Map.empty
         nameStartGenerator = Map.empty
     }

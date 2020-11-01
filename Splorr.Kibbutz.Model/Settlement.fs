@@ -3,8 +3,8 @@
 type Settlement = 
     {
         turnCounter : uint64
-        vowels : string list
-        consonants : string list
+        vowels : Map<string, float>
+        consonants : Map<string, float>
         nameLengthGenerator : Map<int, float>
         nameStartGenerator : Map<bool, float>
     }

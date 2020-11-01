@@ -5,11 +5,6 @@ open System
 open Splorr.Kibbutz.Model
 
 module internal Dweller =
-    let private DescribeName
-            (identifier : DwellerIdentifier)
-            : string =
-        identifier.ToString().Replace('0','o').Replace('1','i').Replace('2','z').Replace('3','m').Replace('4','h').Replace('5','s').Replace('6','k').Replace('7','l').Replace('8','j').Replace('9','g')
-
     let private DescribeSexGenes
             (sexGenes : SexGenes option)
             : string =
@@ -33,7 +28,7 @@ module internal Dweller =
             session
             [
                 Line ""
-                Line (sprintf "Dweller: %s" (identifier |> DescribeName))
+                Line (sprintf "Dweller: %s" dweller.name)
                 Line (sprintf "Sex: %s" (dweller.sexGenes |> DescribeSexGenes))
             ]
 
@@ -56,10 +51,11 @@ module internal Dweller =
 
     let internal Create
             (context : CommonContext)
+            (name : string)
             : Dweller =
         let sexGenes = 
             RandomUtility.GenerateFromWeightedValues context sexGenesTable
         {
-            name = ""
+            name = name
             sexGenes = sexGenes
         }

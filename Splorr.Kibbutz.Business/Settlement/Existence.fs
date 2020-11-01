@@ -17,8 +17,8 @@ module internal SettlementExistence =
             : Settlement =
         {
             turnCounter = 0UL
-            vowels = ["a";"e";"i";"o";"u"]
-            consonants=["h";"k";"l";"m";"p"]
+            vowels = ["a";"e";"i";"o";"u"] |> List.map (fun l -> (l, 1.0)) |> Map.ofList
+            consonants=["h";"k";"l";"m";"p"] |> List.map (fun l -> (l, 1.0)) |> Map.ofList
             nameLengthGenerator = 
                 [
                     3, 1.0
@@ -62,12 +62,50 @@ module internal SettlementExistence =
             Hued (Green, Line ("You start a new settlement!"))
         ]
 
+    let private ToVowelOrConsonantFlag
+            (nameStart : bool)
+            (namePosition : int)
+            : bool =
+        if namePosition % 2 = 1 then 
+            nameStart 
+        else 
+            not nameStart
+
+    let private FromFlagToTable
+            (trueTable : Map<string, float>)
+            (falseTable : Map<string, float>)
+            (flag: bool)
+            : Map<string, float> =
+        if flag then
+            trueTable
+        else
+            falseTable
+
+    let private GenerateDwellerName
+            (context : CommonContext)
+            (session: SessionIdentifier)
+            (settlement : Settlement)
+            : string =
+        let nameLength = 
+            RandomUtility.GenerateFromWeightedValues context settlement.nameLengthGenerator
+        let nameStart =
+            RandomUtility.GenerateFromWeightedValues context settlement.nameStartGenerator
+        [1..nameLength]
+        |> List.map
+            (ToVowelOrConsonantFlag nameStart 
+            >> FromFlagToTable settlement.vowels settlement.consonants 
+            >> RandomUtility.GenerateFromWeightedValues context)
+        |> List.reduce (+)
+
+
     let private GenerateDweller
             (context : CommonContext)
             (session : SessionIdentifier)
+            (settlement : Settlement)
             : unit =
         let dweller = 
-            Dweller.Create context
+            GenerateDwellerName context session settlement
+            |> Dweller.Create context
         let identifier = DwellerRepository.GenerateIdentifier context
         DwellerRepository.Put context identifier (Some dweller)
         DwellerRepository.AssignToSession context session identifier
@@ -75,19 +113,22 @@ module internal SettlementExistence =
     let private GenerateDwellers
             (context : CommonContext)
             (session : SessionIdentifier)
+            (settlement : Settlement)
             : unit =
         [1..3]
         |> List.iter
-            (fun _ -> GenerateDweller context session)
+            (fun _ -> GenerateDweller context session settlement)
 
     let private GenerateAndPutNewSettlementForSession
             (context : CommonContext)
             (session : SessionIdentifier)
             : Message list = 
-        GenerateSettlement context
+        let settlement = 
+            GenerateSettlement context
+        settlement
         |> Some
         |> SettlementRepository.PutSettlementForSession context session
-        GenerateDwellers context session
+        GenerateDwellers context session settlement
         SettlementStartedMessages 
 
     let internal StartSettlementForSession
