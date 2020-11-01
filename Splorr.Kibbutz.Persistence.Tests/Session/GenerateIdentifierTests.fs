@@ -9,5 +9,5 @@ open System
 [<Test>]
 let ``GenerateIdentifier.It generates a non-colliding identifier.`` () =
     let actual = SessionIdentifierStore.GenerateIdentifier()
-    Assert.AreEqual(Guid.Empty, actual)
+    Assert.AreNotEqual(Guid.Empty, actual)
     

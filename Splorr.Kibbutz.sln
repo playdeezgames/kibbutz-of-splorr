@@ -15,15 +15,17 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Splorr.Kibbutz.Presentation
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Splorr.Kibbutz.Presentation.Tests", "Splorr.Kibbutz.Presentation.Tests\Splorr.Kibbutz.Presentation.Tests.fsproj", "{F4D292FB-CB54-428A-9302-08150329A76E}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Splorr.Kibbutz.Business", "Splorr.Kibbutz.Business\Splorr.Kibbutz.Business.fsproj", "{2F6283EF-4761-4BE3-B145-0F2B4188AF95}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Splorr.Kibbutz.Business", "Splorr.Kibbutz.Business\Splorr.Kibbutz.Business.fsproj", "{2F6283EF-4761-4BE3-B145-0F2B4188AF95}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Splorr.Kibbutz.Business.Tests", "Splorr.Kibbutz.Business.Tests\Splorr.Kibbutz.Business.Tests.fsproj", "{D8F19233-1C2C-4DDD-9387-2E207249BFB0}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Splorr.Kibbutz.Business.Tests", "Splorr.Kibbutz.Business.Tests\Splorr.Kibbutz.Business.Tests.fsproj", "{D8F19233-1C2C-4DDD-9387-2E207249BFB0}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Splorr.Kibbutz.Persistence", "Splorr.Kibbutz.Persistence\Splorr.Kibbutz.Persistence.fsproj", "{395DC94E-8349-4072-B8A4-49C3B81912A5}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Splorr.Kibbutz.Persistence", "Splorr.Kibbutz.Persistence\Splorr.Kibbutz.Persistence.fsproj", "{395DC94E-8349-4072-B8A4-49C3B81912A5}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Splorr.Kibbutz.Persistence.Tests", "Splorr.Kibbutz.Persistence.Tests\Splorr.Kibbutz.Persistence.Tests.fsproj", "{2FE6746B-7AFB-496C-A379-FA4C339E17EF}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Splorr.Kibbutz.Persistence.Tests", "Splorr.Kibbutz.Persistence.Tests\Splorr.Kibbutz.Persistence.Tests.fsproj", "{2FE6746B-7AFB-496C-A379-FA4C339E17EF}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Splorr.Kibbutz.Model", "Splorr.Kibbutz.Model\Splorr.Kibbutz.Model.fsproj", "{C05F3858-A2FD-4C87-B70A-FA5F903D9EFF}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Splorr.Kibbutz.Model", "Splorr.Kibbutz.Model\Splorr.Kibbutz.Model.fsproj", "{C05F3858-A2FD-4C87-B70A-FA5F903D9EFF}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Splorr.Common.Tests", "Splorr.Common.Tests\Splorr.Common.Tests.fsproj", "{A461DF17-35D3-4CBB-A489-185AA2F32C2E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -167,6 +169,18 @@ Global
 		{C05F3858-A2FD-4C87-B70A-FA5F903D9EFF}.Release|x64.Build.0 = Release|Any CPU
 		{C05F3858-A2FD-4C87-B70A-FA5F903D9EFF}.Release|x86.ActiveCfg = Release|Any CPU
 		{C05F3858-A2FD-4C87-B70A-FA5F903D9EFF}.Release|x86.Build.0 = Release|Any CPU
+		{A461DF17-35D3-4CBB-A489-185AA2F32C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A461DF17-35D3-4CBB-A489-185AA2F32C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A461DF17-35D3-4CBB-A489-185AA2F32C2E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A461DF17-35D3-4CBB-A489-185AA2F32C2E}.Debug|x64.Build.0 = Debug|Any CPU
+		{A461DF17-35D3-4CBB-A489-185AA2F32C2E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A461DF17-35D3-4CBB-A489-185AA2F32C2E}.Debug|x86.Build.0 = Debug|Any CPU
+		{A461DF17-35D3-4CBB-A489-185AA2F32C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A461DF17-35D3-4CBB-A489-185AA2F32C2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A461DF17-35D3-4CBB-A489-185AA2F32C2E}.Release|x64.ActiveCfg = Release|Any CPU
+		{A461DF17-35D3-4CBB-A489-185AA2F32C2E}.Release|x64.Build.0 = Release|Any CPU
+		{A461DF17-35D3-4CBB-A489-185AA2F32C2E}.Release|x86.ActiveCfg = Release|Any CPU
+		{A461DF17-35D3-4CBB-A489-185AA2F32C2E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

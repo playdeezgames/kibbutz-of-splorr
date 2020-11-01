@@ -1,5 +1,7 @@
 ﻿namespace Splorr.Kibbutz.Business
 
+open Splorr.Common
+
 type BusinessContext = 
     inherit DwellerRepository.AssignToSessionContext
     inherit DwellerRepository.GenerateIdentifierContext
@@ -9,6 +11,7 @@ type BusinessContext =
     inherit Messages.GetContext
     inherit Messages.PurgeContext
     inherit Messages.PutContext
+    inherit RandomUtility.RandomContext
     inherit SessionRepository.GenerateIdentifierContext
     inherit SettlementRepository.GetSettlementForSessionContext
     inherit SettlementRepository.PutSettlementForSessionContext

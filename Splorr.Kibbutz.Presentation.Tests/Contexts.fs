@@ -35,4 +35,6 @@ type TestContext() =
         member val dwellerIdentifierSource = ref (Fakes.Source ("DwellerRepository.GenerateIdentifierContext", Guid.Empty))
     interface SessionRepository.GenerateIdentifierContext with
         member val sessionIdentifierSource = ref (Fakes.Source ("SessionRepository.GenerateIdentifierContext", Guid.Empty))
+    interface RandomUtility.RandomContext with
+        member val random = ref null
 

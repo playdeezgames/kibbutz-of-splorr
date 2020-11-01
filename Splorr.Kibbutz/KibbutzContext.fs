@@ -36,4 +36,6 @@ type internal KibbutzContext() =
         member this.dwellerIdentifierSource = ref DwellerIdentifierStore.GenerateIdentifier
     interface SessionRepository.GenerateIdentifierContext with
         member this.sessionIdentifierSource = ref SessionIdentifierStore.GenerateIdentifier
+    interface RandomUtility.RandomContext with
+        member this.random = ref (Random())
 
