@@ -12,6 +12,9 @@ type BusinessContext =
     inherit Messages.PurgeContext
     inherit Messages.PutContext
     inherit RandomUtility.RandomContext
+    inherit SessionRepository.AddNameContext
+    inherit SessionRepository.ClearNamesContext
+    inherit SessionRepository.CheckNameContext
     inherit SessionRepository.GenerateIdentifierContext
     inherit SettlementRepository.GetSettlementForSessionContext
     inherit SettlementRepository.PutSettlementForSessionContext

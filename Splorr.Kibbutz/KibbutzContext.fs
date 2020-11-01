@@ -38,4 +38,9 @@ type internal KibbutzContext() =
         member this.sessionIdentifierSource = ref SessionIdentifierStore.GenerateIdentifier
     interface RandomUtility.RandomContext with
         member this.random = ref (Random())
-
+    interface SessionRepository.ClearNamesContext with
+        member this.sessionNamePurger = raise (System.NotImplementedException())
+    interface SessionRepository.AddNameContext with
+        member this.sessionNameSink = raise (System.NotImplementedException())
+    interface SessionRepository.CheckNameContext with
+        member this.sessionNameValidator = raise (System.NotImplementedException())

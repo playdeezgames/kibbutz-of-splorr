@@ -6,6 +6,10 @@ let Source<'TFilter,'TResult>(flag:bool ref,result:'TResult) (_:'TFilter) : 'TRe
     flag := true
     result
 
+let SourceCounter<'TFilter,'TResult>(counter:uint64 ref,result:'TResult) (_:'TFilter) : 'TResult =
+    counter := counter.Value + 1UL
+    result
+
 let SourceTable<'TFilter, 'TResult when 'TFilter:comparison>
         (counter:uint64 ref, resultTable: Map<'TFilter,'TResult>) 
         (filter:'TFilter) 

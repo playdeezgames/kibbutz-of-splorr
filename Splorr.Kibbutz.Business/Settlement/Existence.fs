@@ -81,7 +81,7 @@ module internal SettlementExistence =
         else
             falseTable
 
-    let private GenerateDwellerName
+    let rec private GenerateDwellerName
             (context : CommonContext)
             (session: SessionIdentifier)
             (settlement : Settlement)
@@ -90,12 +90,18 @@ module internal SettlementExistence =
             RandomUtility.GenerateFromWeightedValues context settlement.nameLengthGenerator
         let nameStart =
             RandomUtility.GenerateFromWeightedValues context settlement.nameStartGenerator
-        [1..nameLength]
-        |> List.map
-            (ToVowelOrConsonantFlag nameStart 
-            >> FromFlagToTable settlement.vowels settlement.consonants 
-            >> RandomUtility.GenerateFromWeightedValues context)
-        |> List.reduce (+)
+        let candidate =
+            [1..nameLength]
+            |> List.map
+                (ToVowelOrConsonantFlag nameStart 
+                >> FromFlagToTable settlement.vowels settlement.consonants 
+                >> RandomUtility.GenerateFromWeightedValues context)
+            |> List.reduce (+)
+        if SessionRepository.CheckName context session candidate then
+            SessionRepository.AddName context session candidate
+            candidate
+        else
+            GenerateDwellerName context session settlement
 
 
     let private GenerateDweller
@@ -123,6 +129,7 @@ module internal SettlementExistence =
             (context : CommonContext)
             (session : SessionIdentifier)
             : Message list = 
+        SessionRepository.ClearNames context session
         let settlement = 
             GenerateSettlement context
         settlement

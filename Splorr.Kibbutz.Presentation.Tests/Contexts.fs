@@ -37,4 +37,11 @@ type TestContext() =
         member val sessionIdentifierSource = ref (Fakes.Source ("SessionRepository.GenerateIdentifierContext", Guid.Empty))
     interface RandomUtility.RandomContext with
         member val random = ref null
+    interface SessionRepository.ClearNamesContext with
+        member val sessionNamePurger = ref (Fakes.Sink "SessionRepository.ClearNamesContext")
+    interface SessionRepository.AddNameContext with
+        member val sessionNameSink = ref (Fakes.Sink "SessionRepository.AddNameContext")
+    interface SessionRepository.CheckNameContext with
+        member val sessionNameValidator = ref (Fakes.Source ("SessionRepository.CheckNameContext", false))
+
 
