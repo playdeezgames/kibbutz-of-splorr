@@ -22,7 +22,7 @@ module RandomUtility =
     let GenerateFromWeightedValues
             (context : CommonContext) 
             (candidates : Map<'T, float>)
-            : 'T option=
+            : 'T =
         let totalWeight =
             candidates
             |> Map.toList
@@ -43,5 +43,6 @@ module RandomUtility =
                     else
                         (result, weightLeft)) (None, generated)
         |> fst
+        |> Option.get
 
 

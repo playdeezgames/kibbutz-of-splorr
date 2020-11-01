@@ -46,15 +46,19 @@ module internal Dweller =
         |> Option.iter
             (ExplainExistingDweller context session identifier)
 
+    let private sexGenesTable =
+        [
+            (Some XX), 49.5
+            (Some XY), 49.5
+            (None), 1.0
+        ]
+        |> Map.ofList
+
     let internal Create
             (context : CommonContext)
             : Dweller =
-        let random = Random()
         let sexGenes = 
-            match random.Next(101) with
-            | x when x < 50 -> Some XX
-            | x when x < 100 -> Some XY
-            | _ -> None
+            RandomUtility.GenerateFromWeightedValues context sexGenesTable
         {
             sexGenes = sexGenes
         }

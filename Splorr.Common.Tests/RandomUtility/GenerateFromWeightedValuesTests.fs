@@ -16,4 +16,4 @@ let ``GenerateFromWeightedValues.It generates a value from a weighted set of val
         ]
         |> Map.ofList
     let actual = RandomUtility.GenerateFromWeightedValues context candidates
-    Assert.AreEqual(Some "3", actual)
+    Assert.AreEqual("3", actual)

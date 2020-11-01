@@ -4,6 +4,7 @@ open NUnit.Framework
 open Splorr.Kibbutz.Business
 open Splorr.Tests.Common
 open System
+open Splorr.Common
 
 [<Test>]
 let ``StartSettlementForSession.It does nothing when a settlement already exists.`` () =
@@ -29,6 +30,7 @@ let ``StartSettlementForSession.It creates a new settlement when a settlement do
     (context :> SettlementRepository.PutSettlementForSessionContext).settlementSink := Spies.Expect(calledPutContext, (Dummies.ValidSessionIdentifier, Some { turnCounter=0UL}))
     (context :> DwellerRepository.PutContext).dwellerSingleSink := Spies.Sink(calledPutDweller)
     (context :> DwellerRepository.AssignToSessionContext).dwellerSessionSink := Spies.Sink(calledAssignDwellerSession)
+    (context :> RandomUtility.RandomContext).random := (Random(0))
     let actual =
         Settlement.StartSettlementForSession context Dummies.ValidSessionIdentifier
     Assert.AreEqual(1, actual.Length)
