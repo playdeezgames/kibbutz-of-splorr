@@ -21,15 +21,15 @@ module internal SettlementExistence =
             consonants=["h";"k";"l";"m";"p"] |> List.map (fun l -> (l, 1.0)) |> Map.ofList
             nameLengthGenerator = 
                 [
-                    3, 1.0
-                    4, 3.0
-                    5, 6.0
-                    6, 10.0
-                    7, 12.0
-                    8, 12.0
-                    9, 10.0
-                    10, 6.0
-                    11, 3.0
+                    3, 16.0
+                    4, 64.0
+                    5, 256.0
+                    6, 256.0
+                    7, 64.0
+                    8, 16.0
+                    9, 8.0
+                    10, 4.0
+                    11, 2.0
                     12, 1.0
                 ]
                 |> Map.ofList
@@ -97,11 +97,11 @@ module internal SettlementExistence =
                 >> FromFlagToTable settlement.vowels settlement.consonants 
                 >> RandomUtility.GenerateFromWeightedValues context)
             |> List.reduce (+)
-        if SessionRepository.CheckName context session candidate then
+        if SessionRepository.HasName context session candidate then
+            GenerateDwellerName context session settlement
+        else
             SessionRepository.AddName context session candidate
             candidate
-        else
-            GenerateDwellerName context session settlement
 
 
     let private GenerateDweller

@@ -23,7 +23,7 @@ module SessionRepository =
     type SessionNameValidator = SessionIdentifier * string -> bool
     type CheckNameContext =
         abstract member sessionNameValidator : SessionNameValidator ref
-    let internal CheckName
+    let internal HasName
             (context : CommonContext)
             (session : SessionIdentifier)
             (name : string)
