@@ -14,3 +14,5 @@ let ValidSettlement : Settlement =
         nameLengthGenerator = Map.empty
         nameStartGenerator = Map.empty
     }
+let ValidDweller : Dweller =
+    { name = "yermom"; sexGenes = Some XX; location = (2,3); assignment = Assignment.Rest}
