@@ -54,3 +54,16 @@ module DwellerStore =
             dwellers :=
                 dwellers.Value
                 |> Map.remove identifier
+    
+    let FindIdentifierForName
+            (session: SessionIdentifier, name : string) : DwellerIdentifier option =
+        DwellerIdentifierStore.GetListForSession session
+        |> List.filter
+            (fun identifier -> 
+                match Get identifier with
+                | Some dweller ->
+                    dweller.name = name
+                | _ ->
+                    false)
+        |> List.tryExactlyOne
+

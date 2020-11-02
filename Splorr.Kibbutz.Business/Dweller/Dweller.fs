@@ -82,3 +82,5 @@ module Dweller =
             [
                 Line "There is no such dweller in this settlement."
             ]
+
+    let FindIdentifierForName = DwellerRepository.FindIdentifierForName

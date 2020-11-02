@@ -69,3 +69,13 @@ module DwellerRepository =
         else
             None
 
+    type DwellerIdentifierForNameSource = SessionIdentifier * string -> DwellerIdentifier option
+    type FindIdentifierForNameContext =
+        abstract member dwellerIdentifierForNameSource : DwellerIdentifierForNameSource ref
+    let internal FindIdentifierForName
+        (context : CommonContext)
+        (session : SessionIdentifier)
+        (dwellerName : string)
+        : DwellerIdentifier option =
+            (context :?> FindIdentifierForNameContext).dwellerIdentifierForNameSource.Value (session, dwellerName)
+

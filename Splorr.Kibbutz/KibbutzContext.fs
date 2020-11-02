@@ -44,3 +44,5 @@ type internal KibbutzContext() =
         member this.sessionNameSink = ref SessionNamesStore.AddName
     interface SessionRepository.CheckNameContext with
         member this.sessionNameValidator = ref SessionNamesStore.HasName
+    interface DwellerRepository.FindIdentifierForNameContext with
+        member this.dwellerIdentifierForNameSource = ref DwellerStore.FindIdentifierForName
