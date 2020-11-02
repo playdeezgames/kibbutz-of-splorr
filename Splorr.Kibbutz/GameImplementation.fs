@@ -21,17 +21,15 @@ module GameImplementation =
             : Command option =
         fixedCommandTable
         |> Map.tryFind tokens
-        |> Option.defaultValue
-            (tokens
-            |> List.reduce
-                (fun a b -> a + " " + b)
-            |> Command.Invalid)
-        |> Some
 
     let private ParseAssignCommand
             (tokens : string list)
             : Command option =
-        raise (NotImplementedException "")
+        match tokens with
+        | [ dwellerName; "to"; assignmentName ] ->
+            raise (NotImplementedException "")
+        | _ ->
+            None
 
     let private ParseCommand
             (tokens : string list)
@@ -41,6 +39,13 @@ module GameImplementation =
             ParseAssignCommand tail
         | _ ->
             ParseFixedCommand tokens
+        |> Option.defaultValue
+            (tokens
+            |> List.reduce
+                (fun a b -> a + " " + b)
+            |> Command.Invalid)
+        |> Some
+
 
     let internal PollForCommand() : Command option =
         let oldColor = Console.ForegroundColor

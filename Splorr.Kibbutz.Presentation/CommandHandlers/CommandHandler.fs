@@ -16,6 +16,8 @@ module internal CommandHandler =
             AbandonSettlementCommandHandler.Handle context session
         | Advance ->
             AdvanceCommandHandler.Handle context session
+        | Assign (identifier, assignment) ->
+            AssignCommandHandler.Handle context session identifier assignment
         | Help ->
             HelpCommandHandler.Handle context session
         | Invalid text ->
