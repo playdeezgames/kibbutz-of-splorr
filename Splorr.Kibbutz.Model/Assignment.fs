@@ -2,4 +2,5 @@
 
 type Assignment =
     | Rest
+    | Explore
 

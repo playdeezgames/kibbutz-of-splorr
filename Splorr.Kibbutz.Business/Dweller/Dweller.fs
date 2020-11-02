@@ -4,7 +4,7 @@ open Splorr.Common
 open System
 open Splorr.Kibbutz.Model
 
-module internal Dweller =
+module Dweller =
     let private DescribeSexGenes
             (sexGenes : SexGenes option)
             : string =
@@ -63,3 +63,22 @@ module internal Dweller =
             location = Location.Default
             assignment = Assignment.Default
         }
+    
+    let Assign
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            (identifier: DwellerIdentifier)
+            (assignment : Assignment)
+            : Message list =
+        match DwellerRepository.GetForSession context session identifier with
+        | Some dweller ->
+            let dweller = 
+                {dweller with assignment = assignment}
+            DwellerRepository.Put context identifier (Some dweller)
+            [
+                Line "You update the dweller's assignment."
+            ]
+        | _ ->
+            [
+                Line "There is no such dweller in this settlement."
+            ]

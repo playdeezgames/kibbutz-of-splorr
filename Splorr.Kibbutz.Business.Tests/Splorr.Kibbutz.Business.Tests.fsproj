@@ -16,7 +16,7 @@
   <ItemGroup>
     <Compile Include="Contexts.fs" />
     <Compile Include="Dummies.fs" />
-    <Compile Include="LocationTests.fs" />
+    <Compile Include="Dweller\AssignTests.fs" />
     <Compile Include="Messages\GetTests.fs" />
     <Compile Include="Settlement\ExplainTests.fs" />
     <Compile Include="Settlement\AbandonForSessionTests.fs" />

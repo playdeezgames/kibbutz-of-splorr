@@ -16,7 +16,7 @@ module GameImplementation =
         ]
         |> Map.ofList
 
-    let private ParseCommand
+    let private ParseFixedCommand
             (tokens : string list)
             : Command option =
         fixedCommandTable
@@ -27,6 +27,20 @@ module GameImplementation =
                 (fun a b -> a + " " + b)
             |> Command.Invalid)
         |> Some
+
+    let private ParseAssignCommand
+            (tokens : string list)
+            : Command option =
+        raise (NotImplementedException "")
+
+    let private ParseCommand
+            (tokens : string list)
+            : Command option =
+        match tokens with
+        | "assign" :: tail ->
+            ParseAssignCommand tail
+        | _ ->
+            ParseFixedCommand tokens
 
     let internal PollForCommand() : Command option =
         let oldColor = Console.ForegroundColor
