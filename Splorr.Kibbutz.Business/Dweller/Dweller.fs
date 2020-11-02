@@ -29,6 +29,7 @@ module internal Dweller =
             [
                 Line ""
                 Line (sprintf "Dweller: %s" dweller.name)
+                Line (dweller.location |> Location.ToString |> sprintf "Location: %s")
                 Line (sprintf "Sex: %s" (dweller.sexGenes |> DescribeSexGenes))
             ]
 
@@ -58,4 +59,5 @@ module internal Dweller =
         {
             name = name
             sexGenes = sexGenes
+            location = Location.Default
         }

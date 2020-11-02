@@ -10,6 +10,7 @@ type Dweller =
     {
         name : string
         sexGenes : SexGenes option
+        location : Location
     }
 
 type DwellerIdentifier = Guid

@@ -10,7 +10,7 @@ let internal ValidDwellerTable : Map<DwellerIdentifier, Dweller option> =
     ValidDwellerIdentifiers
     |> List.map
         (fun identifier ->
-            (identifier, Some {name = ""; sexGenes = None}))
+            (identifier, Some {name = ""; sexGenes = None; location = (0,0) }))
     |> Map.ofList
 let ValidSettlement : Settlement =
     {
