@@ -28,30 +28,31 @@ module Game =
         Messages.Get context session
         |> List.iter (Output.Write context)
 
-    type CommandSource = unit -> Command option
+    type CommandSource = CommonContext * SessionIdentifier -> Command option
     type PollForCommandContext =
         abstract member commandSource : CommandSource ref
     let private PollForCommand
             (context : CommonContext)
+            (session : SessionIdentifier)
             : Command option =
-        (context :?> PollForCommandContext).commandSource.Value()
+        (context :?> PollForCommandContext).commandSource.Value (context, session)
 
     let private RunLoop
             (context : CommonContext)
-            (gamestate : SessionIdentifier)
+            (session : SessionIdentifier)
             : SessionIdentifier option =
-        UpdateDisplay context gamestate
-        match PollForCommand context with
+        UpdateDisplay context session
+        match PollForCommand context session with
         | Some command ->
-            CommandHandler.HandleCommand context command gamestate
+            CommandHandler.HandleCommand context command session
         | _ ->
-            Some gamestate
+            Some session
 
     let rec Run
             (context : CommonContext)
-            (gamestate : SessionIdentifier)
+            (session : SessionIdentifier)
             : unit =
-        match RunLoop context gamestate with
+        match RunLoop context session with
         | Some nextState ->
             Run context nextState
         | None ->

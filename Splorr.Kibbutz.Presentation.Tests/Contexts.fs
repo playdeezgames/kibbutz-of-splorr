@@ -43,5 +43,8 @@ type TestContext() =
         member val sessionNameSink = ref (Fakes.Sink "SessionRepository.AddNameContext")
     interface SessionRepository.CheckNameContext with
         member val sessionNameValidator = ref (Fakes.Source ("SessionRepository.CheckNameContext", false))
+    interface DwellerRepository.FindIdentifierForNameContext with
+        member val dwellerIdentifierForNameSource = ref (Fakes.Source ("DwellerRepository.FindIdentifierForNameContext", None))
+
 
 

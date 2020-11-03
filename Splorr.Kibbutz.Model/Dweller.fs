@@ -2,14 +2,10 @@
 
 open System
 
-type SexGenes =
-    | XX
-    | XY
-
 type Dweller = 
     {
         name : string
         sexGenes : SexGenes option
+        location : Location
+        assignment : Assignment
     }
-
-type DwellerIdentifier = Guid

@@ -10,6 +10,7 @@
     <Compile Include="CommandHandlers\CommandHandlerUtility.fs" />
     <Compile Include="CommandHandlers\AbandonSettlementCommandHandler.fs" />
     <Compile Include="CommandHandlers\AdvanceCommandHandler.fs" />
+    <Compile Include="CommandHandlers\AssignCommandHandler.fs" />
     <Compile Include="CommandHandlers\HelpCommandHandler.fs" />
     <Compile Include="CommandHandlers\InvalidCommandHandler.fs" />
     <Compile Include="CommandHandlers\QuitCommandHandler.fs" />

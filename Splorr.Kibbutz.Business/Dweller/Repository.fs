@@ -50,3 +50,32 @@ module DwellerRepository =
             (identifier : DwellerIdentifier)
             : unit =
         (context :?> AssignToSessionContext).dwellerSessionSink.Value (identifier, None)
+
+    let private ExistsForSession
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            (identifier: DwellerIdentifier)
+            : bool =
+        GetListForSession context session
+        |> List.exists ((=) identifier)
+
+    let internal GetForSession
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            (identifier : DwellerIdentifier)
+            : Dweller option =
+        if ExistsForSession context session identifier then
+            Get context identifier
+        else
+            None
+
+    type DwellerIdentifierForNameSource = SessionIdentifier * string -> DwellerIdentifier option
+    type FindIdentifierForNameContext =
+        abstract member dwellerIdentifierForNameSource : DwellerIdentifierForNameSource ref
+    let internal FindIdentifierForName
+        (context : CommonContext)
+        (session : SessionIdentifier)
+        (dwellerName : string)
+        : DwellerIdentifier option =
+            (context :?> FindIdentifierForNameContext).dwellerIdentifierForNameSource.Value (session, dwellerName)
+

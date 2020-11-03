@@ -9,6 +9,6 @@ open Splorr.Kibbutz.Model
 let ``Put.It puts a dweller.`` () =
     Dweller.GetTests.``Get.It gets dweller.``()
 
-    DwellerStore.Put (Dummies.ValidDwellerIdentifier, Some { name = ""; sexGenes = None})
+    DwellerStore.Put (Dummies.ValidDwellerIdentifier, Some Dummies.ValidDweller)
     let actual = DwellerStore.Get Dummies.ValidDwellerIdentifier
-    Assert.AreEqual(Some { name=""; sexGenes = None}, actual)
+    Assert.AreEqual(Some Dummies.ValidDweller, actual)

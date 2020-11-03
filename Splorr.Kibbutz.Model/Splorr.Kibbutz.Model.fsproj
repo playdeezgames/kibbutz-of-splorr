@@ -5,9 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Location.fs" />
+    <Compile Include="SexGenes.fs" />
+    <Compile Include="Assignment.fs" />
     <Compile Include="Dweller.fs" />
+    <Compile Include="DwellerIdentifier.fs" />
     <Compile Include="Message.fs" />
-    <Compile Include="Session.fs" />
+    <Compile Include="SessionIdentifier.fs" />
     <Compile Include="Settlement.fs" />
   </ItemGroup>
 

@@ -1,9 +1,12 @@
 ﻿namespace Splorr.Kibbutz
 
 open Splorr.Kibbutz.Presentation
+open Splorr.Kibbutz.Business
+open Splorr.Kibbutz.Model
 open System
+open Splorr.Common
 
-module GameImplementation =
+module FixedCommandParser =
     let private fixedCommandTable : Map<string list, Command> =
         [
             [ "abandon" ], Command.AbandonSettlement
@@ -16,27 +19,8 @@ module GameImplementation =
         ]
         |> Map.ofList
 
-    let private ParseCommand
+    let internal Parse
             (tokens : string list)
             : Command option =
         fixedCommandTable
         |> Map.tryFind tokens
-        |> Option.defaultValue
-            (tokens
-            |> List.reduce
-                (fun a b -> a + " " + b)
-            |> Command.Invalid)
-        |> Some
-
-    let internal PollForCommand() : Command option =
-        let oldColor = Console.ForegroundColor
-        Console.ForegroundColor <- ConsoleColor.Gray
-        Console.Write "\n>"
-        let result = 
-            Console.ReadLine().ToLower().Split(' ')
-            |> Array.toList
-            |> ParseCommand
-        Console.ForegroundColor <- oldColor
-        result
-
-

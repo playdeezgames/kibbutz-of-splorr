@@ -4,6 +4,7 @@ open Splorr.Common
 
 type BusinessContext = 
     inherit DwellerRepository.AssignToSessionContext
+    inherit DwellerRepository.FindIdentifierForNameContext
     inherit DwellerRepository.GenerateIdentifierContext
     inherit DwellerRepository.GetContext
     inherit DwellerRepository.GetListForSessionContext

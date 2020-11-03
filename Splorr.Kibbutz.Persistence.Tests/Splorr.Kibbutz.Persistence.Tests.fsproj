@@ -19,6 +19,7 @@
     <Compile Include="Session\AddSessionNameTests.fs" />
     <Compile Include="Session\ClearSessionNamesTests.fs" />
     <Compile Include="Session\GenerateIdentifierTests.fs" />
+    <Compile Include="Dweller\FindIdentifierForNameTests.fs" />
     <Compile Include="Dweller\GenerateIdentifierTests.fs" />
     <Compile Include="Dweller\GetListForSessionTests.fs" />
     <Compile Include="Dweller\AssignToSessionTests.fs" />

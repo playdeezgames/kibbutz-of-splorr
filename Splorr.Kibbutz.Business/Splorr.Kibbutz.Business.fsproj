@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Location.fs" />
+    <Compile Include="Assignment.fs" />
     <Compile Include="Session\SessionRepository.fs" />
     <Compile Include="Messages\Messages.fs" />
     <Compile Include="Dweller\Repository.fs" />

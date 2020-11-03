@@ -4,7 +4,7 @@ open Splorr.Common
 open System
 open Splorr.Kibbutz.Model
 
-module internal Dweller =
+module Dweller =
     let private DescribeSexGenes
             (sexGenes : SexGenes option)
             : string =
@@ -29,6 +29,8 @@ module internal Dweller =
             [
                 Line ""
                 Line (sprintf "Dweller: %s" dweller.name)
+                Line (dweller.location |> Location.ToString |> sprintf "Location: %s")
+                Line (dweller.assignment |> Assignment.ToString |> sprintf "Assignment: %s")
                 Line (sprintf "Sex: %s" (dweller.sexGenes |> DescribeSexGenes))
             ]
 
@@ -58,4 +60,42 @@ module internal Dweller =
         {
             name = name
             sexGenes = sexGenes
+            location = Location.Default
+            assignment = Assignment.Default
         }
+
+    let private AssignWhenDwellerDoesNotExistMessages = 
+        [
+            Line "There is no such dweller in this settlement."
+        ]
+    let private SuccessfulAssignmentOfDwellerMessages =
+        [
+            Line "You update the dweller's assignment."
+        ]
+
+    let CompleteAssignmentOfDweller
+            (context : CommonContext)
+            (identifier : DwellerIdentifier)
+            (dweller : Dweller)
+            (assignment:Assignment)
+            : unit =
+        {dweller with 
+            assignment = assignment}
+        |> Some
+        |> DwellerRepository.Put context identifier
+    
+    let Assign
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            (identifier: DwellerIdentifier)
+            (assignment : Assignment)
+            : Message list =
+        match DwellerRepository.GetForSession context session identifier with
+        | Some dweller ->
+            CompleteAssignmentOfDweller context identifier dweller assignment
+            SuccessfulAssignmentOfDwellerMessages
+        | _ ->
+            AssignWhenDwellerDoesNotExistMessages
+            
+
+    let FindIdentifierForName = DwellerRepository.FindIdentifierForName
