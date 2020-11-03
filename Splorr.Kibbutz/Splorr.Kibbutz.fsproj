@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="CommandParsers\FixedCommandParser.fs" />
     <Compile Include="CommandParsers\AssignCommandParser.fs" />
+    <Compile Include="CommandParsers\DwellerCommandParser.fs" />
     <Compile Include="CommandParsers\CommandParser.fs" />
     <Compile Include="CommandParsers\GameImplementation.fs" />
     <Compile Include="OutputImplementation.fs" />

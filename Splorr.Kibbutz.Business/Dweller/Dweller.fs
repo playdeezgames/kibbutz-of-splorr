@@ -30,30 +30,49 @@ module Dweller =
 
 
     let private ExplainExistingDweller
-            (context : CommonContext)
-            (session : SessionIdentifier)
-            (identifier : DwellerIdentifier)
             (dweller : Dweller)
-            : unit =
-        Messages.Put
-            context
-            session
-            [
-                Line ""
-                Line (sprintf "Dweller: %s" dweller.name)
-                Line (dweller.location |> Location.ToString |> sprintf "Location: %s")
-                Line (dweller.assignment |> Assignment.ToString |> sprintf "Assignment: %s")
-                Line (sprintf "Sex: %s" (dweller.sexGenes |> LongDescribeSexGenes))
-            ]
+            : Message list =
+        [
+            Group 
+                [
+                    Hued (Light Blue, Text "Dweller: ")
+                    Hued (Magenta, Line (sprintf "%s" dweller.name))
+                ]
+            Group 
+                [
+                    Hued (Light Blue, Text "Location: ")
+                    Hued (Magenta, Line (dweller.location |> Location.ToString |> sprintf "%s"))
+                ]
+            Group 
+                [
+                    Hued (Light Blue, Text "Assignment: ")
+                    Hued (Magenta, Line (dweller.assignment |> Assignment.ToString |> sprintf "%s"))
+                ]
+            Group 
+                [
+                    Hued (Light Blue, Text "Sex: ")
+                    Hued (Magenta, Line (sprintf "%s" (dweller.sexGenes |> LongDescribeSexGenes)))
+                ]
+        ]
 
-    let internal Explain
+    let private ExplainExistingDwellerForSession
             (context : CommonContext)
             (session : SessionIdentifier)
             (identifier : DwellerIdentifier)
-            : unit =
+            : Message list =
         DwellerRepository.Get context identifier
-        |> Option.iter
-            (ExplainExistingDweller context session identifier)
+        |> Option.map ExplainExistingDweller
+        |> Option.defaultValue []
+
+    let Explain
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            (identifier : DwellerIdentifier)
+            : Message list =
+        if DwellerRepository.ExistsForSession context session identifier then
+            ExplainExistingDwellerForSession context session identifier
+        else
+            []
 
     let private sexGenesTable =
         [

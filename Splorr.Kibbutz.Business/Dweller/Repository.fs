@@ -51,7 +51,7 @@ module DwellerRepository =
             : unit =
         (context :?> AssignToSessionContext).dwellerSessionSink.Value (identifier, None)
 
-    let private ExistsForSession
+    let internal ExistsForSession
             (context : CommonContext)
             (session : SessionIdentifier)
             (identifier: DwellerIdentifier)
