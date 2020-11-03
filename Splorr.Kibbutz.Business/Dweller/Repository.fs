@@ -85,3 +85,12 @@ module DwellerRepository =
         >> List.length
         >> uint64
 
+    let internal GetDwellersForSession
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : Dweller list =
+        GetListForSession context session
+        |> List.map
+            (fun identifier ->                     
+                (Get context identifier |> Option.get))
+
