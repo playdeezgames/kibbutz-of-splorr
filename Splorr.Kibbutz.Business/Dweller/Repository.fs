@@ -79,3 +79,9 @@ module DwellerRepository =
         : DwellerIdentifier option =
             (context :?> FindIdentifierForNameContext).dwellerIdentifierForNameSource.Value (session, dwellerName)
 
+    let internal GetCountForSession
+            (context : CommonContext) =
+        GetListForSession context
+        >> List.length
+        >> uint64
+

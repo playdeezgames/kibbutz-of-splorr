@@ -11,10 +11,9 @@ module internal SettlementExplainer =
             (settlement : Settlement)
             : unit =
         Messages.Put context session [Line (sprintf "Turn# %u" settlement.turnCounter)]
-        let dwellers =
-            DwellerRepository.GetListForSession context session
-        dwellers
-        |> List.iter (Dweller.Explain context session)
+        let dwellerCount =
+            DwellerRepository.GetCountForSession context session
+        Messages.Put context session [Line (sprintf "Dwellers: %u" dwellerCount)]
 
     let private ExplainNoSettlement
             (context : CommonContext)
