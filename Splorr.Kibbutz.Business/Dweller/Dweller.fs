@@ -63,6 +63,26 @@ module Dweller =
             location = Location.Default
             assignment = Assignment.Default
         }
+
+    let private AssignWhenDwellerDoesNotExistMessages = 
+        [
+            Line "There is no such dweller in this settlement."
+        ]
+    let private SuccessfulAssignmentOfDwellerMessages =
+        [
+            Line "You update the dweller's assignment."
+        ]
+
+    let CompleteAssignmentOfDweller
+            (context : CommonContext)
+            (identifier : DwellerIdentifier)
+            (dweller : Dweller)
+            (assignment:Assignment)
+            : unit =
+        {dweller with 
+            assignment = assignment}
+        |> Some
+        |> DwellerRepository.Put context identifier
     
     let Assign
             (context : CommonContext)
@@ -72,15 +92,10 @@ module Dweller =
             : Message list =
         match DwellerRepository.GetForSession context session identifier with
         | Some dweller ->
-            let dweller = 
-                {dweller with assignment = assignment}
-            DwellerRepository.Put context identifier (Some dweller)
-            [
-                Line "You update the dweller's assignment."
-            ]
+            CompleteAssignmentOfDweller context identifier dweller assignment
+            SuccessfulAssignmentOfDwellerMessages
         | _ ->
-            [
-                Line "There is no such dweller in this settlement."
-            ]
+            AssignWhenDwellerDoesNotExistMessages
+            
 
     let FindIdentifierForName = DwellerRepository.FindIdentifierForName
