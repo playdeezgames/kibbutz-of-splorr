@@ -5,7 +5,19 @@ open System
 open Splorr.Kibbutz.Model
 
 module Dweller =
-    let private DescribeSexGenes
+    let internal ShortDescribeSexGenes
+            (sexGenes : SexGenes option)
+            : string =
+        match sexGenes with
+        | Some XX ->
+            "F"
+        | Some XY ->
+            "M"
+        | _ ->
+            "-"
+    
+
+    let private LongDescribeSexGenes
             (sexGenes : SexGenes option)
             : string =
         match sexGenes with
@@ -31,7 +43,7 @@ module Dweller =
                 Line (sprintf "Dweller: %s" dweller.name)
                 Line (dweller.location |> Location.ToString |> sprintf "Location: %s")
                 Line (dweller.assignment |> Assignment.ToString |> sprintf "Assignment: %s")
-                Line (sprintf "Sex: %s" (dweller.sexGenes |> DescribeSexGenes))
+                Line (sprintf "Sex: %s" (dweller.sexGenes |> LongDescribeSexGenes))
             ]
 
     let internal Explain

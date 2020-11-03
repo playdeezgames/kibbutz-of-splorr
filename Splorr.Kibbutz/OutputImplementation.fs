@@ -40,5 +40,9 @@ module OutputImplementation =
             Console.ForegroundColor <- hue |> getConsoleColorForHue
             Write inner
             Console.ForegroundColor <- oldColor
+        | Group messages ->
+            messages
+            |> List.iter Write
+            
 
 

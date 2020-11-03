@@ -22,6 +22,8 @@ module internal CommandHandler =
             HelpCommandHandler.Handle context session
         | Invalid text ->
             InvalidCommandHandler.Handle context text session
+        | ListDwellers ->
+            ListDwellersCommandHandler.Handle context session
         | Quit ->
             QuitCommandHandler.Handle context session
         | StartSettlement ->

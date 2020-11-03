@@ -22,6 +22,7 @@
     <Compile Include="Settlement\AbandonForSessionTests.fs" />
     <Compile Include="Settlement\StartForSessionTests.fs" />
     <Compile Include="Settlement\AdvanceTests.fs" />
+    <Compile Include="Settlement\ListDwellersTests.fs" />
     <Compile Include="Settlement\HasForSessionTests.fs" />
     <Compile Include="Messages\PutTests.fs" />
     <Compile Include="Messages\PurgeTests.fs" />

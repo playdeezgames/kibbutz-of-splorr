@@ -9,6 +9,7 @@ type Command =
     | Advance
     | Assign of DwellerIdentifier * Assignment
     | Help
+    | ListDwellers
     | Invalid of string
     | Quit
     | StartSettlement

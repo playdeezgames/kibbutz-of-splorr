@@ -12,6 +12,7 @@ module FixedCommandParser =
             [ "abandon" ], Command.AbandonSettlement
             [ "abandon"; "settlement" ], Command.AbandonSettlement
             [ "advance" ], Command.Advance
+            [ "dwellers" ], Command.ListDwellers
             [ "help" ], Command.Help
             [ "quit" ], Command.Quit
             [ "start" ], Command.StartSettlement

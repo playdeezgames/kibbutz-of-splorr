@@ -15,4 +15,5 @@ type Message =
     | Text of string
     | Line of string
     | Hued of Hue * Message
+    | Group of Message list
 
