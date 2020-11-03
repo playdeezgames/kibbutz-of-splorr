@@ -2,7 +2,7 @@ Day #5: Test Driven Development in F# of a Text-Based City Management Game
 # Day 6 - 20201103
 
 * refactor
-* some dweller management commands
+* some dweller management commands - dwellers and dweller <name>
 
 # Day 5 - 20201102
 

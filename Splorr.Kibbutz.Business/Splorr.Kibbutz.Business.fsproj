@@ -10,6 +10,9 @@
     <Compile Include="Session\SessionRepository.fs" />
     <Compile Include="Messages\Messages.fs" />
     <Compile Include="Dweller\Repository.fs" />
+    <Compile Include="Dweller\Explainer.fs" />
+    <Compile Include="Dweller\Creator.fs" />
+    <Compile Include="Dweller\Assigner.fs" />
     <Compile Include="Dweller\Dweller.fs" />
     <Compile Include="Settlement\Repository.fs" />
     <Compile Include="Settlement\Advancer.fs" />

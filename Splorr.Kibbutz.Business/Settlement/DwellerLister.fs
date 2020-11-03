@@ -12,7 +12,7 @@ module internal SettlementDwellerLister =
             [
                 Hued (Light Magenta, Text (dweller.name |> sprintf "%-12s"))
                 Hued (Blue, Text (" | "))
-                Hued (Cyan, Text (dweller.sexGenes |> Dweller.ShortDescribeSexGenes |> sprintf "%-1s"))
+                Hued (Cyan, Text (dweller.sexGenes |> DwellerExplainer.ShortDescribeSexGenes |> sprintf "%-1s"))
                 Hued (Blue, Text (" | "))
                 Hued (Cyan, Text (dweller.location |> Location.ToString |> sprintf "%-8s"))
                 Hued (Blue, Text (" | "))
