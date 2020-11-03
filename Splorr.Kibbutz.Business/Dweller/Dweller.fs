@@ -15,7 +15,6 @@ module Dweller =
             "M"
         | _ ->
             "-"
-    
 
     let private LongDescribeSexGenes
             (sexGenes : SexGenes option)
@@ -97,11 +96,11 @@ module Dweller =
 
     let private AssignWhenDwellerDoesNotExistMessages = 
         [
-            Line "There is no such dweller in this settlement."
+            Hued (Red, Line "There is no such dweller in this settlement.")
         ]
     let private SuccessfulAssignmentOfDwellerMessages =
         [
-            Line "You update the dweller's assignment."
+            Hued (Green, Line "You update the dweller's assignment.")
         ]
 
     let CompleteAssignmentOfDweller
