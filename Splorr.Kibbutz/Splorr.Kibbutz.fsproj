@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="CommandParsers\FixedCommandParser.fs" />
+    <Compile Include="CommandParsers\AssignCommandParser.fs" />
+    <Compile Include="CommandParsers\CommandParser.fs" />
+    <Compile Include="CommandParsers\GameImplementation.fs" />
     <Compile Include="OutputImplementation.fs" />
-    <Compile Include="GameImplementation.fs" />
     <Compile Include="KibbutzContext.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
