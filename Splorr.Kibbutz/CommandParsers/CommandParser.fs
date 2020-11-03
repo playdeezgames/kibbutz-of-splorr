@@ -15,6 +15,8 @@ module CommandParser =
         match tokens with
         | "assign" :: tail ->
             AssignCommandParser.Parse context session tail
+        | [ "dweller"; dwellerName ] ->
+            DwellerCommandParser.Parse context session dwellerName
         | _ ->
             FixedCommandParser.Parse tokens
         |> Option.defaultValue

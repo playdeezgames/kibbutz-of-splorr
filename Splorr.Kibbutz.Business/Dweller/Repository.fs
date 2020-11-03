@@ -51,7 +51,7 @@ module DwellerRepository =
             : unit =
         (context :?> AssignToSessionContext).dwellerSessionSink.Value (identifier, None)
 
-    let private ExistsForSession
+    let internal ExistsForSession
             (context : CommonContext)
             (session : SessionIdentifier)
             (identifier: DwellerIdentifier)
@@ -78,4 +78,19 @@ module DwellerRepository =
         (dwellerName : string)
         : DwellerIdentifier option =
             (context :?> FindIdentifierForNameContext).dwellerIdentifierForNameSource.Value (session, dwellerName)
+
+    let internal GetCountForSession
+            (context : CommonContext) =
+        GetListForSession context
+        >> List.length
+        >> uint64
+
+    let internal GetDwellersForSession
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : Dweller list =
+        GetListForSession context session
+        |> List.map
+            (fun identifier ->                     
+                (Get context identifier |> Option.get))
 

@@ -9,8 +9,12 @@ module Settlement =
     let Advance = SettlementAdvancer.Advance
     let Explain = SettlementExplainer.Explain
     let HasSettlementForSession = SettlementExistence.HasSettlementForSession
+    let ListDwellers = SettlementDwellerLister.ListDwellers
     let StartSettlementForSession = SettlementExistence.StartSettlementForSession
-            
+
+
+    
+    
             
 
 

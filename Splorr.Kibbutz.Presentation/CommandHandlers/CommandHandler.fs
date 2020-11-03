@@ -18,10 +18,14 @@ module internal CommandHandler =
             AdvanceCommandHandler.Handle context session
         | Assign (identifier, assignment) ->
             AssignCommandHandler.Handle context session identifier assignment
+        | ExplainDweller identifier ->
+            ExplainDwellerCommandHandler.Handle context session identifier
         | Help ->
             HelpCommandHandler.Handle context session
         | Invalid text ->
             InvalidCommandHandler.Handle context text session
+        | ListDwellers ->
+            ListDwellersCommandHandler.Handle context session
         | Quit ->
             QuitCommandHandler.Handle context session
         | StartSettlement ->
