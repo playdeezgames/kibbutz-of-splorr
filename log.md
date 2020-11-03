@@ -1,4 +1,8 @@
 Day #5: Test Driven Development in F# of a Text-Based City Management Game
+# Day 6 - 20201103
+
+* refactor
+
 # Day 5 - 20201102
 
 * locations and assignments
