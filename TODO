@@ -1,7 +1,7 @@
 Dweller Log:
-    ☐ Keeps track of what the dweller has done on a given turn
+    ✔ Keeps track of what the dweller has done on a given turn @done(20-11-04 05:40)
         dweller id (guid), turn (uint64), log entry (message)
-    ☐ log creation of dweller
+    ✔ log creation of dweller @done(20-11-04 05:40)
 Dweller Assignments:
     Explore:
         ☐ will move the dweller one area in a random direction

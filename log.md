@@ -1,7 +1,7 @@
 Day #5: Test Driven Development in F# of a Text-Based City Management Game
 # Day 7 - 20201104
 
-*
+* added dweller log
 
 # Day 6 - 20201103
 
