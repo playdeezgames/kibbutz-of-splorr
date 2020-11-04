@@ -16,10 +16,17 @@ module DwellerAssigner =
 
     let private CompleteAssignmentOfDweller
             (context : CommonContext)
+            (session : SessionIdentifier)
             (identifier : DwellerIdentifier)
             (dweller : Dweller)
             (assignment:Assignment)
             : unit =
+        let settlement =
+            SettlementRepository.GetSettlementForSession context session
+            |> Option.get
+        DwellerRepository.LogForDweller
+            context
+            (identifier, settlement.turnCounter, Line (sprintf "Got assigned to %s" (assignment |> Assignment.ToString)))
         {dweller with 
             assignment = assignment}
         |> Some
@@ -33,7 +40,7 @@ module DwellerAssigner =
             : Message list =
         match DwellerRepository.GetForSession context session identifier with
         | Some dweller ->
-            CompleteAssignmentOfDweller context identifier dweller assignment
+            CompleteAssignmentOfDweller context session identifier dweller assignment
             SuccessfulAssignmentOfDwellerMessages
         | _ ->
             AssignWhenDwellerDoesNotExistMessages

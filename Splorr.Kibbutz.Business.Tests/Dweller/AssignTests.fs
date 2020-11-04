@@ -42,7 +42,12 @@ let ``Assign.It sets the assignment when the dweller exists in the session.``() 
     let calledGetDwellerList = ref false
     let calledGetDweller = ref false
     let calledPutDweller = ref false
+    let calledGetSettlement = ref false
+    let calledLogForDweller = ref false
     let context = Contexts.TestContext()
+    (context :> DwellerRepository.LogForDwellerContext).dwellerLogSink := Spies.Sink(calledLogForDweller)
+    (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource :=
+        Spies.Source(calledGetSettlement, Some Dummies.ValidSettlement)
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource := 
         Spies.Source(calledGetDwellerList, Dummies.ValidDwellerIdentifiers)
     (context :> DwellerRepository.GetContext).dwellerSingleSource := 
@@ -62,3 +67,5 @@ let ``Assign.It sets the assignment when the dweller exists in the session.``() 
     Assert.IsTrue(calledGetDwellerList.Value)
     Assert.IsTrue(calledGetDweller.Value)
     Assert.IsTrue(calledPutDweller.Value)
+    Assert.IsTrue(calledGetSettlement.Value)
+    Assert.IsTrue(calledLogForDweller.Value)
