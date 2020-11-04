@@ -1,0 +1,10 @@
+Dweller Log:
+    ☐ Keeps track of what the dweller has done on a given turn
+        dweller id (guid), turn (uint64), log entry (message)
+    ☐ log creation of dweller
+Dweller Assignments:
+    Explore:
+        ☐ will move the dweller one area in a random direction
+        ☐ will log that the dweller moved and in what direction
+    Rest:
+        ☐ will log that the dweller rested

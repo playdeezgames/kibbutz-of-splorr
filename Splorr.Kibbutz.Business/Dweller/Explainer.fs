@@ -29,8 +29,19 @@ module DwellerExplainer =
 
 
     let private ExplainExistingDweller
+            (context : CommonContext)
+            (identifier : DwellerIdentifier)
             (dweller : Dweller)
             : Message list =
+        let dwellerLogMessages =
+            DwellerRepository.GetBriefHistory context identifier
+            |> List.map
+                (fun (turn, message) ->
+                    Group 
+                        [
+                            Text (sprintf "Turn %u: " turn)
+                            message
+                        ])
         [
             Group 
                 [
@@ -52,6 +63,8 @@ module DwellerExplainer =
                     Hued (Light Blue, Text "Sex: ")
                     Hued (Magenta, Line (sprintf "%s" (dweller.sexGenes |> LongDescribeSexGenes)))
                 ]
+            Line "Brief History:"
+            Group dwellerLogMessages
         ]
 
     let private ExplainExistingDwellerForSession
@@ -60,7 +73,7 @@ module DwellerExplainer =
             (identifier : DwellerIdentifier)
             : Message list =
         DwellerRepository.Get context identifier
-        |> Option.map ExplainExistingDweller
+        |> Option.map (ExplainExistingDweller context identifier)
         |> Option.defaultValue []
 
     let internal Explain

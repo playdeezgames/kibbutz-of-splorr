@@ -15,6 +15,8 @@
 
   <ItemGroup>
     <Compile Include="Dummies.fs" />
+    <Compile Include="Dweller\GetBriefHistoryTests.fs" />
+    <Compile Include="Dweller\PurgeLogsForDwellerTests.fs" />
     <Compile Include="Session\CheckSssionNameTests.fs" />
     <Compile Include="Session\AddSessionNameTests.fs" />
     <Compile Include="Session\ClearSessionNamesTests.fs" />
@@ -22,6 +24,7 @@
     <Compile Include="Dweller\FindIdentifierForNameTests.fs" />
     <Compile Include="Dweller\GenerateIdentifierTests.fs" />
     <Compile Include="Dweller\GetListForSessionTests.fs" />
+    <Compile Include="Dweller\LogForDwellerTests.fs" />
     <Compile Include="Dweller\AssignToSessionTests.fs" />
     <Compile Include="Dweller\GetTests.fs" />
     <Compile Include="Dweller\PutTests.fs" />

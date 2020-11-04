@@ -114,6 +114,7 @@ module internal SettlementExistence =
             |> DwellerCreator.Create context
         let identifier = DwellerRepository.GenerateIdentifier context
         DwellerRepository.Put context identifier (Some dweller)
+        DwellerRepository.LogForDweller context (identifier, settlement.turnCounter, Line "Came into being.")
         DwellerRepository.AssignToSession context session identifier
 
     let private GenerateDwellers
@@ -154,6 +155,7 @@ module internal SettlementExistence =
         DwellerRepository.GetListForSession context session
         |> List.iter
             (fun identifier ->
+                DwellerRepository.PurgeLogsForDweller context identifier
                 DwellerRepository.Put context identifier None
                 DwellerRepository.RemoveFromSession context identifier)
         SettlementRepository.PutSettlementForSession context session None

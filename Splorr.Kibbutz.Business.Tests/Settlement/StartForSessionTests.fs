@@ -26,6 +26,7 @@ let ``StartSettlementForSession.It creates a new settlement when a settlement do
     let calledClearNames = ref false
     let callsForCheckName = ref 0UL
     let callsForAddName = ref 0UL
+    let callsForLogForDweller = ref 0UL
     let context = Contexts.TestContext()
     (context :> DwellerRepository.GenerateIdentifierContext).dwellerIdentifierSource := 
         Spies.SourceHook(callsForGenerateIdentifier, 
@@ -49,6 +50,7 @@ let ``StartSettlementForSession.It creates a new settlement when a settlement do
     (context :> SessionRepository.ClearNamesContext).sessionNamePurger := Spies.Sink(calledClearNames)
     (context :> SessionRepository.CheckNameContext).sessionNameValidator := Spies.SourceCounter(callsForCheckName, false)
     (context :> SessionRepository.AddNameContext).sessionNameSink := Spies.SinkCounter(callsForAddName)
+    (context :> DwellerRepository.LogForDwellerContext).dwellerLogSink := Spies.SinkCounter(callsForLogForDweller)
     let actual =
         Settlement.StartSettlementForSession context Dummies.ValidSessionIdentifier
     Assert.AreEqual(1, actual.Length)
@@ -60,5 +62,6 @@ let ``StartSettlementForSession.It creates a new settlement when a settlement do
     Assert.IsTrue(calledClearNames.Value)
     Assert.AreEqual(3UL, callsForCheckName.Value)
     Assert.AreEqual(3UL, callsForAddName.Value)
+    Assert.AreEqual(3UL, callsForLogForDweller.Value)
 
 
