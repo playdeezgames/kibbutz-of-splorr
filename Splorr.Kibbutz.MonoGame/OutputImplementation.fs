@@ -45,12 +45,11 @@ module OutputImplementation =
     let private ScrollBuffer() : unit =
         buffer :=
             buffer.Value
-            |> Map.filter
-                (fun k _ -> k < screenColumns)
             |> Map.toList
             |> List.map 
-                (fun (k,v) -> (k-screenColumns, v))
+                (fun (k,v) -> ((k - screenColumns), v))
             |> Map.ofList
+            |> Map.filter (fun k v -> k >= 0)
 
     let private AdvanceColumns
             (columnsToAdvance : int)

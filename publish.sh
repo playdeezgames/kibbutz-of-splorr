@@ -6,7 +6,7 @@ rm -rf ./deploy/linux/*
 rm -rf ./deploy/pi/*
 rm -rf ./deploy/*.zip
 
-dotnet publish -c Release --runtime win-x64 -o ./deploy/win ./Splorr.Kibbutz/Splorr.Kibbutz.fsproj -p:PublishReadyToRun=true
+dotnet publish -c Release --runtime win-x64 -o ./deploy/win ./Splorr.Kibbutz.MonoGame/Splorr.Kibbutz.MonoGame.fsproj -p:PublishReadyToRun=true
 dotnet publish -c Release --runtime osx-x64 --framework netcoreapp3.1 --self-contained true  -o ./deploy/mac ./Splorr.Kibbutz/Splorr.Kibbutz.fsproj
 dotnet publish -c Release --runtime linux-x64 --framework netcoreapp3.1 --self-contained true  -o ./deploy/linux ./Splorr.Kibbutz/Splorr.Kibbutz.fsproj
 dotnet publish -c Release --runtime linux-arm64 --framework netcoreapp3.1 --self-contained true  -o ./deploy/pi ./Splorr.Kibbutz/Splorr.Kibbutz.fsproj
