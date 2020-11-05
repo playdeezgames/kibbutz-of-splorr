@@ -1,17 +1,22 @@
-Dweller Log:
-    ✔ Keeps track of what the dweller has done on a given turn @done(20-11-04 05:40)
-        dweller id (guid), turn (uint64), log entry (message)
-    ✔ log creation of dweller @done(20-11-04 05:40)
 MonoGame Client:
-    ✔ non-printable characters @done(20-11-05 06:40)
-        backspace
-        escape
-        tab
-        delete
-    ✔ quitting should exit the game @done(20-11-05 06:32)
+    Quick Action Function Keys:
+        ☐ help - F1
+        ☐ advance - F2
+        ☐ last command (up arrow)
 Dweller Assignments:
     Explore:
         ☐ will move the dweller one area in a random direction
+            will need directions NESW and way to map to name
         ☐ will log that the dweller moved and in what direction
     Rest:
         ☐ will log that the dweller rested
+Archive:
+  ✔ Keeps track of what the dweller has done on a given turn @done(20-11-04 05:40) @project(Dweller Log)
+    dweller id (guid), turn (uint64), log entry (message)
+  ✔ log creation of dweller @done(20-11-04 05:40) @project(Dweller Log)
+  ✔ non-printable characters @done(20-11-05 06:40) @project(MonoGame Client)
+    backspace
+    escape
+    tab
+    delete
+  ✔ quitting should exit the game @done(20-11-05 06:32) @project(MonoGame Client)
