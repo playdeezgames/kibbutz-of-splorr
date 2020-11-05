@@ -7,7 +7,7 @@ open System
 open Splorr.Common
 
 module CommandParser =
-    let internal Parse
+    let Parse
             (context : CommonContext)
             (session : SessionIdentifier)
             (tokens : string list)

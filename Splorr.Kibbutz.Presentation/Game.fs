@@ -47,6 +47,20 @@ module Game =
             CommandHandler.HandleCommand context command session
         | _ ->
             Some session
+    
+    let RunSlice
+            (context : CommonContext)
+            (session : SessionIdentifier)
+            : SessionIdentifier option =
+        let result = 
+            match PollForCommand context session with
+            | Some command ->
+                CommandHandler.HandleCommand context command session
+            | _ ->
+                Some session
+        UpdateDisplay context session
+        result
+
 
     let rec Run
             (context : CommonContext)

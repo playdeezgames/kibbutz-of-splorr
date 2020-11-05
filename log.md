@@ -1,4 +1,8 @@
-Day #5: Test Driven Development in F# of a Text-Based City Management Game
+Day #8: Test Driven Development in F# of a Text-Based City Management Game
+# Day 8 - 20201105
+
+* monogame client
+
 # Day 7 - 20201104
 
 * added dweller log

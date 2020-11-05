@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+
+    <IsPackable>false</IsPackable>
+    <GenerateProgramFile>false</GenerateProgramFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Contexts.fs" />
+    <Compile Include="Dummies.fs" />
+    <Compile Include="AbandonSettlementCommandTests.fs" />
+    <Compile Include="AdvanceCommandTests.fs" />
+    <Compile Include="AssignCommandTests.fs" />
+    <Compile Include="ExplainDwellerCommandTests.fs" />
+    <Compile Include="HelpCommandTests.fs" />
+    <Compile Include="InvalidCommandTests.fs" />
+    <Compile Include="ListDwellersCommandTests.fs" />
+    <Compile Include="QuitCommandTests.fs" />
+    <Compile Include="StartSettlementCommandTests.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Splorr.Kibbutz.Business\Splorr.Kibbutz.Business.fsproj" />
+    <ProjectReference Include="..\Splorr.Kibbutz.CommandParser\Splorr.Kibbutz.CommandParser.fsproj" />
+    <ProjectReference Include="..\Splorr.Tests.Common\Splorr.Tests.Common.fsproj" />
+  </ItemGroup>
+
+</Project>
