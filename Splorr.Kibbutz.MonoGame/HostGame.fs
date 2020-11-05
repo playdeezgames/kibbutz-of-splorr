@@ -2,7 +2,6 @@
 
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
-open Microsoft.Xna.Framework.Input
 open System.IO
 open System
 open Splorr.Common
@@ -26,11 +25,15 @@ type HostGame(context : CommonContext) as this =
 
     let UpdateScreen () : unit =
         session := Splorr.Kibbutz.Presentation.Game.RunSlice context session.Value.Value
-        OutputImplementation.Write (Splorr.Kibbutz.Model.Message.Line "")
-        OutputImplementation.Write (Splorr.Kibbutz.Model.Message.Text ">")
+        if session.Value.IsSome then
+            OutputImplementation.Write (Splorr.Kibbutz.Model.Message.Line "")
+            OutputImplementation.Write (Splorr.Kibbutz.Model.Message.Text ">")
+        else
+            this.Exit()
 
     let HandleTextInput (args: TextInputEventArgs) : unit =
-        if args.Character = '\r' then
+        match args.Character with
+        | '\r' ->
             OutputImplementation.Write (Splorr.Kibbutz.Model.Message.Line "")
             keybuffer.Value.ToLower().Split(' ') 
             |> Array.toList 
@@ -40,8 +43,16 @@ type HostGame(context : CommonContext) as this =
                     GameImplementation.commandQueue := List.append GameImplementation.commandQueue.Value [ command ]
                     UpdateScreen())
             keybuffer := ""
-        else
-            keybuffer := keybuffer.Value + (args.Character.ToString())
+        | '\t'
+        | '\u007f'
+        | '\u001b' ->
+            ()
+        | '\b' ->
+            if keybuffer.Value.Length>0 then
+                keybuffer := keybuffer.Value.Substring(0, keybuffer.Value.Length - 1)
+                OutputImplementation.Backspace()
+        | c ->
+            keybuffer := keybuffer.Value + (c.ToString())
             OutputImplementation.Write (Splorr.Kibbutz.Model.Message.Text (args.Character.ToString()))
 
     let HandleKeyDown (args:InputKeyEventArgs) : unit =

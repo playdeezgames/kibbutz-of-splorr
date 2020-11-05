@@ -80,6 +80,10 @@ module OutputImplementation =
         let columnsToAdvance = screenColumns - cursorX
         AdvanceColumns columnsToAdvance
 
+    let internal Backspace() : unit =
+        cursorPosition:=  cursorPosition.Value - 1
+        buffer:=buffer.Value |> Map.remove cursorPosition.Value
+
     let rec internal Write
             (message : Message)
             : unit =
