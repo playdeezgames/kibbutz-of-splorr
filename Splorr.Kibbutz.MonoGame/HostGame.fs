@@ -5,6 +5,9 @@ open Microsoft.Xna.Framework.Graphics
 open System.IO
 open System
 open Splorr.Common
+open Splorr.Kibbutz.Model
+open Splorr.Kibbutz.Presentation
+open Splorr.Kibbutz
 
 type HostGame(context : CommonContext) as this =
     inherit Game()
@@ -13,79 +16,137 @@ type HostGame(context : CommonContext) as this =
         this.Content.RootDirectory <- "Content"
 
     let context = context
-    let session : Splorr.Kibbutz.Model.SessionIdentifier option ref = 
-        ref 
-            (Some (Splorr.Kibbutz.Presentation.Game.Load context
-            |> Option.defaultValue (Splorr.Kibbutz.Presentation.Game.New context)))
+    let session : SessionIdentifier option ref = ref None
     let graphics = new GraphicsDeviceManager(this)
     let spriteBatch : SpriteBatch ref = ref null
     let texture : Texture2D ref = ref null
-    let blankTexture : Texture2D ref = ref null
     let keybuffer : string ref = ref ""
 
+    let textureColumns = 16
+    let textureCellWidth = 16
+    let textureCellHeight = 16
+    let sources : Map<byte, Nullable<Rectangle>> =
+        [0uy..255uy]
+        |> List.map
+            (fun character ->
+                (character, 
+                    Nullable<Rectangle>
+                        (Rectangle
+                            (((character |> int) % textureColumns) * textureCellWidth, 
+                            ((character |> int) / textureColumns)* textureCellHeight, 
+                            textureCellWidth, 
+                            textureCellHeight))))
+        |> Map.ofList
+
+    let WritePromptToScreen() : unit =
+        OutputImplementation.Write (Message.Line "")
+        OutputImplementation.Write (Message.Text ">")
+
     let UpdateScreen () : unit =
-        session := Splorr.Kibbutz.Presentation.Game.RunSlice context session.Value.Value
+        session := Game.RunSlice context session.Value.Value
         if session.Value.IsSome then
-            OutputImplementation.Write (Splorr.Kibbutz.Model.Message.Line "")
-            OutputImplementation.Write (Splorr.Kibbutz.Model.Message.Text ">")
+            WritePromptToScreen()
         else
             this.Exit()
+
+    let ParseCommand () : Command option =
+        keybuffer.Value.ToLower().Split(' ') 
+        |> Array.toList 
+        |> CommandParser.Parse context session.Value.Value
+
+    let DispatchCommand (command:Command) : unit =
+        GameImplementation.commandQueue := List.append GameImplementation.commandQueue.Value [ command ]
+        UpdateScreen()
+
+    let HandleNewLine() : unit =
+        OutputImplementation.Write (Message.Line "")
+        ParseCommand()
+        |> Option.iter DispatchCommand
+        keybuffer := ""
+
+    let DoNothing = ignore
+
+    let HandleBackspace() : unit =
+        if keybuffer.Value.Length>0 then
+            keybuffer := keybuffer.Value.Substring(0, keybuffer.Value.Length - 1)
+            OutputImplementation.Backspace()
+
+    let AddToKeyBuffer(s:string) : unit =
+        keybuffer := keybuffer.Value + (s)
+        OutputImplementation.Write (Message.Text (s))
 
     let HandleTextInput (args: TextInputEventArgs) : unit =
         match args.Character with
         | '\r' ->
-            OutputImplementation.Write (Splorr.Kibbutz.Model.Message.Line "")
-            keybuffer.Value.ToLower().Split(' ') 
-            |> Array.toList 
-            |> Splorr.Kibbutz.CommandParser.Parse context session.Value.Value
-            |> Option.iter
-                (fun command ->
-                    GameImplementation.commandQueue := List.append GameImplementation.commandQueue.Value [ command ]
-                    UpdateScreen())
-            keybuffer := ""
-        | '\t'
-        | '\u007f'
-        | '\u001b' ->
-            ()
+            HandleNewLine()
+
+        | '\t' //tab
+        | '\u007f' //delete
+        | '\u001b' -> //escape
+            DoNothing()
+
         | '\b' ->
-            if keybuffer.Value.Length>0 then
-                keybuffer := keybuffer.Value.Substring(0, keybuffer.Value.Length - 1)
-                OutputImplementation.Backspace()
+            HandleBackspace()
+
         | c ->
-            keybuffer := keybuffer.Value + (c.ToString())
-            OutputImplementation.Write (Splorr.Kibbutz.Model.Message.Text (args.Character.ToString()))
+            c.ToString()
+            |> AddToKeyBuffer
 
     let HandleKeyDown (args:InputKeyEventArgs) : unit =
+        //TODO - for handling Function keys!
         ()
 
-    override this.Initialize() =
+    let InitializeGraphics() : unit =
+        graphics.PreferredBackBufferWidth <- OutputImplementation.screenWidth
+        graphics.PreferredBackBufferHeight <- OutputImplementation.screenHeight
+        graphics.ApplyChanges()
+
+    let InitializeGame() : unit =
+        session := 
+            Game.Load context
+            |> Option.defaultValue (Game.New context)
+            |> Some
+        UpdateScreen()
+
+    let RenderCell 
+            (position:int) 
+            (cell:TextCell) 
+            : unit =
+        OutputImplementation.destinations
+        |> Map.tryFind position
+        |> Option.iter
+            (fun destination ->
+                spriteBatch.Value.Draw(texture.Value, destination, sources.[cell.character], cell.color))
+
+    let RenderScreen() : unit =
+        spriteBatch.Value.Begin()
+        OutputImplementation.buffer.Value
+        |> Map.iter RenderCell
+        spriteBatch.Value.End()
+
+    member private this.InitializeWindow() =
         this.Window.Title <- "Kibbutz of SPLORR!!"
-        graphics.PreferredBackBufferWidth <- 1280
-        graphics.PreferredBackBufferHeight <- 720
         this.Window.TextInput.Add(HandleTextInput)
         this.Window.KeyDown.Add(HandleKeyDown)
-        graphics.ApplyChanges()
+
+    override this.Initialize() =
+        this.InitializeWindow()
+        InitializeGraphics()
+
         spriteBatch := new SpriteBatch(this.GraphicsDevice)
-        UpdateScreen()
         base.Initialize()
+
+        InitializeGame()
 
     override this.LoadContent() =
         texture := Texture2D.FromStream(this.GraphicsDevice, new FileStream("Content/romfont8x8.png", FileMode.Open))
-        blankTexture := Texture2D.FromStream(this.GraphicsDevice, new FileStream("Content/blank.png", FileMode.Open))
     
     override this.Update (delta:GameTime)  =
-        ()
+        DoNothing()
 
     override this.Draw (delta:GameTime) =
         Color.Black
         |>  this.GraphicsDevice.Clear
-        spriteBatch.Value.Begin()
-        OutputImplementation.buffer.Value
-        |> Map.iter
-            (fun position cell ->
-                let destination = Rectangle((position % OutputImplementation.screenColumns)*16,(position / OutputImplementation.screenColumns)*16,16,16)
-                spriteBatch.Value.Draw(texture.Value, destination, Nullable<Rectangle>(Rectangle(((cell.character |> int) % 16) * 16, ((cell.character |> int) / 16)* 16, 16, 16)), cell.color))
-
-        spriteBatch.Value.End()
+        RenderScreen()
 
 
