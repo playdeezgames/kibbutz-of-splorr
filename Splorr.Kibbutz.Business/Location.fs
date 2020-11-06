@@ -22,4 +22,11 @@ module Location =
         | _ ->
             raise (NotImplementedException "Apparently, you can't think of everything!")
 
+    let internal Add
+            (first : Location)
+            (second : Location)
+            : Location =
+        ((first |> fst)+(second|>fst),
+            (first |> snd)+(second |> snd))
+
 

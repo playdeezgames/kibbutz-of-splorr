@@ -9,6 +9,20 @@ type private Direction =
     | East
     | South
     | West
+    with
+        static member ToDelta (direction : Direction) : Location =
+            match direction with
+            | North -> (0,-1)
+            | East -> (1,0)
+            | South -> (0,1)
+            | West -> (-1,0)
+        static member ToString (direction : Direction) : string =
+            match direction with
+            | North -> "north"
+            | East -> "east"
+            | South -> "south"
+            | West -> "west"
+            
 
 module internal DwellerAdvancer = 
     let private Rest
@@ -24,9 +38,24 @@ module internal DwellerAdvancer =
             (identifier : DwellerIdentifier)
             (dweller : Dweller)
             : unit =
-        //pick a random direction
-        //move in that direction
-        DwellerRepository.LogForDweller context (identifier, turn, Line "Explored.")
+        let direction= 
+            [ North; East; South; West ]
+            |> RandomUtility.PickFromListRandomly context
+        let newLocation =
+            direction
+            |> Direction.ToDelta
+            |> Location.Add dweller.location
+        {dweller with
+            location = newLocation}
+        |> Some
+        |> DwellerRepository.Put context identifier
+        DwellerRepository.LogForDweller context 
+            (identifier, 
+                turn, 
+                    Line 
+                        (sprintf "Moved %s to %s." 
+                            (direction |> Direction.ToString) 
+                            (newLocation |> Location.ToString)))
 
     let private AdvanceExistingDweller
             (context : CommonContext)
