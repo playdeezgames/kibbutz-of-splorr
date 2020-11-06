@@ -22,6 +22,7 @@ type HostGame(context : CommonContext) as this =
     let spriteBatch : SpriteBatch ref = ref null
     let texture : Texture2D ref = ref null
     let keybuffer : string ref = ref ""
+    let lastKeyBuffer : string ref = ref ""
 
     let textureColumns = 16
     let textureCellWidth = 16
@@ -61,6 +62,7 @@ type HostGame(context : CommonContext) as this =
 
     let HandleNewLine() : unit =
         OutputImplementation.Write (Message.Line "")
+        lastKeyBuffer := keybuffer.Value
         ParseCommand()
         |> Option.iter DispatchCommand
         keybuffer := ""
@@ -99,6 +101,7 @@ type HostGame(context : CommonContext) as this =
 
     let HandleQuickCommand (text:string) (command:Command) : unit =
         ResetKeyBuffer()
+        lastKeyBuffer:= text
         OutputImplementation.Write (Message.Line text)
         DispatchCommand command
         keybuffer := ""
@@ -108,6 +111,10 @@ type HostGame(context : CommonContext) as this =
             HandleQuickCommand "help" Command.Help
         elif args.Key = Keys.F2 then
             HandleQuickCommand "advance" Command.Advance
+        elif args.Key = Keys.Up then
+            ResetKeyBuffer()
+            OutputImplementation.Write (Message.Line lastKeyBuffer.Value)
+            keybuffer := lastKeyBuffer.Value
 
     let InitializeGraphics() : unit =
         graphics.PreferredBackBufferWidth <- OutputImplementation.screenWidth
