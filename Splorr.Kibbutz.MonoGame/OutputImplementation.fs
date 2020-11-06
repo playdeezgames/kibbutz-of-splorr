@@ -15,6 +15,22 @@ module OutputImplementation =
     let private screenRows = 45
     let internal screenColumns = 80
     let private cellCount = screenColumns * screenRows
+    let private cellWidth = 16
+    let private cellHeight = 16
+    let internal destinations : Map<int, Rectangle> =
+        [0..(cellCount - 1)]
+        |> List.map 
+            (fun position -> 
+                (position, 
+                    Rectangle
+                        ((position % screenColumns)*cellWidth,
+                        (position / screenColumns)*cellHeight,
+                        cellWidth,
+                        cellHeight)))
+        |> Map.ofList
+    let internal screenWidth = screenColumns * cellWidth
+    let internal screenHeight = screenRows * cellHeight
+
 
     let internal buffer : Map<int, TextCell> ref = ref Map.empty
     let private cursorPosition : int ref = ref 0

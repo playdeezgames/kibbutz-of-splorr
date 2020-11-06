@@ -1,16 +1,19 @@
-MonoGame Client:
-    Quick Action Function Keys:
-        ☐ help - F1
-        ☐ advance - F2
-        ☐ last command? (up arrow?)
-Dweller Assignments:
-    Explore:
-        ☐ will move the dweller one area in a random direction
-            will need directions NESW and way to map to name
-        ☐ will log that the dweller moved and in what direction
-    Rest:
-        ☐ will log that the dweller rested
+Commands:
+  ☐ history (dweller history)
+    or is this better called "log"?
+    ☐ form "history <dwellername>"
+    ☐ it shows a paged history for a given dweller
+      10 per page?
+      shows "page x of y"
+    ☐ add to help
 Archive:
+  ✔ help - F1 @done(20-11-06 05:02) @project(MonoGame Client.Quick Action Function Keys)
+  ✔ advance - F2 @done(20-11-06 05:07) @project(MonoGame Client.Quick Action Function Keys)
+  ✔ last command? (up arrow?) @done(20-11-06 06:21) @project(MonoGame Client.Quick Action Function Keys)
+  ✔ will move the dweller one area in a random direction @done(20-11-06 06:12) @project(Dweller Assignments.Explore)
+    will need directions NESW and way to map to name
+  ✔ will log that the dweller moved and in what direction @done(20-11-06 06:12) @project(Dweller Assignments.Explore)
+  ✔ will log that the dweller rested @done(20-11-06 05:37) @project(Dweller Assignments.Rest)
   ✔ Keeps track of what the dweller has done on a given turn @done(20-11-04 05:40) @project(Dweller Log)
     dweller id (guid), turn (uint64), log entry (message)
   ✔ log creation of dweller @done(20-11-04 05:40) @project(Dweller Log)
