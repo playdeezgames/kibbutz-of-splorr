@@ -14,6 +14,7 @@
     <Compile Include="Dweller\Explainer.fs" />
     <Compile Include="Dweller\Creator.fs" />
     <Compile Include="Dweller\Assigner.fs" />
+    <Compile Include="Dweller\Advancer.fs" />
     <Compile Include="Dweller\Dweller.fs" />
     <Compile Include="Settlement\Advancer.fs" />
     <Compile Include="Settlement\Existence.fs" />
