@@ -2,6 +2,7 @@
 
 open Microsoft.Xna.Framework
 open Microsoft.Xna.Framework.Graphics
+open Microsoft.Xna.Framework.Input
 open System.IO
 open System
 open Splorr.Common
@@ -92,9 +93,21 @@ type HostGame(context : CommonContext) as this =
             c.ToString()
             |> AddToKeyBuffer
 
+    let ResetKeyBuffer() : unit =
+        while keybuffer.Value.Length>0 do
+            HandleBackspace()
+
+    let HandleQuickCommand (text:string) (command:Command) : unit =
+        ResetKeyBuffer()
+        OutputImplementation.Write (Message.Line text)
+        DispatchCommand command
+        keybuffer := ""
+
     let HandleKeyDown (args:InputKeyEventArgs) : unit =
-        //TODO - for handling Function keys!
-        ()
+        if args.Key=Keys.F1 then
+            HandleQuickCommand "help" Command.Help
+        elif args.Key = Keys.F2 then
+            HandleQuickCommand "advance" Command.Advance
 
     let InitializeGraphics() : unit =
         graphics.PreferredBackBufferWidth <- OutputImplementation.screenWidth
