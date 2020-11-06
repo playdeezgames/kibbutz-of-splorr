@@ -5,9 +5,9 @@ MonoGame Client:
         ☐ last command? (up arrow?)
 Dweller Assignments:
     Explore:
-        ☐ will move the dweller one area in a random direction
+        ✔ will move the dweller one area in a random direction @done(20-11-06 06:12)
             will need directions NESW and way to map to name
-        ☐ will log that the dweller moved and in what direction
+        ✔ will log that the dweller moved and in what direction @done(20-11-06 06:12)
     Rest:
         ✔ will log that the dweller rested @done(20-11-06 05:37)
 Archive:
