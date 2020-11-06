@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Compile Include="Contexts.fs" />
+    <Compile Include="RandomUtility\PickFromListRandomlyTests.fs" />
     <Compile Include="RandomUtility\GenerateFromWeightedValuesTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

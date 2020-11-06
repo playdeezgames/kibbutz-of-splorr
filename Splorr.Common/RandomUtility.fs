@@ -15,7 +15,7 @@ module RandomUtility =
             (context : CommonContext) =
         List.sortBy (fun _ -> GenerateFromRange context (0.0, 1.0))
 
-    let internal PickFromListRandomly
+    let PickFromListRandomly
             (context : CommonContext) =
         SortListRandomly context >> List.head
 
