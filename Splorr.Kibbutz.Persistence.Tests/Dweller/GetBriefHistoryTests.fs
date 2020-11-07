@@ -21,4 +21,4 @@ let ``GetBriefHistory.It has messages when the dweller's log has added to.`` () 
     let actual = 
         DwellerLogStore.GetBriefHistory
             Dummies.ValidDwellerIdentifier
-    Assert.AreNotEqual(0UL, actual)
+    Assert.AreEqual(1UL, actual.Length)

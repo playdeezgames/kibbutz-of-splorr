@@ -5,6 +5,7 @@ open Splorr.Kibbutz.Model
 open System
 
 module DwellerLogStore =
+    let private PageHistoryLength = 10
     let private dwellerLogs : Map<DwellerIdentifier, (TurnCounter * Message) list> ref = ref Map.empty
 
     let LogForDweller
@@ -36,7 +37,7 @@ module DwellerLogStore =
             : (TurnCounter * Message) list =
         match dwellerLogs.Value |> Map.tryFind identifier with
         | Some log ->
-            if log.Length > BriefHistoryLength then
+            if log.Length >= BriefHistoryLength then
                 log
                 |> List.take BriefHistoryLength
             else
@@ -47,4 +48,19 @@ module DwellerLogStore =
     let GetPageHistory
             (identifier : DwellerIdentifier, page : uint64)
             : (TurnCounter * Message) list =
-        raise (NotImplementedException "NO UNIT TESTS")
+        let skipCount = if page=0UL then 0 else ((page-1UL) |> int) * PageHistoryLength
+        match dwellerLogs.Value |> Map.tryFind identifier with
+        | Some log ->
+            if log.Length>=skipCount then
+                let log = 
+                    log
+                    |> List.skip skipCount
+                if log.Length >= PageHistoryLength then
+                    log
+                    |> List.take PageHistoryLength
+                else
+                    log
+            else
+                []
+        | None ->
+            []
