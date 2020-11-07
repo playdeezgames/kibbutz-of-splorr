@@ -2,8 +2,8 @@ Commands:
   ☐ history (dweller history)
     or is this better called "log"?
     ✔ form "history <dwellername> (#|page #)" @done(20-11-07 05:40)
-    ☐ it shows a paged history for a given dweller
-    ☐ 10 per page?
+    ✔ it shows a paged history for a given dweller @done(20-11-07 06:29)
+    ✔ 10 per page? @done(20-11-07 06:29)
     ☐ shows "page x of y"
     ☐ add to help
 Archive:
