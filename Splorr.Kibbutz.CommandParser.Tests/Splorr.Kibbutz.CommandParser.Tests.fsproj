@@ -22,6 +22,7 @@
     <Compile Include="AssignCommandTests.fs" />
     <Compile Include="ExplainDwellerCommandTests.fs" />
     <Compile Include="HelpCommandTests.fs" />
+    <Compile Include="HistoryCommandTests.fs" />
     <Compile Include="InvalidCommandTests.fs" />
     <Compile Include="ListDwellersCommandTests.fs" />
     <Compile Include="QuitCommandTests.fs" />
