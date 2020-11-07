@@ -15,7 +15,7 @@ let ``Explain.It returns messages explaining a dweller when that dweller exists.
     (context :> DwellerRepository.GetContext).dwellerSingleSource := Spies.SourceTable(callsForGetDweller, Dummies.ValidDwellerTable)
     (context :> DwellerRepository.GetBriefHistoryContext).dwellerBriefHistorySource := Spies.SourceCounter(callsForBriefHistory, [(0UL, Line "I am a message.")])
     let actual = Dweller.Explain context Dummies.ValidSessionIdentifier Dummies.ValidDwellerIdentifier
-    Assert.AreEqual(6, actual.Length)
+    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 6)
     Assert.AreEqual(1UL, callsForGetDweller.Value)
     Assert.IsTrue(calledGetDwellerList.Value)
     Assert.AreEqual(1UL, callsForBriefHistory.Value)
@@ -27,5 +27,5 @@ let ``Explain.It returns empty list when that dweller does not exist for the giv
     let context = Contexts.TestContext()
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource := Spies.Source(calledGetDwellerList, [])
     let actual = Dweller.Explain context Dummies.ValidSessionIdentifier Dummies.ValidDwellerIdentifier
-    Assert.AreEqual(0, actual.Length)
+    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 0)
     Assert.IsTrue(calledGetDwellerList.Value)

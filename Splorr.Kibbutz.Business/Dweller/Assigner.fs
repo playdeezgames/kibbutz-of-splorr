@@ -9,10 +9,12 @@ module DwellerAssigner =
         [
             Hued (Red, Line "There is no such dweller in this settlement.")
         ]
+        |> Group
     let private SuccessfulAssignmentOfDwellerMessages =
         [
             Hued (Green, Line "You update the dweller's assignment.")
         ]
+        |> Group
 
     let private CompleteAssignmentOfDweller
             (context : CommonContext)
@@ -37,7 +39,7 @@ module DwellerAssigner =
             (session : SessionIdentifier)
             (identifier: DwellerIdentifier)
             (assignment : Assignment)
-            : Message list =
+            : Message =
         match DwellerRepository.GetForSession context session identifier with
         | Some dweller ->
             CompleteAssignmentOfDweller context session identifier dweller assignment

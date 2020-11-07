@@ -15,4 +15,5 @@ module internal InvalidCommandHandler =
             Hued (Red, Line (sprintf "I don't know what '%s' means." invalidText))
             Hued (Red, Line "Maybe you should try 'help'.")
         ]
+        |> Group
         |> CommandHandlerUtility.HandleStandardCommand context session

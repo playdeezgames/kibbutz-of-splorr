@@ -27,7 +27,6 @@ module DwellerExplainer =
         | _ ->
             "Other"
 
-
     let private ExplainExistingDweller
             (context : CommonContext)
             (identifier : DwellerIdentifier)
@@ -71,17 +70,18 @@ module DwellerExplainer =
             (context : CommonContext)
             (session : SessionIdentifier)
             (identifier : DwellerIdentifier)
-            : Message list =
+            : Message =
         DwellerRepository.Get context identifier
         |> Option.map (ExplainExistingDweller context identifier)
         |> Option.defaultValue []
+        |> Group
 
     let internal Explain
             (context : CommonContext)
             (session : SessionIdentifier)
             (identifier : DwellerIdentifier)
-            : Message list =
+            : Message =
         if DwellerRepository.ExistsForSession context session identifier then
             ExplainExistingDwellerForSession context session identifier
         else
-            []
+            [] |> Group

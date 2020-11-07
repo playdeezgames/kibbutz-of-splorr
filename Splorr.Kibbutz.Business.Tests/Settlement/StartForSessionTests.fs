@@ -13,7 +13,7 @@ let ``StartSettlementForSession.It does nothing when a settlement already exists
     (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, Some Dummies.ValidSettlement)
     let actual =
         Settlement.StartSettlementForSession context Dummies.ValidSessionIdentifier
-    Assert.AreEqual(1, actual.Length)
+    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 1)
     Assert.IsTrue(calledGetSettlement.Value)
 
 [<Test>]
@@ -53,7 +53,7 @@ let ``StartSettlementForSession.It creates a new settlement when a settlement do
     (context :> DwellerRepository.LogForDwellerContext).dwellerLogSink := Spies.SinkCounter(callsForLogForDweller)
     let actual =
         Settlement.StartSettlementForSession context Dummies.ValidSessionIdentifier
-    Assert.AreEqual(1, actual.Length)
+    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 1)
     Assert.IsTrue(calledGetSettlement.Value)
     Assert.AreEqual(1UL, callsForPutContext.Value)
     Assert.AreEqual(3UL, callsForPutDweller.Value)
