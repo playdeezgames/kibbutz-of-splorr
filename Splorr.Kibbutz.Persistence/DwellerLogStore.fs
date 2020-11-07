@@ -44,3 +44,7 @@ module DwellerLogStore =
         | None ->
             []
 
+    let GetPageHistory
+            (identifier : DwellerIdentifier, page : uint64)
+            : (TurnCounter * Message) list =
+        raise (NotImplementedException "NO UNIT TESTS")

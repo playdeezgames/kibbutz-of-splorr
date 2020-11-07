@@ -26,6 +26,13 @@ module DwellerRepository =
             (context : CommonContext) =
         (context :?> GetBriefHistoryContext).dwellerBriefHistorySource.Value
 
+    type DwellerPageHistorySource = DwellerIdentifier * uint64 -> (TurnCounter * Message) list
+    type GetPageHistoryContext =
+        abstract member dwellerPageHistorySource : DwellerPageHistorySource ref
+    let GetPageHistory
+            (context : CommonContext) =
+        (context :?> GetPageHistoryContext).dwellerPageHistorySource.Value
+
     type DwellerIdentifierSource = unit -> DwellerIdentifier
     type GenerateIdentifierContext =
         abstract member dwellerIdentifierSource : DwellerIdentifierSource ref

@@ -7,6 +7,7 @@ open System
 let internal ValidSessionIdentifier : SessionIdentifier = Guid.NewGuid()
 let internal ValidDwellerIdentifiers : DwellerIdentifier list = [ Guid.NewGuid(); Guid.NewGuid(); Guid.NewGuid() ]
 let internal ValidDwellerIdentifier = ValidDwellerIdentifiers |> List.head
+let internal InvalidDwellerIdentifier = Guid.Empty
 let internal ValidDwellerTable : Map<DwellerIdentifier, Dweller option> =
     ValidDwellerIdentifiers
     |> List.map
@@ -22,3 +23,11 @@ let internal ValidSettlement : Settlement =
         nameLengthGenerator = Map.empty
         nameStartGenerator = Map.empty
     }
+let internal ValidDwellerHistory : (TurnCounter * Message) list =
+    [
+        1UL, Line "1"
+        2UL, Line "2"
+        3UL, Line "3"
+        4UL, Line "4"
+        5UL, Line "5"
+    ]

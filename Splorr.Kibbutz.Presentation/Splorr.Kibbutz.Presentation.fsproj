@@ -17,6 +17,7 @@
     <Compile Include="CommandHandlers\StartSettlementCommandHandler.fs" />
     <Compile Include="CommandHandlers\ListDwellersCommandHandler.fs" />
     <Compile Include="CommandHandlers\ExplainDwellerCommandHandler.fs" />
+    <Compile Include="CommandHandlers\HistoryCommandHandler.fs" />
     <Compile Include="CommandHandlers\CommandHandler.fs" />
     <Compile Include="Game.fs" />
     <Compile Include="PresentationContext.fs" />
