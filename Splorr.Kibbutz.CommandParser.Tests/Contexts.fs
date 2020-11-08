@@ -48,4 +48,7 @@ type TestContext() =
         member val dwellerBriefHistorySource = ref (Fakes.Source ("DwellerLogRepository.GetBriefHistoryContext", []))
     interface DwellerLogRepository.GetPageHistoryContext with
         member val dwellerPageHistorySource = ref (Fakes.Source ("DwellerLogRepository.GetPageHistoryContext", []))
+    interface DwellerLogRepository.GetHistoryPageCountContext with
+        member val dwellerPageCountHistorySource = ref (Fakes.Source ("DwellerLogRepository.GetHistoryPageCountContext", 0UL))
+
 

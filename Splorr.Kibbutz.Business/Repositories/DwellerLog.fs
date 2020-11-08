@@ -22,13 +22,21 @@ module DwellerLogRepository =
     type DwellerBriefHistorySource = DwellerIdentifier -> (TurnCounter * Message) list
     type GetBriefHistoryContext =
         abstract member dwellerBriefHistorySource : DwellerBriefHistorySource ref
-    let GetBriefHistory
+    let internal GetBriefHistory
             (context : CommonContext) =
         (context :?> GetBriefHistoryContext).dwellerBriefHistorySource.Value
 
     type DwellerPageHistorySource = DwellerIdentifier * uint64 -> (TurnCounter * Message) list
     type GetPageHistoryContext =
         abstract member dwellerPageHistorySource : DwellerPageHistorySource ref
-    let GetPageHistory
+    let internal GetPageHistory
             (context : CommonContext) =
         (context :?> GetPageHistoryContext).dwellerPageHistorySource.Value
+
+    type DwellerPageCountHistorySource = DwellerIdentifier -> uint64
+    type GetHistoryPageCountContext =
+        abstract member dwellerPageCountHistorySource : DwellerPageCountHistorySource ref
+    let internal GetHistoryPageCount
+            (context : CommonContext) =
+        (context :?> GetHistoryPageCountContext).dwellerPageCountHistorySource.Value
+

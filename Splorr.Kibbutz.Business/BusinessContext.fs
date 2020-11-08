@@ -3,15 +3,16 @@
 open Splorr.Common
 
 type BusinessContext = 
+    inherit DwellerLogRepository.GetBriefHistoryContext
+    inherit DwellerLogRepository.GetHistoryPageCountContext
+    inherit DwellerLogRepository.GetPageHistoryContext
     inherit DwellerLogRepository.LogForDwellerContext
+    inherit DwellerLogRepository.PurgeLogsForDwellerContext
     inherit DwellerRepository.AssignToSessionContext
     inherit DwellerRepository.FindIdentifierForNameContext
     inherit DwellerRepository.GenerateIdentifierContext
-    inherit DwellerLogRepository.GetBriefHistoryContext
     inherit DwellerRepository.GetContext
     inherit DwellerRepository.GetListForSessionContext
-    inherit DwellerLogRepository.GetPageHistoryContext
-    inherit DwellerLogRepository.PurgeLogsForDwellerContext
     inherit DwellerRepository.PutContext
     inherit Messages.GetContext
     inherit Messages.PurgeContext

@@ -20,7 +20,10 @@ let ``History.It returns an empty result set for a given dweller that does not e
 let ``History.It retrieves a page full of history for a given dweller.`` () =
     let calledGetListForSession = ref false
     let calledGetPageHistory = ref false
+    let calledPageHistoryCount = ref false
     let context = Contexts.TestContext()
+    (context :> DwellerLogRepository.GetHistoryPageCountContext).dwellerPageCountHistorySource :=
+        Spies.Source(calledPageHistoryCount, Dummies.ValidDwellerHistory.Length |> uint64)
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource :=
         Spies.Source(calledGetListForSession, [ Dummies.ValidDwellerIdentifier ])
     (context :> DwellerLogRepository.GetPageHistoryContext).dwellerPageHistorySource :=
@@ -30,5 +33,6 @@ let ``History.It retrieves a page full of history for a given dweller.`` () =
     Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 2)
     Assert.IsTrue(calledGetListForSession.Value)
     Assert.IsTrue(calledGetPageHistory.Value)
+    Assert.IsTrue(calledPageHistoryCount.Value)
 
 

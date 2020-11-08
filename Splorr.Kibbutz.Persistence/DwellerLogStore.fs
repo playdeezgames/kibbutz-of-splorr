@@ -69,3 +69,17 @@ module DwellerLogStore =
                 |> NoMoreThan PageHistoryLength
         | _ ->
             []
+
+    let private GetRecordCount
+            (identifier : DwellerIdentifier)
+            : int =
+        dwellerLogs.Value 
+        |> Map.tryFind identifier
+        |> Option.map (fun x -> x.Length)
+        |> Option.defaultValue 0
+
+    let GetHistoryPageCount
+            (identifier : DwellerIdentifier)
+            : uint64 =
+        ((GetRecordCount identifier)+PageHistoryLength-1) / (PageHistoryLength)
+        |> uint64
