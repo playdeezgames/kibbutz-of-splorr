@@ -13,7 +13,7 @@ let ``Explain.It returns messages explaining a dweller when that dweller exists.
     let context = Contexts.TestContext()
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource := Spies.Source(calledGetDwellerList, Dummies.ValidDwellerIdentifiers)
     (context :> DwellerRepository.GetContext).dwellerSingleSource := Spies.SourceTable(callsForGetDweller, Dummies.ValidDwellerTable)
-    (context :> DwellerRepository.GetBriefHistoryContext).dwellerBriefHistorySource := Spies.SourceCounter(callsForBriefHistory, [(0UL, Line "I am a message.")])
+    (context :> DwellerLogRepository.GetBriefHistoryContext).dwellerBriefHistorySource := Spies.SourceCounter(callsForBriefHistory, [(0UL, Line "I am a message.")])
     let actual = Dweller.Explain context Dummies.ValidSessionIdentifier Dummies.ValidDwellerIdentifier
     Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 6)
     Assert.AreEqual(1UL, callsForGetDweller.Value)

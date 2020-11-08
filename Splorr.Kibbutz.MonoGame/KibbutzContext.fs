@@ -48,9 +48,9 @@ type internal KibbutzContext() =
         member this.dwellerIdentifierForNameSource = ref DwellerStore.FindIdentifierForName
     interface DwellerLogRepository.LogForDwellerContext with
         member this.dwellerLogSink = ref DwellerLogStore.LogForDweller
-    interface DwellerRepository.PurgeLogsForDwellerContext with
+    interface DwellerLogRepository.PurgeLogsForDwellerContext with
         member this.dwellerLogPurger = ref DwellerLogStore.PurgeLogsForDweller
-    interface DwellerRepository.GetBriefHistoryContext with
+    interface DwellerLogRepository.GetBriefHistoryContext with
         member this.dwellerBriefHistorySource = ref DwellerLogStore.GetBriefHistory
     interface DwellerRepository.GetPageHistoryContext with
         member this.dwellerPageHistorySource = ref DwellerLogStore.GetPageHistory

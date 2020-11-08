@@ -12,7 +12,6 @@ module DwellerLogRepository =
             (context : CommonContext) =
         (context :?> LogForDwellerContext).dwellerLogSink.Value
 
-module DwellerRepository =
     type DwellerLogPurger = DwellerIdentifier -> unit
     type PurgeLogsForDwellerContext =
         abstract member dwellerLogPurger : DwellerLogPurger ref
@@ -26,6 +25,8 @@ module DwellerRepository =
     let GetBriefHistory
             (context : CommonContext) =
         (context :?> GetBriefHistoryContext).dwellerBriefHistorySource.Value
+
+module DwellerRepository =
 
     type DwellerPageHistorySource = DwellerIdentifier * uint64 -> (TurnCounter * Message) list
     type GetPageHistoryContext =

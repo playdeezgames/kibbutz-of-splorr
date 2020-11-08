@@ -159,7 +159,7 @@ module internal SettlementExistence =
         DwellerRepository.GetListForSession context session
         |> List.iter
             (fun identifier ->
-                DwellerRepository.PurgeLogsForDweller context identifier
+                DwellerLogRepository.PurgeLogsForDweller context identifier
                 DwellerRepository.Put context identifier None
                 DwellerRepository.RemoveFromSession context identifier)
         SettlementRepository.PutSettlementForSession context session None
