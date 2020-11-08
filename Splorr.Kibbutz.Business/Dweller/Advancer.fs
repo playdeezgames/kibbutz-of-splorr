@@ -64,15 +64,17 @@ module internal DwellerAdvancer =
             (dweller : Dweller)
             : Message list =
         match dweller.assignment with
-        | Rest ->
-            Rest context turn identifier
-            [
-                dweller.name |> sprintf "Dweller %s rests." |> Line
-            ]
         | Explore ->
             Explore context turn identifier dweller
             [
                 dweller.name |> sprintf "Dweller %s explores." |> Line
+            ]
+        | Gather ->
+            raise (NotImplementedException "NO UNIT TESTS")
+        | Rest ->
+            Rest context turn identifier
+            [
+                dweller.name |> sprintf "Dweller %s rests." |> Line
             ]
 
     let private AdvanceDweller

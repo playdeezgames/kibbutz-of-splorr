@@ -14,6 +14,12 @@ let internal ValidDwellerTable : Map<DwellerIdentifier, Dweller option> =
         (fun identifier ->
             (identifier, Some {name = ""; sexGenes = None; location = (0,0); assignment = Assignment.Rest }))
     |> Map.ofList
+let internal AssignAllDwellers (assignment : Assignment) : Map<DwellerIdentifier, Dweller option> =
+    ValidDwellerTable
+    |> Map.map
+        (fun _ d ->
+            d 
+            |> Option.map(fun dweller -> {dweller with assignment = assignment}))
 let internal ValidDweller = ValidDwellerTable.[ValidDwellerIdentifier]
 let internal ValidSettlement : Settlement =
     {

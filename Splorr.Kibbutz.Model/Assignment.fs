@@ -3,4 +3,5 @@
 type Assignment =
     | Rest
     | Explore
+    | Gather
 

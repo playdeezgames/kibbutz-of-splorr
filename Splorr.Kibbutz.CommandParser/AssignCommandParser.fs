@@ -13,6 +13,8 @@ module AssignCommandParser =
         match assignmentName with
         | "explore" ->
             Some Explore
+        | "gather" ->
+            Some Gather
         | "rest" ->
             Some Rest
         | _ ->

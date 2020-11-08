@@ -52,6 +52,16 @@ let ``Parse.It returns an Assign command when "assign yermom to explore" is ente
     Assert.IsTrue(calledFindDweller.Value)
 
 [<Test>]
+let ``Parse.It returns an Assign command when "assign yermom to gather" is entered when yermom exists as a dweller.`` () =
+    let calledFindDweller = ref false
+    let context = Contexts.TestContext()
+    (context :> DwellerRepository.FindIdentifierForNameContext).dwellerIdentifierForNameSource :=
+        Spies.Source(calledFindDweller, Some Dummies.ValidDwellerIdentifier)
+    let actual = CommandParser.Parse context Dummies.ValidSessionIdentifier [ "assign"; "yermom"; "to"; "gather" ]
+    Assert.AreEqual(Some (Assign (Dummies.ValidDwellerIdentifier, Gather)), actual)
+    Assert.IsTrue(calledFindDweller.Value)
+
+[<Test>]
 let ``Parse.It returns an Invalid command when "assign yermom to poop" is entered when yermom exists as a dweller.`` () =
     let context = Contexts.TestContext()
     let actual = CommandParser.Parse context Dummies.ValidSessionIdentifier [ "assign"; "yermom"; "to"; "poop" ]
