@@ -17,6 +17,7 @@ module internal HelpCommandHandler =
             Hued (Yellow, Line ("dweller [name] - describes the state of the dweller with the given name"))
             Hued (Yellow, Line ("dwellers - lists the dwellers in the settlement"))
             Hued (Yellow, Line ("help - shows help"))
+            Hued (Yellow, Line ("history [name] (page) [number] - shows a history page for a dweller (number is optional and defaults to 1)"))
             Hued (Yellow, Line ("start - starts a settlement"))
             Hued (Yellow, Line ("quit - quits the game"))
         ]
