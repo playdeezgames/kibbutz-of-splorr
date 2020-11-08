@@ -1,4 +1,8 @@
-Day #10: Test Driven Development in F# of a Text-Based City Management Game
+Day #11: Test Driven Development in F# of a Text-Based City Management Game
+
+# Day 11 - 20201108
+
+* dweller history merge request and cleanup
 
 # Day 10 - 20201107
 
