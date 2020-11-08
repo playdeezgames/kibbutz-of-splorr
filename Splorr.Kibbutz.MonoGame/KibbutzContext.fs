@@ -52,6 +52,6 @@ type internal KibbutzContext() =
         member this.dwellerLogPurger = ref DwellerLogStore.PurgeLogsForDweller
     interface DwellerLogRepository.GetBriefHistoryContext with
         member this.dwellerBriefHistorySource = ref DwellerLogStore.GetBriefHistory
-    interface DwellerRepository.GetPageHistoryContext with
+    interface DwellerLogRepository.GetPageHistoryContext with
         member this.dwellerPageHistorySource = ref DwellerLogStore.GetPageHistory
 

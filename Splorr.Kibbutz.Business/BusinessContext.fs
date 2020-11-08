@@ -10,7 +10,7 @@ type BusinessContext =
     inherit DwellerLogRepository.GetBriefHistoryContext
     inherit DwellerRepository.GetContext
     inherit DwellerRepository.GetListForSessionContext
-    inherit DwellerRepository.GetPageHistoryContext
+    inherit DwellerLogRepository.GetPageHistoryContext
     inherit DwellerLogRepository.PurgeLogsForDwellerContext
     inherit DwellerRepository.PutContext
     inherit Messages.GetContext

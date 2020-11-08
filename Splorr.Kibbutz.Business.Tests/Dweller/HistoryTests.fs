@@ -23,7 +23,7 @@ let ``History.It retrieves a page full of history for a given dweller.`` () =
     let context = Contexts.TestContext()
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource :=
         Spies.Source(calledGetListForSession, [ Dummies.ValidDwellerIdentifier ])
-    (context :> DwellerRepository.GetPageHistoryContext).dwellerPageHistorySource :=
+    (context :> DwellerLogRepository.GetPageHistoryContext).dwellerPageHistorySource :=
         Spies.Source(calledGetPageHistory, Dummies.ValidDwellerHistory)
     let actual =
         Dweller.History context Dummies.ValidSessionIdentifier Dummies.ValidDwellerIdentifier 0UL
