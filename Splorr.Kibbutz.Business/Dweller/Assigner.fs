@@ -40,7 +40,7 @@ module DwellerAssigner =
             (identifier: DwellerIdentifier)
             (assignment : Assignment)
             : Message =
-        match DwellerRepository.GetForSession context session identifier with
+        match DwellerSession.GetForSession context session identifier with
         | Some dweller ->
             CompleteAssignmentOfDweller context session identifier dweller assignment
             SuccessfulAssignmentOfDwellerMessages

@@ -7,14 +7,16 @@
   <ItemGroup>
     <Compile Include="Location.fs" />
     <Compile Include="Assignment.fs" />
-    <Compile Include="Repositories\Repository.fs" />
+    <Compile Include="Repositories\Dweller.fs" />
+    <Compile Include="Repositories\Settlement.fs" />
     <Compile Include="Session\SessionRepository.fs" />
     <Compile Include="Messages\Messages.fs" />
-    <Compile Include="Dweller\Repository.fs" />
+    <Compile Include="Dweller\Session.fs" />
     <Compile Include="Dweller\Explainer.fs" />
     <Compile Include="Dweller\Creator.fs" />
     <Compile Include="Dweller\Assigner.fs" />
     <Compile Include="Dweller\Advancer.fs" />
+    <Compile Include="Dweller\History.fs" />
     <Compile Include="Dweller\Dweller.fs" />
     <Compile Include="Settlement\Advancer.fs" />
     <Compile Include="Settlement\Existence.fs" />

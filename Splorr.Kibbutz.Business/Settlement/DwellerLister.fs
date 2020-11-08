@@ -38,7 +38,7 @@ module internal SettlementDwellerLister =
             (context : CommonContext)
             (session : SessionIdentifier)
             : Message =
-        DwellerRepository.GetDwellersForSession context session
+        DwellerSession.GetDwellersForSession context session
         |> List.map DwellerToListItem
         |> List.append DwellerTableHeader
         |> Group

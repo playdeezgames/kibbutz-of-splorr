@@ -81,7 +81,7 @@ module DwellerExplainer =
             (session : SessionIdentifier)
             (identifier : DwellerIdentifier)
             : Message =
-        if DwellerRepository.ExistsForSession context session identifier then
+        if DwellerSession.ExistsForSession context session identifier then
             ExplainExistingDwellerForSession context session identifier
         else
             [] |> Group

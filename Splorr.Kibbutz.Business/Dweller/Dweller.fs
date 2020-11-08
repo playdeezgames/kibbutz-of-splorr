@@ -8,51 +8,5 @@ module Dweller =
     let Assign = DwellerAssigner.Assign
     let Explain = DwellerExplainer.Explain
     let FindIdentifierForName = DwellerRepository.FindIdentifierForName
+    let History = DwellerHistory.History
 
-    let private UnknownDwellerHistoryMessages =
-        [
-            Line "Unknown dweller."
-        ]
-        |> Group
-
-    let private NoHistoryForDwellerMessages =
-        [
-            Line "No history for dweller."
-        ]
-        |> Group
-
-    let private HistoryForKnownDweller
-            (context : CommonContext)
-            (identifier : DwellerIdentifier)
-            (page : uint64)
-            : Message =
-        let page = if page=0UL then 1UL else page
-        let dwellerLogMessages =
-            DwellerRepository.GetPageHistory context (identifier, page)
-            |> List.map
-                (fun (turn, message) ->
-                    Group 
-                        [
-                            Text (sprintf "Turn %u: " turn)
-                            message
-                        ])
-        match dwellerLogMessages with
-        | [] ->
-            NoHistoryForDwellerMessages
-        | history ->
-            Group
-                [
-                    page |> sprintf "Page %u:" |> Line
-                    Group dwellerLogMessages
-                ]
-
-    let History
-            (context : CommonContext)
-            (session : SessionIdentifier)
-            (identifier : DwellerIdentifier)
-            (page : uint64)
-            : Message =
-        if DwellerRepository.ExistsForSession context session identifier then
-            HistoryForKnownDweller context identifier page
-        else
-            UnknownDwellerHistoryMessages
