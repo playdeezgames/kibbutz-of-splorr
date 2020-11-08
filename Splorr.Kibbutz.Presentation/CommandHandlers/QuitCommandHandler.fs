@@ -14,6 +14,7 @@ module internal QuitCommandHandler =
             [
                 Hued (Red, Line "You cannot quit without first abandoning the settlement.")
             ]
+            |> Group
             |> CommandHandlerUtility.HandleStandardCommand context session
         else
             None

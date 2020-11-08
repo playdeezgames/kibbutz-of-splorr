@@ -8,6 +8,7 @@
     <Compile Include="FixedCommandParser.fs" />
     <Compile Include="AssignCommandParser.fs" />
     <Compile Include="DwellerCommandParser.fs" />
+    <Compile Include="HistoryCommandParser.fs" />
     <Compile Include="CommandParser.fs" />
   </ItemGroup>
 

@@ -46,3 +46,6 @@ type TestContext() =
         member val dwellerLogPurger = ref (Fakes.Sink "DwellerRepository.PurgeLogsForDwellerContext")
     interface DwellerRepository.GetBriefHistoryContext with
         member val dwellerBriefHistorySource = ref (Fakes.Source ("DwellerRepository.GetBriefHistoryContext", []))
+    interface DwellerRepository.GetPageHistoryContext with
+        member val dwellerPageHistorySource = ref (Fakes.Source ("DwellerRepository.GetPageHistoryContext", []))
+

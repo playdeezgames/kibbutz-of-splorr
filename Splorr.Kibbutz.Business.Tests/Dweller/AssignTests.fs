@@ -16,7 +16,7 @@ let ``Assign.It does nothing when the dweller does not exist in the session.``()
             Dummies.ValidSessionIdentifier
             Dummies.ValidDwellerIdentifier
             Explore
-    Assert.AreEqual(1, actual.Length)
+    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 1)
     Assert.IsTrue(calledGetDwellerList.Value)
 
 
@@ -33,7 +33,7 @@ let ``Assign.It does nothing when the dweller does not exist.``() =
             Dummies.ValidSessionIdentifier
             Dummies.ValidDwellerIdentifier
             Explore
-    Assert.AreEqual(1, actual.Length)
+    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 1)
     Assert.IsTrue(calledGetDwellerList.Value)
     Assert.IsTrue(calledGetDweller.Value)
 
@@ -63,7 +63,7 @@ let ``Assign.It sets the assignment when the dweller exists in the session.``() 
             Dummies.ValidSessionIdentifier
             Dummies.ValidDwellerIdentifier
             Explore
-    Assert.AreEqual(1, actual.Length)
+    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 1)
     Assert.IsTrue(calledGetDwellerList.Value)
     Assert.IsTrue(calledGetDweller.Value)
     Assert.IsTrue(calledPutDweller.Value)

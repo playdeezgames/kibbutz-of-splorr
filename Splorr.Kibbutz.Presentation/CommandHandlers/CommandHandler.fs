@@ -22,6 +22,8 @@ module internal CommandHandler =
             ExplainDwellerCommandHandler.Handle context session identifier
         | Help ->
             HelpCommandHandler.Handle context session
+        | History (identifier, page) ->
+            HistoryCommandHandler.Handle context session identifier page
         | Invalid text ->
             InvalidCommandHandler.Handle context text session
         | ListDwellers ->

@@ -21,20 +21,20 @@ module internal SettlementAdvancer =
             (context : CommonContext)
             (session : SessionIdentifier)
             (settlement : Settlement)
-            : Message list =
+            : Message =
         let messages = 
             DwellerAdvancer.AdvanceDwellers context session settlement.turnCounter
         UpdateSettlementTurnCounter context session settlement
         List.append 
             messages
-            [Hued (Green, Line "You advance your settlement to the next turn.")]
+            [Hued (Green, Line "You advance your settlement to the next turn.")] |> Group
 
     let internal Advance
             (context : CommonContext)
             (session : SessionIdentifier)
-            : Message list =
+            : Message =
         match SettlementRepository.GetSettlementForSession context session with
         | Some settlement ->
             AdvanceExistingSettlement context session settlement
         | _ ->
-            [Hued (Red, Line "You have no settlement to advance.")]
+            [Hued (Red, Line "You have no settlement to advance.")] |> Group

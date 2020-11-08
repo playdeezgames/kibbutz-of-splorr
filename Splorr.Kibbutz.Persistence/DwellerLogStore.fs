@@ -5,6 +5,7 @@ open Splorr.Kibbutz.Model
 open System
 
 module DwellerLogStore =
+    let private PageHistoryLength = 10
     let private dwellerLogs : Map<DwellerIdentifier, (TurnCounter * Message) list> ref = ref Map.empty
 
     let LogForDweller
@@ -31,16 +32,40 @@ module DwellerLogStore =
 
     let private BriefHistoryLength = 3
 
+    let private NoMoreThan
+            (howMany : int)
+            (log : (TurnCounter * Message) list)
+            : (TurnCounter * Message) list =
+        if log.Length >= howMany then
+            log
+            |> List.take howMany
+        else
+            log
+
     let GetBriefHistory
             (identifier : DwellerIdentifier)
             : (TurnCounter * Message) list =
         match dwellerLogs.Value |> Map.tryFind identifier with
         | Some log ->
-            if log.Length > BriefHistoryLength then
-                log
-                |> List.take BriefHistoryLength
-            else
-                log
+            log
+            |> NoMoreThan BriefHistoryLength
         | None ->
             []
 
+    let private CalculateSkipForPageNumber (page: uint64) : int =
+        if page=0UL then 
+            0 
+        else 
+            ((page-1UL) |> int) * PageHistoryLength
+
+    let GetPageHistory
+            (identifier : DwellerIdentifier, page : uint64)
+            : (TurnCounter * Message) list =
+        let skipCount = CalculateSkipForPageNumber page
+        match dwellerLogs.Value |> Map.tryFind identifier with
+        | Some log when log.Length>=skipCount ->
+                log
+                |> List.skip skipCount
+                |> NoMoreThan PageHistoryLength
+        | _ ->
+            []

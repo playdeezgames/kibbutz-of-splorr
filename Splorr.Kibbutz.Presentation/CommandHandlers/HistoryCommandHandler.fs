@@ -5,15 +5,14 @@ open Splorr.Kibbutz.Business
 open System
 open Splorr.Kibbutz.Model
 
-module internal InvalidCommandHandler =
-    let internal Handle
+module HistoryCommandHandler =
+    let internal Handle 
             (context : CommonContext)
-            (invalidText : string)
             (session : SessionIdentifier)
+            (identifier : DwellerIdentifier)
+            (page : uint64)
             : SessionIdentifier option =
-        [
-            Hued (Red, Line (sprintf "I don't know what '%s' means." invalidText))
-            Hued (Red, Line "Maybe you should try 'help'.")
-        ]
-        |> Group
+        Dweller.History context session identifier page
         |> CommandHandlerUtility.HandleStandardCommand context session
+
+

@@ -20,4 +20,5 @@ module internal HelpCommandHandler =
             Hued (Yellow, Line ("start - starts a settlement"))
             Hued (Yellow, Line ("quit - quits the game"))
         ]
+        |> Group
         |> CommandHandlerUtility.HandleStandardCommand context session

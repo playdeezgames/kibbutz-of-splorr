@@ -1,4 +1,19 @@
-Day #8: Test Driven Development in F# of a Text-Based City Management Game
+Day #11: Test Driven Development in F# of a Text-Based City Management Game
+
+# Day 11 - 20201108
+
+* dweller history merge request and cleanup
+
+# Day 10 - 20201107
+
+* dweller history command
+
+# Day 9 - 20201106
+
+* refactored monogame client
+* worked on logging actions for the dweller
+* worked on moving dweller during explore
+
 # Day 8 - 20201105
 
 * monogame client

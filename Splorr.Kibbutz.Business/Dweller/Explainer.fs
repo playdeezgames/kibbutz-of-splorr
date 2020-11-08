@@ -27,6 +27,14 @@ module DwellerExplainer =
         | _ ->
             "Other"
 
+    let internal RenderHistoryAsMessage
+            (turn: TurnCounter, message:Message)
+            : Message =
+        Group 
+            [
+                Text (sprintf "Turn %u: " turn)
+                message
+            ]
 
     let private ExplainExistingDweller
             (context : CommonContext)
@@ -35,13 +43,7 @@ module DwellerExplainer =
             : Message list =
         let dwellerLogMessages =
             DwellerRepository.GetBriefHistory context identifier
-            |> List.map
-                (fun (turn, message) ->
-                    Group 
-                        [
-                            Text (sprintf "Turn %u: " turn)
-                            message
-                        ])
+            |> List.map RenderHistoryAsMessage
         [
             Group 
                 [
@@ -71,17 +73,18 @@ module DwellerExplainer =
             (context : CommonContext)
             (session : SessionIdentifier)
             (identifier : DwellerIdentifier)
-            : Message list =
+            : Message =
         DwellerRepository.Get context identifier
         |> Option.map (ExplainExistingDweller context identifier)
         |> Option.defaultValue []
+        |> Group
 
     let internal Explain
             (context : CommonContext)
             (session : SessionIdentifier)
             (identifier : DwellerIdentifier)
-            : Message list =
-        if DwellerRepository.ExistsForSession context session identifier then
+            : Message =
+        if DwellerSession.ExistsForSession context session identifier then
             ExplainExistingDwellerForSession context session identifier
         else
-            []
+            [] |> Group

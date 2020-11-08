@@ -10,6 +10,7 @@ type Command =
     | Assign of DwellerIdentifier * Assignment
     | ExplainDweller of DwellerIdentifier
     | Help
+    | History of DwellerIdentifier * uint64
     | ListDwellers
     | Invalid of string
     | Quit

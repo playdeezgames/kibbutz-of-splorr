@@ -3,6 +3,7 @@
 open NUnit.Framework
 open Splorr.Kibbutz.Business
 open Splorr.Tests.Common
+open Splorr.Kibbutz.Model
 
 [<Test>]
 let ``ListDwellers.It lists dwellers for the settlement.`` () =
@@ -12,7 +13,7 @@ let ``ListDwellers.It lists dwellers for the settlement.`` () =
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource := Spies.Source(calledGetDwellerList, Dummies.ValidDwellerIdentifiers)
     (context :> DwellerRepository.GetContext).dwellerSingleSource := Spies.SourceTable(callsForGetDweller, Dummies.ValidDwellerTable)
     let actual = Settlement.ListDwellers context Dummies.ValidSessionIdentifier
-    Assert.AreEqual(5, actual.Length)
+    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 5)
     Assert.IsTrue(calledGetDwellerList.Value)
     Assert.AreEqual(3UL, callsForGetDweller.Value)
 

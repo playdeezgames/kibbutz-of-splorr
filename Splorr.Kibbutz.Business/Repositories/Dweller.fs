@@ -26,6 +26,13 @@ module DwellerRepository =
             (context : CommonContext) =
         (context :?> GetBriefHistoryContext).dwellerBriefHistorySource.Value
 
+    type DwellerPageHistorySource = DwellerIdentifier * uint64 -> (TurnCounter * Message) list
+    type GetPageHistoryContext =
+        abstract member dwellerPageHistorySource : DwellerPageHistorySource ref
+    let GetPageHistory
+            (context : CommonContext) =
+        (context :?> GetPageHistoryContext).dwellerPageHistorySource.Value
+
     type DwellerIdentifierSource = unit -> DwellerIdentifier
     type GenerateIdentifierContext =
         abstract member dwellerIdentifierSource : DwellerIdentifierSource ref
@@ -72,24 +79,6 @@ module DwellerRepository =
             : unit =
         (context :?> AssignToSessionContext).dwellerSessionSink.Value (identifier, None)
 
-    let internal ExistsForSession
-            (context : CommonContext)
-            (session : SessionIdentifier)
-            (identifier: DwellerIdentifier)
-            : bool =
-        GetListForSession context session
-        |> List.exists ((=) identifier)
-
-    let internal GetForSession
-            (context : CommonContext)
-            (session : SessionIdentifier)
-            (identifier : DwellerIdentifier)
-            : Dweller option =
-        if ExistsForSession context session identifier then
-            Get context identifier
-        else
-            None
-
     type DwellerIdentifierForNameSource = SessionIdentifier * string -> DwellerIdentifier option
     type FindIdentifierForNameContext =
         abstract member dwellerIdentifierForNameSource : DwellerIdentifierForNameSource ref
@@ -100,18 +89,5 @@ module DwellerRepository =
         : DwellerIdentifier option =
             (context :?> FindIdentifierForNameContext).dwellerIdentifierForNameSource.Value (session, dwellerName)
 
-    let internal GetCountForSession
-            (context : CommonContext) =
-        GetListForSession context
-        >> List.length
-        >> uint64
 
-    let internal GetDwellersForSession
-            (context : CommonContext)
-            (session : SessionIdentifier)
-            : Dweller list =
-        GetListForSession context session
-        |> List.map
-            (fun identifier ->                     
-                (Get context identifier |> Option.get))
 

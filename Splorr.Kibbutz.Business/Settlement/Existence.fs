@@ -45,22 +45,26 @@ module internal SettlementExistence =
         [
             Hued (Red, Line ("You already have a settlement!"))
         ]
+        |> Group
 
     let private AbandonedSettlementMessages = 
         [
             Hued (Yellow, Line ("I'm sure those people will be fine and not starve to death or anything bad like that."))
             Hued (Green, Line ("You abandon yer settlement!"))
         ]
+        |> Group
 
     let private NoSettlementExistsMessages = 
         [
             Hued (Red, Line ("You don't have a settlement!"))
         ]
+        |> Group
 
     let private SettlementStartedMessages =
         [
             Hued (Green, Line ("You start a new settlement!"))
         ]
+        |> Group
 
     let private ToVowelOrConsonantFlag
             (nameStart : bool)
@@ -129,7 +133,7 @@ module internal SettlementExistence =
     let private GenerateAndPutNewSettlementForSession
             (context : CommonContext)
             (session : SessionIdentifier)
-            : Message list = 
+            : Message = 
         SessionRepository.ClearNames context session
         let settlement = 
             GenerateSettlement context
@@ -142,7 +146,7 @@ module internal SettlementExistence =
     let internal StartSettlementForSession
             (context : CommonContext)
             (session : SessionIdentifier)
-            : Message list =
+            : Message =
         if HasSettlementForSession context session then
             SettlementAlreadyExistsMessages   
         else
@@ -151,7 +155,7 @@ module internal SettlementExistence =
     let private ActuallyAbandonSettlementForSession
             (context : CommonContext)
             (session : SessionIdentifier)
-            : Message list =
+            : Message =
         DwellerRepository.GetListForSession context session
         |> List.iter
             (fun identifier ->
@@ -164,7 +168,7 @@ module internal SettlementExistence =
     let internal AbandonSettlementForSession
             (context : CommonContext)
             (session : SessionIdentifier)
-            : Message list =
+            : Message =
         if HasSettlementForSession context session then
             ActuallyAbandonSettlementForSession context session
         else

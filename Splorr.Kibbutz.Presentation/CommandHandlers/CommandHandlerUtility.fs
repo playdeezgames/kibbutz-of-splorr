@@ -9,10 +9,10 @@ module internal CommandHandlerUtility =
     let internal HandleStandardCommand
             (context : CommonContext)
             (session : SessionIdentifier)
-            (messages : Message list)
+            (message : Message)
             : SessionIdentifier option=
         Messages.Purge context session
         Messages.Put context session [Line ""]
-        Messages.Put context session messages
+        Messages.Put context session [ message ]
         Settlement.Explain context session
         Some session

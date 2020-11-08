@@ -19,7 +19,7 @@ module internal SettlementExplainer =
                     ]
             ]
         let dwellerCount =
-            DwellerRepository.GetCountForSession context session
+            DwellerSession.GetCountForSession context session
         Messages.Put context session 
             [
                 Group

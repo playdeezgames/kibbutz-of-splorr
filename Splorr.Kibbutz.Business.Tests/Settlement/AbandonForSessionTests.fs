@@ -10,7 +10,7 @@ let ``AbandonSettlementForSession.It does nothing when no settlement exists.`` (
     let context = Contexts.TestContext()
     (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, None)
     let actual = Settlement.AbandonSettlementForSession context Dummies.ValidSessionIdentifier
-    Assert.AreEqual(1, actual.Length)
+    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual,1)
     Assert.IsTrue(calledGetSettlement.Value)
 
 [<Test>]
@@ -29,7 +29,7 @@ let ``AbandonSettlementForSession.It abandons a settlement when a settlement exi
     (context :> DwellerRepository.AssignToSessionContext).dwellerSessionSink := Spies.SinkCounter(callsForAssignToSession)
     (context :> DwellerRepository.PurgeLogsForDwellerContext).dwellerLogPurger := Spies.SinkCounter(callsForPurgeLog)
     let actual = Settlement.AbandonSettlementForSession context Dummies.ValidSessionIdentifier
-    Assert.AreEqual(2, actual.Length)
+    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual,2)
     Assert.IsTrue(calledGetSettlement.Value)
     Assert.IsTrue(calledPutSettlement.Value)
     Assert.IsTrue(calledGetDwellerList.Value)
