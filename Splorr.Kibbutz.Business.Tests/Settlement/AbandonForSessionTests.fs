@@ -27,7 +27,7 @@ let ``AbandonSettlementForSession.It abandons a settlement when a settlement exi
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource := Spies.Source(calledGetDwellerList, Dummies.ValidDwellerIdentifiers)
     (context :> DwellerRepository.PutContext).dwellerSingleSink := Spies.SinkCounter(callsForPutDweller)
     (context :> DwellerRepository.AssignToSessionContext).dwellerSessionSink := Spies.SinkCounter(callsForAssignToSession)
-    (context :> DwellerRepository.PurgeLogsForDwellerContext).dwellerLogPurger := Spies.SinkCounter(callsForPurgeLog)
+    (context :> DwellerLogRepository.PurgeLogsForDwellerContext).dwellerLogPurger := Spies.SinkCounter(callsForPurgeLog)
     let actual = Settlement.AbandonSettlementForSession context Dummies.ValidSessionIdentifier
     Assertions.ValidateMessageIsGroupWithGivenItemCount(actual,2)
     Assert.IsTrue(calledGetSettlement.Value)

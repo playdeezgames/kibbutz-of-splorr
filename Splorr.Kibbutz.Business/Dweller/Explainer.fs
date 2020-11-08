@@ -42,7 +42,7 @@ module DwellerExplainer =
             (dweller : Dweller)
             : Message list =
         let dwellerLogMessages =
-            DwellerRepository.GetBriefHistory context identifier
+            DwellerLogRepository.GetBriefHistory context identifier
             |> List.map RenderHistoryAsMessage
         [
             Group 

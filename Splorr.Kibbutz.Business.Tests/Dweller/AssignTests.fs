@@ -45,7 +45,7 @@ let ``Assign.It sets the assignment when the dweller exists in the session.``() 
     let calledGetSettlement = ref false
     let calledLogForDweller = ref false
     let context = Contexts.TestContext()
-    (context :> DwellerRepository.LogForDwellerContext).dwellerLogSink := Spies.Sink(calledLogForDweller)
+    (context :> DwellerLogRepository.LogForDwellerContext).dwellerLogSink := Spies.Sink(calledLogForDweller)
     (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource :=
         Spies.Source(calledGetSettlement, Some Dummies.ValidSettlement)
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource := 

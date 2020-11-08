@@ -50,7 +50,7 @@ let ``StartSettlementForSession.It creates a new settlement when a settlement do
     (context :> SessionRepository.ClearNamesContext).sessionNamePurger := Spies.Sink(calledClearNames)
     (context :> SessionRepository.CheckNameContext).sessionNameValidator := Spies.SourceCounter(callsForCheckName, false)
     (context :> SessionRepository.AddNameContext).sessionNameSink := Spies.SinkCounter(callsForAddName)
-    (context :> DwellerRepository.LogForDwellerContext).dwellerLogSink := Spies.SinkCounter(callsForLogForDweller)
+    (context :> DwellerLogRepository.LogForDwellerContext).dwellerLogSink := Spies.SinkCounter(callsForLogForDweller)
     let actual =
         Settlement.StartSettlementForSession context Dummies.ValidSessionIdentifier
     Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 1)

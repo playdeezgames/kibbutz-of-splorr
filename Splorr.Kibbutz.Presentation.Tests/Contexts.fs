@@ -45,14 +45,17 @@ type TestContext() =
         member val sessionNameValidator = ref (Fakes.Source ("SessionRepository.CheckNameContext", false))
     interface DwellerRepository.FindIdentifierForNameContext with
         member val dwellerIdentifierForNameSource = ref (Fakes.Source ("DwellerRepository.FindIdentifierForNameContext", None))
-    interface DwellerRepository.LogForDwellerContext with
+    interface DwellerLogRepository.LogForDwellerContext with
         member val dwellerLogSink = ref (Fakes.Sink "DwellerRepository.LogForDwellerContext")
-    interface DwellerRepository.PurgeLogsForDwellerContext with
-        member val dwellerLogPurger = ref (Fakes.Sink "DwellerRepository.PurgeLogsForDwellerContext")
-    interface DwellerRepository.GetBriefHistoryContext with
-        member val dwellerBriefHistorySource = ref (Fakes.Source ("DwellerRepository.GetBriefHistoryContext", []))
-    interface DwellerRepository.GetPageHistoryContext with
-        member val dwellerPageHistorySource = ref (Fakes.Source ("DwellerRepository.GetPageHistoryContext", []))
+    interface DwellerLogRepository.PurgeLogsForDwellerContext with
+        member val dwellerLogPurger = ref (Fakes.Sink "DwellerLogRepository.PurgeLogsForDwellerContext")
+    interface DwellerLogRepository.GetBriefHistoryContext with
+        member val dwellerBriefHistorySource = ref (Fakes.Source ("DwellerLogRepository.GetBriefHistoryContext", []))
+    interface DwellerLogRepository.GetPageHistoryContext with
+        member val dwellerPageHistorySource = ref (Fakes.Source ("DwellerLogRepository.GetPageHistoryContext", []))
+    interface DwellerLogRepository.GetHistoryPageCountContext with
+        member val dwellerPageCountHistorySource = ref (Fakes.Source ("DwellerLogRepository.GetHistoryPageCountContext", 0UL))
+
 
 
 

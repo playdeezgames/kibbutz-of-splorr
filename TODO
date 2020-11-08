@@ -1,12 +1,11 @@
-Commands:
-  ☐ history (dweller history)
-    or is this better called "log"?
-    ✔ form "history <dwellername> (#|page #)" @done(20-11-07 05:40)
-    ✔ it shows a paged history for a given dweller @done(20-11-07 06:29)
-    ✔ 10 per page? @done(20-11-07 06:29)
-    ☐ shows "page x of y"
-    ☐ add to help
 Archive:
+  ✔ history (dweller history) @done(20-11-08 05:54)
+    or is this better called "log"?
+  ✔ form "history <dwellername> (#|page #)" @done(20-11-07 05:40)
+  ✔ it shows a paged history for a given dweller @done(20-11-07 06:29)
+  ✔ 10 per page? @done(20-11-07 06:29)
+  ✔ shows "page x of y" @done(20-11-08 05:51)
+  ✔ add to help @done(20-11-08 05:54)
   ✔ help - F1 @done(20-11-06 05:02) @project(MonoGame Client.Quick Action Function Keys)
   ✔ advance - F2 @done(20-11-06 05:07) @project(MonoGame Client.Quick Action Function Keys)
   ✔ last command? (up arrow?) @done(20-11-06 06:21) @project(MonoGame Client.Quick Action Function Keys)

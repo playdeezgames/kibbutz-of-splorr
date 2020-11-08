@@ -23,8 +23,9 @@ module DwellerHistory =
             (page : uint64)
             : Message =
         let page = if page=0UL then 1UL else page
+        let pages = DwellerLogRepository.GetHistoryPageCount context identifier
         let dwellerLogMessages =
-            DwellerRepository.GetPageHistory context (identifier, page)
+            DwellerLogRepository.GetPageHistory context (identifier, page)
             |> List.map DwellerExplainer.RenderHistoryAsMessage
         match dwellerLogMessages with
         | [] ->
@@ -32,7 +33,7 @@ module DwellerHistory =
         | history ->
             Group
                 [
-                    page |> sprintf "Page %u:" |> Line
+                    (page, pages) ||> sprintf "Page %u of %u:" |> Line
                     Group dwellerLogMessages
                 ]
 
