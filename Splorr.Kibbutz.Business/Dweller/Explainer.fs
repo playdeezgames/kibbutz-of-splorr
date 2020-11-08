@@ -27,6 +27,15 @@ module DwellerExplainer =
         | _ ->
             "Other"
 
+    let internal RenderHistoryAsMessage
+            (turn: TurnCounter, message:Message)
+            : Message =
+        Group 
+            [
+                Text (sprintf "Turn %u: " turn)
+                message
+            ]
+
     let private ExplainExistingDweller
             (context : CommonContext)
             (identifier : DwellerIdentifier)
@@ -34,13 +43,7 @@ module DwellerExplainer =
             : Message list =
         let dwellerLogMessages =
             DwellerRepository.GetBriefHistory context identifier
-            |> List.map
-                (fun (turn, message) ->
-                    Group 
-                        [
-                            Text (sprintf "Turn %u: " turn)
-                            message
-                        ])
+            |> List.map RenderHistoryAsMessage
         [
             Group 
                 [

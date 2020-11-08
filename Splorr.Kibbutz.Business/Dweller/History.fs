@@ -25,13 +25,7 @@ module DwellerHistory =
         let page = if page=0UL then 1UL else page
         let dwellerLogMessages =
             DwellerRepository.GetPageHistory context (identifier, page)
-            |> List.map
-                (fun (turn, message) ->
-                    Group 
-                        [
-                            Text (sprintf "Turn %u: " turn)
-                            message
-                        ])
+            |> List.map DwellerExplainer.RenderHistoryAsMessage
         match dwellerLogMessages with
         | [] ->
             NoHistoryForDwellerMessages
