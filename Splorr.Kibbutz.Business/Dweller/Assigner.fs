@@ -26,7 +26,7 @@ module DwellerAssigner =
         let settlement =
             SettlementRepository.GetSettlementForSession context session
             |> Option.get
-        DwellerRepository.LogForDweller
+        DwellerLogRepository.LogForDweller
             context
             (identifier, settlement.turnCounter, Line (sprintf "Got assigned to %s" (assignment |> Assignment.ToString)))
         {dweller with 

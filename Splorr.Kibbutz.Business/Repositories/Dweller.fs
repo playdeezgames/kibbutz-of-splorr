@@ -4,7 +4,7 @@ open Splorr.Common
 open System
 open Splorr.Kibbutz.Model
 
-module DwellerRepository =
+module DwellerLogRepository =
     type DwellerLogSink = DwellerIdentifier * TurnCounter * Message -> unit
     type LogForDwellerContext = 
         abstract member dwellerLogSink : DwellerLogSink ref
@@ -12,6 +12,7 @@ module DwellerRepository =
             (context : CommonContext) =
         (context :?> LogForDwellerContext).dwellerLogSink.Value
 
+module DwellerRepository =
     type DwellerLogPurger = DwellerIdentifier -> unit
     type PurgeLogsForDwellerContext =
         abstract member dwellerLogPurger : DwellerLogPurger ref

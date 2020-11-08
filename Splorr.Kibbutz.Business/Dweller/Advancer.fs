@@ -30,7 +30,7 @@ module internal DwellerAdvancer =
             (turn : TurnCounter)
             (identifier : DwellerIdentifier)
             : unit =
-        DwellerRepository.LogForDweller context (identifier, turn, Line "Rested.")
+        DwellerLogRepository.LogForDweller context (identifier, turn, Line "Rested.")
 
     let private Explore
             (context : CommonContext)
@@ -49,7 +49,7 @@ module internal DwellerAdvancer =
             location = newLocation}
         |> Some
         |> DwellerRepository.Put context identifier
-        DwellerRepository.LogForDweller context 
+        DwellerLogRepository.LogForDweller context 
             (identifier, 
                 turn, 
                     Line 

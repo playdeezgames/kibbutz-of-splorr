@@ -24,7 +24,7 @@ let ``Advance.It advances an existing settlement by one turn when all dwellers a
     let callsForGetDweller = ref 0UL
     let callsForLogForDweller = ref 0UL
     let context = Contexts.TestContext()
-    (context :> DwellerRepository.LogForDwellerContext).dwellerLogSink :=
+    (context :> DwellerLogRepository.LogForDwellerContext).dwellerLogSink :=
         Spies.SinkCounter(callsForLogForDweller)
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource := 
         Spies.Source(calledGetDwellerList, Dummies.ValidDwellerIdentifiers)
@@ -62,7 +62,7 @@ let ``Advance.It advances an existing settlement by one turn and moves dwellers 
     let context = Contexts.TestContext()
     (context :> DwellerRepository.PutContext).dwellerSingleSink := Spies.SinkCounter(callsForPutDweller)
     (context :> RandomUtility.RandomContext).random := Random(0)
-    (context :> DwellerRepository.LogForDwellerContext).dwellerLogSink :=
+    (context :> DwellerLogRepository.LogForDwellerContext).dwellerLogSink :=
         Spies.SinkCounter(callsForLogForDweller)
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource := 
         Spies.Source(calledGetDwellerList, Dummies.ValidDwellerIdentifiers)

@@ -46,7 +46,7 @@ type internal KibbutzContext() =
         member this.sessionNameValidator = ref SessionNamesStore.HasName
     interface DwellerRepository.FindIdentifierForNameContext with
         member this.dwellerIdentifierForNameSource = ref DwellerStore.FindIdentifierForName
-    interface DwellerRepository.LogForDwellerContext with
+    interface DwellerLogRepository.LogForDwellerContext with
         member this.dwellerLogSink = ref DwellerLogStore.LogForDweller
     interface DwellerRepository.PurgeLogsForDwellerContext with
         member this.dwellerLogPurger = ref DwellerLogStore.PurgeLogsForDweller
