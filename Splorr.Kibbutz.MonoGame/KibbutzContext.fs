@@ -58,4 +58,11 @@ type internal KibbutzContext() =
         member this.dwellerPageCountHistorySource = ref DwellerLogStore.GetHistoryPageCount
     interface DwellerInventoryRepository.AddItemContext with
         member this.dwellerInventoryAdder = ref DwellerInventoryStore.AddItem
+    interface DwellerInventoryRepository.PurgeItemsContext with
+        member this.dwellerInventoryPurger = ref DwellerInventoryStore.PurgeItems
+    interface DwellerInventoryRepository.GetPageContext with
+        member this.dwellerInventoryPageSource = ref DwellerInventoryStore.GetPage
+    interface DwellerInventoryRepository.GetPageCountContext with
+        member this.dwellerInventoryPageCountSource = ref DwellerInventoryStore.GetPageCount
+
 

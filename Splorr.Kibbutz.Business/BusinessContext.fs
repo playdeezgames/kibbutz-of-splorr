@@ -4,6 +4,9 @@ open Splorr.Common
 
 type BusinessContext = 
     inherit DwellerInventoryRepository.AddItemContext
+    inherit DwellerInventoryRepository.GetPageContext
+    inherit DwellerInventoryRepository.GetPageCountContext
+    inherit DwellerInventoryRepository.PurgeItemsContext
     inherit DwellerLogRepository.GetBriefHistoryContext
     inherit DwellerLogRepository.GetHistoryPageCountContext
     inherit DwellerLogRepository.GetPageHistoryContext
