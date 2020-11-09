@@ -21,7 +21,9 @@ let ``AbandonSettlementForSession.It abandons a settlement when a settlement exi
     let callsForPutDweller = ref 0UL
     let callsForAssignToSession = ref 0UL
     let callsForPurgeLog = ref 0UL
+    let callsForPurgeItems = ref 0UL
     let context = Contexts.TestContext()
+    (context :> DwellerInventoryRepository.PurgeItemsContext).dwellerInventoryPurger := Spies.SinkCounter(callsForPurgeItems)
     (context :> SettlementRepository.GetSettlementForSessionContext).settlementSource := Spies.Source(calledGetSettlement, Some Dummies.ValidSettlement)
     (context :> SettlementRepository.PutSettlementForSessionContext).settlementSink := Spies.Expect(calledPutSettlement, (Dummies.ValidSessionIdentifier, None))
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource := Spies.Source(calledGetDwellerList, Dummies.ValidDwellerIdentifiers)
@@ -36,4 +38,5 @@ let ``AbandonSettlementForSession.It abandons a settlement when a settlement exi
     Assert.AreEqual(3UL, callsForPutDweller.Value)
     Assert.AreEqual(3UL, callsForAssignToSession.Value)
     Assert.AreEqual(3UL, callsForPurgeLog.Value)
+    Assert.AreEqual(3UL, callsForPurgeItems.Value)
 
