@@ -1,8 +1,9 @@
-Day #11: Test Driven Development in F# of a Text-Based City Management Game
+Day #12: Test Driven Development in F# of a Text-Based City Management Game
 
 # Day 12 - 20201109
 
 * gather
+* inventory
 
 # Day 11 - 20201108
 
