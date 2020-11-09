@@ -15,19 +15,22 @@
 
   <ItemGroup>
     <Compile Include="Dummies.fs" />
-    <Compile Include="Dweller\GetHistoryPageCountTests.fs" />
-    <Compile Include="Dweller\GetPageHistoryTests.fs" />
-    <Compile Include="Dweller\GetBriefHistoryTests.fs" />
-    <Compile Include="Dweller\PurgeLogsForDwellerTests.fs" />
+    <Compile Include="Dweller\Identifier\GenerateIdentifierTests.fs" />
+    <Compile Include="Dweller\Identifier\FindIdentifierForNameTests.fs" />
+    <Compile Include="Dweller\Log\LogForDwellerTests.fs" />
+    <Compile Include="Dweller\Log\PurgeLogsForDwellerTests.fs" />
+    <Compile Include="Dweller\Log\GetBriefHistoryTests.fs" />
+    <Compile Include="Dweller\Log\GetPageHistoryTests.fs" />
+    <Compile Include="Dweller\Log\GetHistoryPageCountTests.fs" />
+    <Compile Include="Dweller\Inventory\AddItemTests.fs" />
+    <Compile Include="Dweller\Inventory\PurgeItemTests.fs" />
+    <Compile Include="Dweller\Inventory\GetPageTests.fs" />
     <Compile Include="Session\CheckSssionNameTests.fs" />
     <Compile Include="Session\AddSessionNameTests.fs" />
     <Compile Include="Session\ClearSessionNamesTests.fs" />
     <Compile Include="Session\GenerateIdentifierTests.fs" />
-    <Compile Include="Dweller\FindIdentifierForNameTests.fs" />
-    <Compile Include="Dweller\GenerateIdentifierTests.fs" />
-    <Compile Include="Dweller\GetListForSessionTests.fs" />
-    <Compile Include="Dweller\LogForDwellerTests.fs" />
-    <Compile Include="Dweller\AssignToSessionTests.fs" />
+    <Compile Include="Dweller\Session\GetListForSessionTests.fs" />
+    <Compile Include="Dweller\Session\AssignToSessionTests.fs" />
     <Compile Include="Dweller\GetTests.fs" />
     <Compile Include="Dweller\PutTests.fs" />
     <Compile Include="Settlement\PutForSessionTests.fs" />
@@ -40,7 +43,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Splorr.Kibbutz.Persistence\Splorr.Kibbutz.Persistence.fsproj" />
-    <ProjectReference Include="..\Splorr.Kibbutz.Tests\Splorr.Kibbutz.Tests.fsproj" />
   </ItemGroup>
 
 </Project>

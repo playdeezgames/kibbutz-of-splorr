@@ -152,16 +152,20 @@ module internal SettlementExistence =
         else
             GenerateAndPutNewSettlementForSession context session
 
+    let private AbandonDwellers 
+            (context : CommonContext)
+            (session : SessionIdentifier) 
+            : unit = 
+        DwellerRepository.GetListForSession context session
+        |> List.iter
+            (DwellerExistence.Abandon context)
+
+
     let private ActuallyAbandonSettlementForSession
             (context : CommonContext)
             (session : SessionIdentifier)
             : Message =
-        DwellerRepository.GetListForSession context session
-        |> List.iter
-            (fun identifier ->
-                DwellerLogRepository.PurgeLogsForDweller context identifier
-                DwellerRepository.Put context identifier None
-                DwellerRepository.RemoveFromSession context identifier)
+        AbandonDwellers context session
         SettlementRepository.PutSettlementForSession context session None
         AbandonedSettlementMessages
 

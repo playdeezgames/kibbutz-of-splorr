@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Include="SessionNamesStore.fs" />
     <Compile Include="DwellerIdentifierStore.fs" />
+    <Compile Include="PageUtility.fs" />
+    <Compile Include="DwellerInventoryStore.fs" />
     <Compile Include="DwellerLogStore.fs" />
     <Compile Include="DwellerStore.fs" />
     <Compile Include="SettlementStore.fs" />

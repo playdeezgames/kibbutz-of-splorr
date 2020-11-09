@@ -1,4 +1,25 @@
+Inventory Command:
+  ☐ format - "inventory <dwellername> (page) [pagenumber]"
+  ☐ displays a page of the dweller's inventory
+Dweller Hunger:
+  ☐ hunger exists for a dweller
+  ☐ rest generates 0.05 hunger
+  ☐ exploring generates 0.1 hunger
+  ☐ gather generates 0.1 hunger
+Dweller Fatigue:
+  ☐ fatigue exists for a dweller
+  ☐ rest restores 1.0 fatigue
+  ☐ exploring generates 0.5 fatigue
+  ☐ gathering generates 0.5 fatigue
 Archive:
+  ✔ is purged when the dweller ceases to exist @done(20-11-09 05:43) @project(Dweller Inventory)
+  ✔ gather @done(20-11-09 05:46) @project(Dweller Assignments)
+    berries(at least to start with)
+  ✔ gather assignment @done(20-11-09 04:08) @project(Dweller Assignments)
+  ✔ can be assigned @done(20-11-09 04:08) @project(Dweller Assignments)
+  ✔ gets logged @done(20-11-09 04:08) @project(Dweller Assignments)
+  ✔ berry item type @done(20-11-09 04:08) @project(Dweller Assignments)
+  ✔ produces berries in the dwellers inventory @done(20-11-09 04:08) @project(Dweller Assignments)
   ✔ history (dweller history) @done(20-11-08 05:54)
     or is this better called "log"?
   ✔ form "history <dwellername> (#|page #)" @done(20-11-07 05:40)
