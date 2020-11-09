@@ -35,7 +35,9 @@ let private WithCommonAssignmentContext
         Spies.Expect(calledPutSettlement, (Dummies.ValidSessionIdentifier, Some { Dummies.ValidSettlement with turnCounter=Dummies.ValidSettlement.turnCounter + 1UL }))
     (context :> DwellerLogRepository.LogForDwellerContext).dwellerLogSink :=
         Spies.SinkCounter(callsForLogForDweller)
-    test context    
+    test context
+    let actual = Settlement.Advance context Dummies.ValidSessionIdentifier
+    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 4)
     Assert.IsTrue(calledGetSettlement.Value)
     Assert.IsTrue(calledPutSettlement.Value)
     Assert.AreEqual(3UL, callsForLogForDweller.Value)
@@ -44,10 +46,7 @@ let private WithCommonAssignmentContext
 
 [<Test>]
 let ``Advance.It advances an existing settlement by one turn when all dwellers are resting.`` () =
-    WithCommonAssignmentContext Dummies.ValidDwellerTable
-        (fun context ->
-            let actual = Settlement.Advance context Dummies.ValidSessionIdentifier
-            Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 4))
+    WithCommonAssignmentContext Dummies.ValidDwellerTable ignore
 
 [<Test>]
 let ``Advance.It advances an existing settlement by one turn and moves dwellers around when all dwellers are exploring.`` () =
@@ -56,7 +55,16 @@ let ``Advance.It advances an existing settlement by one turn and moves dwellers 
     WithCommonAssignmentContext dwellerTable
         (fun context ->
             (context :> DwellerRepository.PutContext).dwellerSingleSink := Spies.SinkCounter(callsForPutDweller)
-            (context :> RandomUtility.RandomContext).random := Random(0)
-            let actual = Settlement.Advance context Dummies.ValidSessionIdentifier
-            Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 4))
+            (context :> RandomUtility.RandomContext).random := Random(0))
     Assert.AreEqual(3UL, callsForPutDweller.Value)
+
+[<Test>]
+let ``Advance.It advances an existing settlement by one turn and all dwellers perform gatering when all dwellers are assigned to gathering.`` () =
+    let callsForAddItem = ref 0UL
+    let dwellerTable = Dummies.AssignAllDwellers Gather
+    WithCommonAssignmentContext dwellerTable
+        (fun context ->
+            (context :> DwellerInventoryRepository.AddItemContext).dwellerInventoryAdder :=
+                Spies.SinkCounter(callsForAddItem))
+    Assert.AreEqual(3UL, callsForAddItem.Value)
+

@@ -1,11 +1,18 @@
+Inventory Command:
+  ☐ format - "inventory <dwellername> (page) [pagenumber]"
+  ☐ displays a page of the dweller's inventory
+Dweller Inventory:
+  ☐ is purged when the dweller ceases to exist
 Dweller Assignments:
   ☐ gather
     berries(at least to start with)
-    ☐ gather assignment
-    ☐ can be assigned
-    ☐ gets logged
-    ☐ berry item type
-    ☐ produces berries in the dwellers inventory
+    ✔ gather assignment @done(20-11-09 04:08)
+    ✔ can be assigned @done(20-11-09 04:08)
+    ✔ gets logged @done(20-11-09 04:08)
+    ✔ berry item type @done(20-11-09 04:08)
+    ✔ produces berries in the dwellers inventory @done(20-11-09 04:08)
+    ☐ produces fatigue in the dweller
+    ☐ produces hunger in the dweller
 Archive:
   ✔ history (dweller history) @done(20-11-08 05:54)
     or is this better called "log"?

@@ -57,6 +57,15 @@ module internal DwellerAdvancer =
                             (direction |> Direction.ToString) 
                             (newLocation |> Location.ToString)))
 
+    let private Gather
+            (context : CommonContext)
+            (turn : TurnCounter)
+            (identifier : DwellerIdentifier)
+            (dweller : Dweller)
+            : unit =
+        DwellerInventoryRepository.AddItem context (identifier, Berry)
+        DwellerLogRepository.LogForDweller context (identifier, turn, Line "Gathered.")
+
     let private AdvanceExistingDweller
             (context : CommonContext)
             (turn : TurnCounter)
@@ -70,7 +79,10 @@ module internal DwellerAdvancer =
                 dweller.name |> sprintf "Dweller %s explores." |> Line
             ]
         | Gather ->
-            raise (NotImplementedException "NO UNIT TESTS")
+            Gather context turn identifier dweller
+            [
+                dweller.name |> sprintf "Dweller %s gathers." |> Line
+            ]
         | Rest ->
             Rest context turn identifier
             [

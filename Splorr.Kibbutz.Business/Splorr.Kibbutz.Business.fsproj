@@ -7,6 +7,7 @@
   <ItemGroup>
     <Compile Include="Location.fs" />
     <Compile Include="Assignment.fs" />
+    <Compile Include="Repositories\Inventory.fs" />
     <Compile Include="Repositories\DwellerLog.fs" />
     <Compile Include="Repositories\Dweller.fs" />
     <Compile Include="Repositories\Settlement.fs" />
