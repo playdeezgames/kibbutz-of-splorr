@@ -43,7 +43,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Splorr.Kibbutz.Persistence\Splorr.Kibbutz.Persistence.fsproj" />
-    <ProjectReference Include="..\Splorr.Kibbutz.Tests\Splorr.Kibbutz.Tests.fsproj" />
   </ItemGroup>
 
 </Project>
