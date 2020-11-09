@@ -20,6 +20,7 @@
     <Compile Include="Dweller\AssignTests.fs" />
     <Compile Include="Dweller\ExplainTests.fs" />
     <Compile Include="Dweller\FindIdentifierForNameTests.fs" />
+    <Compile Include="Dweller\InventoryTests.fs" />
     <Compile Include="Dweller\HistoryTests.fs" />
     <Compile Include="Messages\GetTests.fs" />
     <Compile Include="Settlement\ExplainTests.fs" />
