@@ -9,4 +9,5 @@ module Dweller =
     let Explain = DwellerExplainer.Explain
     let FindIdentifierForName = DwellerRepository.FindIdentifierForName
     let History = DwellerHistory.History
+    let Inventory = DwellerInventory.Inventory
 

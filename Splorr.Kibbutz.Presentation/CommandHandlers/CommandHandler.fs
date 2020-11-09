@@ -26,6 +26,8 @@ module internal CommandHandler =
             HistoryCommandHandler.Handle context session identifier page
         | Invalid text ->
             InvalidCommandHandler.Handle context text session
+        | Inventory (identifier, page) ->
+            InventoryCommandHandler.Handle context session identifier page
         | ListDwellers ->
             ListDwellersCommandHandler.Handle context session
         | Quit ->

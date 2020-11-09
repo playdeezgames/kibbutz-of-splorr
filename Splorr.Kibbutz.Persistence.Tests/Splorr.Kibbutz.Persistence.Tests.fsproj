@@ -17,11 +17,11 @@
     <Compile Include="Dummies.fs" />
     <Compile Include="Dweller\Identifier\GenerateIdentifierTests.fs" />
     <Compile Include="Dweller\Identifier\FindIdentifierForNameTests.fs" />
-    <Compile Include="Dweller\Log\LogForDwellerTests.fs" />
-    <Compile Include="Dweller\Log\PurgeLogsForDwellerTests.fs" />
-    <Compile Include="Dweller\Log\GetBriefHistoryTests.fs" />
-    <Compile Include="Dweller\Log\GetPageHistoryTests.fs" />
-    <Compile Include="Dweller\Log\GetHistoryPageCountTests.fs" />
+    <Compile Include="Dweller\History\LogForDwellerTests.fs" />
+    <Compile Include="Dweller\History\PurgeLogsForDwellerTests.fs" />
+    <Compile Include="Dweller\History\GetBriefHistoryTests.fs" />
+    <Compile Include="Dweller\History\GetPageHistoryTests.fs" />
+    <Compile Include="Dweller\History\GetHistoryPageCountTests.fs" />
     <Compile Include="Dweller\Inventory\AddItemTests.fs" />
     <Compile Include="Dweller\Inventory\PurgeItemTests.fs" />
     <Compile Include="Dweller\Inventory\GetPageTests.fs" />

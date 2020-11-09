@@ -36,6 +36,11 @@ module DwellerExplainer =
                 message
             ]
 
+    let internal RenderInventoryAsMessage
+            (item : Item)
+            : Message =
+        item.ToString() |> Line
+
     let private ExplainExistingDweller
             (context : CommonContext)
             (identifier : DwellerIdentifier)

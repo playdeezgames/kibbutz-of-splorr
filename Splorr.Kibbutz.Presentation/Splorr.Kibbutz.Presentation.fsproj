@@ -8,6 +8,7 @@
     <Compile Include="Output.fs" />
     <Compile Include="Command.fs" />
     <Compile Include="CommandHandlers\CommandHandlerUtility.fs" />
+    <Compile Include="CommandHandlers\InventoryCommandHandler.fs" />
     <Compile Include="CommandHandlers\AbandonSettlementCommandHandler.fs" />
     <Compile Include="CommandHandlers\AdvanceCommandHandler.fs" />
     <Compile Include="CommandHandlers\AssignCommandHandler.fs" />
