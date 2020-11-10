@@ -7,12 +7,12 @@ open Splorr.Kibbutz.Model
 
 [<Test>]
 let ``LogForDweller.It adds a message to the given dweller's log.`` () =
-    DwellerLogStore.PurgeLogsForDweller Dummies.ValidDwellerIdentifier
-    DwellerLogStore.LogForDweller
+    DwellerHistoryStore.PurgeLogsForDweller Dummies.ValidDwellerIdentifier
+    DwellerHistoryStore.LogForDweller
         (Dummies.ValidDwellerIdentifier, 0UL, Line "I am a message.")
-    DwellerLogStore.LogForDweller
+    DwellerHistoryStore.LogForDweller
         (Dummies.ValidDwellerIdentifier, 1UL, Line "I am another message.")
-    let actual = DwellerLogStore.GetBriefHistory Dummies.ValidDwellerIdentifier
+    let actual = DwellerHistoryStore.GetBriefHistory Dummies.ValidDwellerIdentifier
     Assert.AreEqual(
         [
             1UL, Line "I am another message."

@@ -7,9 +7,9 @@ open Splorr.Kibbutz.Model
 
 [<Test>]
 let ``PurgeLogsForDweller.It removes all logs for a given dweller.`` () =
-    DwellerLogStore.LogForDweller
+    DwellerHistoryStore.LogForDweller
         (Dummies.ValidDwellerIdentifier, 0UL, Line "I am a message.")
-    DwellerLogStore.PurgeLogsForDweller
+    DwellerHistoryStore.PurgeLogsForDweller
         Dummies.ValidDwellerIdentifier
-    let actual = DwellerLogStore.GetBriefHistory Dummies.ValidDwellerIdentifier
+    let actual = DwellerHistoryStore.GetBriefHistory Dummies.ValidDwellerIdentifier
     Assert.AreEqual([], actual)

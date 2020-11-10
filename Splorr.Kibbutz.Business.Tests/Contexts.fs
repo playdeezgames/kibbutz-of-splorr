@@ -58,4 +58,8 @@ type TestContext() =
         member val dwellerInventoryPageSource = ref (Fakes.Source ("DwellerInventoryRepository.GetPageContext", []))
     interface DwellerInventoryRepository.GetPageCountContext with
         member val dwellerInventoryPageCountSource = ref (Fakes.Source ("DwellerInventoryRepository.GetPageCountContext", 0UL))
+    interface DwellerStatisticRepository.GetContext with
+        member val dwellerStatisticSource = ref (Fakes.Source ("DwellerStatisticRepository.GetContext", None))
+    interface DwellerStatisticRepository.PutContext with
+        member val dwellerStatisticSink = ref (Fakes.Sink "DwellerStatisticRepository.PutContext")
 

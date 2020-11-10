@@ -18,6 +18,8 @@ type BusinessContext =
     inherit DwellerRepository.GetContext
     inherit DwellerRepository.GetListForSessionContext
     inherit DwellerRepository.PutContext
+    inherit DwellerStatisticRepository.GetContext
+    inherit DwellerStatisticRepository.PutContext
     inherit Messages.GetContext
     inherit Messages.PurgeContext
     inherit Messages.PutContext

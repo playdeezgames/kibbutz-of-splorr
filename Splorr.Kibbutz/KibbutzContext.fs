@@ -47,15 +47,15 @@ type internal KibbutzContext() =
     interface DwellerRepository.FindIdentifierForNameContext with
         member this.dwellerIdentifierForNameSource = ref DwellerStore.FindIdentifierForName
     interface DwellerHistoryRepository.AddHistoryContext with
-        member this.dwellerLogSink = ref DwellerLogStore.LogForDweller
+        member this.dwellerLogSink = ref DwellerHistoryStore.LogForDweller
     interface DwellerHistoryRepository.PurgeHistoryContext with
-        member this.dwellerLogPurger = ref DwellerLogStore.PurgeLogsForDweller
+        member this.dwellerLogPurger = ref DwellerHistoryStore.PurgeLogsForDweller
     interface DwellerHistoryRepository.GetBriefHistoryContext with
-        member this.dwellerBriefHistorySource = ref DwellerLogStore.GetBriefHistory
+        member this.dwellerBriefHistorySource = ref DwellerHistoryStore.GetBriefHistory
     interface DwellerHistoryRepository.GetPageContext with
-        member this.dwellerPageHistorySource = ref DwellerLogStore.GetPageHistory
+        member this.dwellerPageHistorySource = ref DwellerHistoryStore.GetPageHistory
     interface DwellerHistoryRepository.GetPageCountContext with
-        member this.dwellerPageCountHistorySource = ref DwellerLogStore.GetHistoryPageCount
+        member this.dwellerPageCountHistorySource = ref DwellerHistoryStore.GetHistoryPageCount
     interface DwellerInventoryRepository.AddItemContext with
         member this.dwellerInventoryAdder = ref DwellerInventoryStore.AddItem
     interface DwellerInventoryRepository.PurgeItemsContext with
@@ -64,3 +64,7 @@ type internal KibbutzContext() =
         member this.dwellerInventoryPageSource = ref DwellerInventoryStore.GetPage
     interface DwellerInventoryRepository.GetPageCountContext with
         member this.dwellerInventoryPageCountSource = ref DwellerInventoryStore.GetPageCount
+    interface DwellerStatisticRepository.GetContext with
+        member this.dwellerStatisticSource = raise (System.NotImplementedException())
+    interface DwellerStatisticRepository.PutContext with
+        member this.dwellerStatisticSink = raise (System.NotImplementedException())

@@ -5,15 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="SessionNamesStore.fs" />
-    <Compile Include="DwellerIdentifierStore.fs" />
-    <Compile Include="PageUtility.fs" />
-    <Compile Include="DwellerInventoryStore.fs" />
-    <Compile Include="DwellerLogStore.fs" />
-    <Compile Include="DwellerStore.fs" />
-    <Compile Include="SettlementStore.fs" />
-    <Compile Include="SessionIdentifierStore.fs" />
-    <Compile Include="MessagesStore.fs" />
+    <Compile Include="Utility\PageUtility.fs" />
+    <Compile Include="Messages\Store.fs" />
+    <Compile Include="Dweller\Identifier.fs" />
+    <Compile Include="Dweller\Inventory.fs" />
+    <Compile Include="Dweller\History.fs" />
+    <Compile Include="Dweller\Store.fs" />
+    <Compile Include="Session\Identifier.fs" />
+    <Compile Include="Session\Settlement.fs" />
+    <Compile Include="Session\Names.fs" />
   </ItemGroup>
 
   <ItemGroup>

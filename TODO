@@ -1,6 +1,10 @@
 Dedup:
   ✔ inventory and history are practically identical @done(20-11-10 04:39)
     refactor to eliminate duplication!
+  ☐ KibbutzContext
+    difference between console client and monogame client is only a handful of interfaces so having to update this twice each time i add a new context is bleh
+Dweller Statistics:
+  ☐ DwellerStatisticStore
 Dweller Hunger:
   ☐ hunger exists for a dweller
   ☐ rest generates 0.05 hunger

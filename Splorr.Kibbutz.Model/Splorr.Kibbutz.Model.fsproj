@@ -8,6 +8,8 @@
     <Compile Include="Location.fs" />
     <Compile Include="SexGenes.fs" />
     <Compile Include="Assignment.fs" />
+    <Compile Include="DwellerStatisticIdentifier.fs" />
+    <Compile Include="DwellerStatistic.fs" />
     <Compile Include="Dweller.fs" />
     <Compile Include="DwellerIdentifier.fs" />
     <Compile Include="Item.fs" />
