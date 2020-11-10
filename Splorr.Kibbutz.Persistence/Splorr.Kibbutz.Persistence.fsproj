@@ -15,6 +15,7 @@
     <Compile Include="Session\Identifier.fs" />
     <Compile Include="Session\Settlement.fs" />
     <Compile Include="Session\Names.fs" />
+    <Compile Include="PersistenceContext.fs" />
   </ItemGroup>
 
   <ItemGroup>
