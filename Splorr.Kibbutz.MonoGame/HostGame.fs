@@ -51,10 +51,27 @@ type HostGame(context : CommonContext) as this =
         else
             this.Exit()
 
+    let hotKeys : Map<Keys, string * Command> =
+        [
+            Keys.F1, ("help", Command.Help)
+            Keys.F2, ("advance", Command.Advance)
+        ]
+        |> Map.ofList
+
+    let PreparseCommand 
+            (tokens : string list)
+            : bool =
+        false
+
     let ParseCommand () : Command option =
-        keybuffer.Value.ToLower().Split(' ') 
-        |> Array.toList 
-        |> CommandParser.Parse context session.Value.Value
+        let tokens = 
+            keybuffer.Value.ToLower().Split(' ') 
+            |> Array.toList 
+        if PreparseCommand tokens then
+            None
+        else
+            tokens
+            |> CommandParser.Parse context session.Value.Value
 
     let DispatchCommand (command:Command) : unit =
         GameImplementation.commandQueue := List.append GameImplementation.commandQueue.Value [ command ]
@@ -107,14 +124,14 @@ type HostGame(context : CommonContext) as this =
         keybuffer := ""
 
     let HandleKeyDown (args:InputKeyEventArgs) : unit =
-        if args.Key=Keys.F1 then
-            HandleQuickCommand "help" Command.Help
-        elif args.Key = Keys.F2 then
-            HandleQuickCommand "advance" Command.Advance
-        elif args.Key = Keys.Up then
-            ResetKeyBuffer()
-            OutputImplementation.Write (Message.Line lastKeyBuffer.Value)
-            keybuffer := lastKeyBuffer.Value
+        match hotKeys.TryFind args.Key with
+        | Some (text, command) ->
+            HandleQuickCommand text command
+        | None ->
+            if args.Key = Keys.Up then
+                ResetKeyBuffer()
+                OutputImplementation.Write (Message.Line lastKeyBuffer.Value)
+                keybuffer := lastKeyBuffer.Value
 
     let InitializeGraphics() : unit =
         graphics.PreferredBackBufferWidth <- OutputImplementation.screenWidth
