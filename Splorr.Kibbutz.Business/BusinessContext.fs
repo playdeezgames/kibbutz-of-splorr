@@ -7,11 +7,11 @@ type BusinessContext =
     inherit DwellerInventoryRepository.GetPageContext
     inherit DwellerInventoryRepository.GetPageCountContext
     inherit DwellerInventoryRepository.PurgeItemsContext
-    inherit DwellerLogRepository.GetBriefHistoryContext
-    inherit DwellerLogRepository.GetHistoryPageCountContext
-    inherit DwellerLogRepository.GetPageHistoryContext
-    inherit DwellerLogRepository.LogForDwellerContext
-    inherit DwellerLogRepository.PurgeLogsForDwellerContext
+    inherit DwellerHistoryRepository.GetBriefHistoryContext
+    inherit DwellerHistoryRepository.GetPageCountContext
+    inherit DwellerHistoryRepository.GetPageContext
+    inherit DwellerHistoryRepository.AddHistoryContext
+    inherit DwellerHistoryRepository.PurgeHistoryContext
     inherit DwellerRepository.AssignToSessionContext
     inherit DwellerRepository.FindIdentifierForNameContext
     inherit DwellerRepository.GenerateIdentifierContext

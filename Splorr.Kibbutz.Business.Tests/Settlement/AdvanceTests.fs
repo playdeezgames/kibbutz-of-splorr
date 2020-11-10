@@ -33,7 +33,7 @@ let private WithCommonAssignmentContext
         Spies.Source(calledGetSettlement, Some Dummies.ValidSettlement)
     (context :> SettlementRepository.PutSettlementForSessionContext).settlementSink := 
         Spies.Expect(calledPutSettlement, (Dummies.ValidSessionIdentifier, Some { Dummies.ValidSettlement with turnCounter=Dummies.ValidSettlement.turnCounter + 1UL }))
-    (context :> DwellerLogRepository.LogForDwellerContext).dwellerLogSink :=
+    (context :> DwellerHistoryRepository.AddHistoryContext).dwellerLogSink :=
         Spies.SinkCounter(callsForLogForDweller)
     test context
     let actual = Settlement.Advance context Dummies.ValidSessionIdentifier

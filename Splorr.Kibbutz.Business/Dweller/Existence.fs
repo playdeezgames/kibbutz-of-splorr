@@ -10,7 +10,7 @@ module DwellerExistence =
             (identifier : DwellerIdentifier)
             : unit =
         DwellerInventoryRepository.PurgeItems context identifier
-        DwellerLogRepository.PurgeLogsForDweller context identifier
+        DwellerHistoryRepository.PurgeHistory context identifier
         DwellerRepository.Put context identifier None
         DwellerRepository.RemoveFromSession context identifier
 
