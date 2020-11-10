@@ -1,5 +1,5 @@
 Dedup:
-  ☐ inventory and history are practically identical 
+  ✔ inventory and history are practically identical @done(20-11-10 04:39)
     refactor to eliminate duplication!
 Dweller Hunger:
   ☐ hunger exists for a dweller
