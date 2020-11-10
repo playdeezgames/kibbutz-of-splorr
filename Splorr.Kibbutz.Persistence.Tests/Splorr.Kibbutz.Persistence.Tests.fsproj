@@ -15,6 +15,8 @@
 
   <ItemGroup>
     <Compile Include="Dummies.fs" />
+    <Compile Include="Dweller\Statistic\GetTests.fs" />
+    <Compile Include="Dweller\Statistic\PutTests.fs" />
     <Compile Include="Dweller\Identifier\GenerateIdentifierTests.fs" />
     <Compile Include="Dweller\Identifier\FindIdentifierForNameTests.fs" />
     <Compile Include="Dweller\History\LogForDwellerTests.fs" />

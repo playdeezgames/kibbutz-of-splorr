@@ -1,17 +1,36 @@
 Dedup:
-  ✔ inventory and history are practically identical @done(20-11-10 04:39)
-    refactor to eliminate duplication!
-Dweller Hunger:
-  ☐ hunger exists for a dweller
-  ☐ rest generates 0.05 hunger
-  ☐ exploring generates 0.1 hunger
-  ☐ gather generates 0.1 hunger
+  ✔ KibbutzContext @done(20-11-10 06:14)
+    difference between console client and monogame client is only a handful of interfaces so having to update this twice each time i add a new context is bleh
+Customizable Hotkeys (monogame only):
+  ☐ a command to associate a function key (F1-F12) with a particular command
+    f1 is help by default
+    f2 is advance by default
+    command is "hotkey <key> (rest of command)
+  ☐ commit hotkeys 
+    saves the hotkeys to a file
+    "hotkey commit"
+  ☐ reset hotkeys
+    restores hotkeys to defaults, but does not commit
+    "hotkey reset"
+  ☐ loading hotkeys at game start
+Dweller Statistics:
+  ☐ remove all statistics when a dweller is abandoned
+  ☐ get list of statistics for a dweller?
+  ☐ set statistics for a dweller upon creation?
 Dweller Fatigue:
   ☐ fatigue exists for a dweller
   ☐ rest restores 1.0 fatigue
   ☐ exploring generates 0.5 fatigue
   ☐ gathering generates 0.5 fatigue
 Archive:
+  ✔ inventory and history are practically identical @done(20-11-10 04:39) @project(Dedup)
+    refactor to eliminate duplication!
+  ✔ DwellerStatisticStore @done(20-11-10 05:26) @project(Dweller Statistics)
+  ✔ view hunger level when using "dweller" command @done(20-11-10 05:40) @project(Dweller Statistics)
+  ✔ hunger exists for a dweller @done(20-11-10 05:57) @project(Dweller Hunger)
+  ✔ rest generates 0.05 hunger @done(20-11-10 05:57) @project(Dweller Hunger)
+  ✔ exploring generates 0.1 hunger @done(20-11-10 05:57) @project(Dweller Hunger)
+  ✔ gather generates 0.1 hunger @done(20-11-10 05:57) @project(Dweller Hunger)
   ✔ format - "inventory <dwellername> (page) [pagenumber]" @done(20-11-09 14:27) @project(Inventory Command)
   ✔ displays a page of the dweller's inventory @done(20-11-09 14:27) @project(Inventory Command)
   ✔ is purged when the dweller ceases to exist @done(20-11-09 05:43) @project(Dweller Inventory)

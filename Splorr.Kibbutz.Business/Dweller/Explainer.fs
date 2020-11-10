@@ -49,6 +49,9 @@ module DwellerExplainer =
         let dwellerLogMessages =
             DwellerHistoryRepository.GetBriefHistory context identifier
             |> List.map RenderHistoryAsMessage
+        let dwellerHunger =
+            DwellerStatisticRepository.Get context (identifier, Hunger)
+            |> Option.defaultValue 0.0
         [
             Group 
                 [
@@ -69,6 +72,11 @@ module DwellerExplainer =
                 [
                     Hued (Light Blue, Text "Sex: ")
                     Hued (Magenta, Line (sprintf "%s" (dweller.sexGenes |> LongDescribeSexGenes)))
+                ]
+            Group
+                [
+                    Hued (Light Blue, Text "Hunger: ")
+                    Hued (Magenta, Line (sprintf "%.2f" dwellerHunger))
                 ]
             Line "Brief History:"
             Group dwellerLogMessages

@@ -4,7 +4,7 @@ open Splorr.Kibbutz.Business
 open Splorr.Kibbutz.Model
 open System
 
-module DwellerLogStore =
+module DwellerHistoryStore =
     let private PageHistoryLength = 10
     let private BriefHistoryLength = 3
     let private dwellerLogs : Map<DwellerIdentifier, (TurnCounter * Message) list> ref = ref Map.empty
