@@ -25,6 +25,22 @@ type private Direction =
             
 
 module internal DwellerAdvancer = 
+    let private AddHungerForAssignment
+            (context : CommonContext)
+            (identifier : DwellerIdentifier)
+            (assignment : Assignment)
+            : unit =
+        let amount = 
+            match assignment with
+            | Rest ->
+                0.05
+            | _ ->
+                0.1
+        let value = 
+            DwellerStatisticRepository.Get context (identifier, Hunger)
+            |> Option.defaultValue 0.0
+        DwellerStatisticRepository.Put context (identifier, Hunger, Some (value + amount))
+
     let private Rest
             (context : CommonContext)
             (turn : TurnCounter)
@@ -72,6 +88,7 @@ module internal DwellerAdvancer =
             (identifier : DwellerIdentifier)
             (dweller : Dweller)
             : Message list =
+        AddHungerForAssignment context identifier dweller.assignment
         match dweller.assignment with
         | Explore ->
             Explore context turn identifier dweller

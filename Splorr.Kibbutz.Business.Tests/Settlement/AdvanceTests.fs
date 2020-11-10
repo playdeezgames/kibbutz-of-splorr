@@ -24,7 +24,13 @@ let private WithCommonAssignmentContext
     let calledPutSettlement = ref false
     let calledGetSettlement = ref false
     let callsForLogForDweller = ref 0UL
+    let callsForGetStatistic = ref 0UL
+    let callsForSetStatistic = ref 0UL
     let context = Contexts.TestContext()
+    (context :> DwellerStatisticRepository.GetContext).dwellerStatisticSource :=
+        Spies.SourceCounter(callsForGetStatistic, Some 0.0)
+    (context :> DwellerStatisticRepository.PutContext).dwellerStatisticSink :=
+        Spies.SinkCounter(callsForSetStatistic)
     (context :> DwellerRepository.GetListForSessionContext).sessionDwellerSource := 
         Spies.Source(calledGetDwellerList, Dummies.ValidDwellerIdentifiers)
     (context :> DwellerRepository.GetContext).dwellerSingleSource :=
@@ -43,6 +49,8 @@ let private WithCommonAssignmentContext
     Assert.AreEqual(3UL, callsForLogForDweller.Value)
     Assert.IsTrue(calledGetDwellerList.Value)
     Assert.AreEqual(3UL, callsForGetDweller.Value)
+    Assert.AreEqual(3UL, callsForGetStatistic.Value)
+    Assert.AreEqual(3UL, callsForSetStatistic.Value)
 
 [<Test>]
 let ``Advance.It advances an existing settlement by one turn when all dwellers are resting.`` () =
