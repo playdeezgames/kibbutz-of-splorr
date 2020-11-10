@@ -10,6 +10,7 @@
     <Compile Include="Dweller\Identifier.fs" />
     <Compile Include="Dweller\Inventory.fs" />
     <Compile Include="Dweller\History.fs" />
+    <Compile Include="Dweller\Statistic.fs" />
     <Compile Include="Dweller\Store.fs" />
     <Compile Include="Session\Identifier.fs" />
     <Compile Include="Session\Settlement.fs" />

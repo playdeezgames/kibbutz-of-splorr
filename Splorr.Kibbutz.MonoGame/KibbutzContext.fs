@@ -65,9 +65,9 @@ type internal KibbutzContext() =
     interface DwellerInventoryRepository.GetPageCountContext with
         member this.dwellerInventoryPageCountSource = ref DwellerInventoryStore.GetPageCount
     interface DwellerStatisticRepository.GetContext with
-        member this.dwellerStatisticSource = raise (System.NotImplementedException())
+        member this.dwellerStatisticSource = ref DwellerStatisticStore.Get
     interface DwellerStatisticRepository.PutContext with
-        member this.dwellerStatisticSink = raise (System.NotImplementedException())
+        member this.dwellerStatisticSink = ref DwellerStatisticStore.Put
 
 
 

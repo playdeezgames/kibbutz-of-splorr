@@ -4,7 +4,11 @@ Dedup:
   ☐ KibbutzContext
     difference between console client and monogame client is only a handful of interfaces so having to update this twice each time i add a new context is bleh
 Dweller Statistics:
-  ☐ DwellerStatisticStore
+  ✔ DwellerStatisticStore @done(20-11-10 05:26)
+  ☐ remove all statistics when a dweller is abandoned
+  ☐ get list of statistics for a dweller?
+  ☐ set statistics for a dweller upon creation?
+  ☐ view hunger level when using "dweller" command
 Dweller Hunger:
   ☐ hunger exists for a dweller
   ☐ rest generates 0.05 hunger
