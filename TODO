@@ -8,7 +8,7 @@ Dweller Statistics:
   ☐ remove all statistics when a dweller is abandoned
   ☐ get list of statistics for a dweller?
   ☐ set statistics for a dweller upon creation?
-  ☐ view hunger level when using "dweller" command
+  ✔ view hunger level when using "dweller" command @done(20-11-10 05:40)
 Dweller Hunger:
   ☐ hunger exists for a dweller
   ☐ rest generates 0.05 hunger
