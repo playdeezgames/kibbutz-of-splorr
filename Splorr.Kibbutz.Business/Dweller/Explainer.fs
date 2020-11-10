@@ -36,13 +36,18 @@ module DwellerExplainer =
                 message
             ]
 
+    let internal RenderInventoryAsMessage
+            (item : Item)
+            : Message =
+        item.ToString() |> Line
+
     let private ExplainExistingDweller
             (context : CommonContext)
             (identifier : DwellerIdentifier)
             (dweller : Dweller)
             : Message list =
         let dwellerLogMessages =
-            DwellerLogRepository.GetBriefHistory context identifier
+            DwellerHistoryRepository.GetBriefHistory context identifier
             |> List.map RenderHistoryAsMessage
         [
             Group 

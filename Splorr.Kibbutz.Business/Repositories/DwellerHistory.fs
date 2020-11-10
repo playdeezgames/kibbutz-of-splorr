@@ -4,20 +4,20 @@ open Splorr.Common
 open System
 open Splorr.Kibbutz.Model
 
-module DwellerLogRepository =
+module DwellerHistoryRepository =
     type DwellerLogSink = DwellerIdentifier * TurnCounter * Message -> unit
-    type LogForDwellerContext = 
+    type AddHistoryContext = 
         abstract member dwellerLogSink : DwellerLogSink ref
-    let internal LogForDweller
+    let internal AddHistory
             (context : CommonContext) =
-        (context :?> LogForDwellerContext).dwellerLogSink.Value
+        (context :?> AddHistoryContext).dwellerLogSink.Value
 
     type DwellerLogPurger = DwellerIdentifier -> unit
-    type PurgeLogsForDwellerContext =
+    type PurgeHistoryContext =
         abstract member dwellerLogPurger : DwellerLogPurger ref
-    let internal PurgeLogsForDweller
+    let internal PurgeHistory
             (context : CommonContext) =
-        (context :?> PurgeLogsForDwellerContext).dwellerLogPurger.Value
+        (context :?> PurgeHistoryContext).dwellerLogPurger.Value
 
     type DwellerBriefHistorySource = DwellerIdentifier -> (TurnCounter * Message) list
     type GetBriefHistoryContext =
@@ -27,16 +27,16 @@ module DwellerLogRepository =
         (context :?> GetBriefHistoryContext).dwellerBriefHistorySource.Value
 
     type DwellerPageHistorySource = DwellerIdentifier * uint64 -> (TurnCounter * Message) list
-    type GetPageHistoryContext =
+    type GetPageContext =
         abstract member dwellerPageHistorySource : DwellerPageHistorySource ref
-    let internal GetPageHistory
+    let internal GetPage
             (context : CommonContext) =
-        (context :?> GetPageHistoryContext).dwellerPageHistorySource.Value
+        (context :?> GetPageContext).dwellerPageHistorySource.Value
 
     type DwellerPageCountHistorySource = DwellerIdentifier -> uint64
-    type GetHistoryPageCountContext =
+    type GetPageCountContext =
         abstract member dwellerPageCountHistorySource : DwellerPageCountHistorySource ref
-    let internal GetHistoryPageCount
+    let internal GetPageCount
             (context : CommonContext) =
-        (context :?> GetHistoryPageCountContext).dwellerPageCountHistorySource.Value
+        (context :?> GetPageCountContext).dwellerPageCountHistorySource.Value
 

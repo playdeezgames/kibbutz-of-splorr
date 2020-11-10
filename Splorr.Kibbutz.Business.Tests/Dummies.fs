@@ -37,3 +37,5 @@ let internal ValidDwellerHistory : (TurnCounter * Message) list =
         4UL, Line "4"
         5UL, Line "5"
     ]
+let internal ValidDwellerInventory : Item list =
+    [ Berry ]

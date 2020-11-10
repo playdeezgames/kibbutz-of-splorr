@@ -19,6 +19,8 @@ module CommandParser =
             DwellerCommandParser.Parse context session dwellerName
         | "history" :: tail ->
             HistoryCommandParser.Parse context session tail
+        | "inventory" :: tail ->
+            InventoryCommandParser.Parse context session tail
         | _ ->
             FixedCommandParser.Parse tokens
         |> Option.defaultValue

@@ -1,4 +1,7 @@
-Day #12: Test Driven Development in F# of a Text-Based City Management Game
+Day #13: Test Driven Development in F# of a Text-Based City Management Game
+# Day 13 - 20201110
+
+* dedup history and inventory
 
 # Day 12 - 20201109
 

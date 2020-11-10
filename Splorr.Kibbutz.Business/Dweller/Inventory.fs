@@ -4,8 +4,8 @@ open Splorr.Common
 open System
 open Splorr.Kibbutz.Model
 
-module DwellerHistory =
-    let internal History
+module DwellerInventory =
+    let internal Inventory
             (context : CommonContext)
             (session : SessionIdentifier)
             (identifier : DwellerIdentifier)
@@ -14,11 +14,10 @@ module DwellerHistory =
         DwellerPageGenerator.Generate
             context
             session
-            "history"
-            (DwellerHistoryRepository.GetPageCount context)
-            (DwellerHistoryRepository.GetPage context)
-            DwellerExplainer.RenderHistoryAsMessage
+            "inventory"
+            (DwellerInventoryRepository.GetPageCount context)
+            (DwellerInventoryRepository.GetPage context )
+            DwellerExplainer.RenderInventoryAsMessage
             identifier
             page
-
-
+    

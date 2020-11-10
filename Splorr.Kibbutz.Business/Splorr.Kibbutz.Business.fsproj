@@ -8,7 +8,7 @@
     <Compile Include="Location.fs" />
     <Compile Include="Assignment.fs" />
     <Compile Include="Repositories\Inventory.fs" />
-    <Compile Include="Repositories\DwellerLog.fs" />
+    <Compile Include="Repositories\DwellerHistory.fs" />
     <Compile Include="Repositories\Dweller.fs" />
     <Compile Include="Repositories\Settlement.fs" />
     <Compile Include="Session\SessionRepository.fs" />
@@ -18,7 +18,9 @@
     <Compile Include="Dweller\Creator.fs" />
     <Compile Include="Dweller\Assigner.fs" />
     <Compile Include="Dweller\Advancer.fs" />
+    <Compile Include="Dweller\DwellerPageGenerator.fs" />
     <Compile Include="Dweller\History.fs" />
+    <Compile Include="Dweller\Inventory.fs" />
     <Compile Include="Dweller\Existence.fs" />
     <Compile Include="Dweller\Dweller.fs" />
     <Compile Include="Settlement\Advancer.fs" />

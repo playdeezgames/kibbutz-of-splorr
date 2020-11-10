@@ -1,6 +1,6 @@
-Inventory Command:
-  ☐ format - "inventory <dwellername> (page) [pagenumber]"
-  ☐ displays a page of the dweller's inventory
+Dedup:
+  ✔ inventory and history are practically identical @done(20-11-10 04:39)
+    refactor to eliminate duplication!
 Dweller Hunger:
   ☐ hunger exists for a dweller
   ☐ rest generates 0.05 hunger
@@ -12,6 +12,8 @@ Dweller Fatigue:
   ☐ exploring generates 0.5 fatigue
   ☐ gathering generates 0.5 fatigue
 Archive:
+  ✔ format - "inventory <dwellername> (page) [pagenumber]" @done(20-11-09 14:27) @project(Inventory Command)
+  ✔ displays a page of the dweller's inventory @done(20-11-09 14:27) @project(Inventory Command)
   ✔ is purged when the dweller ceases to exist @done(20-11-09 05:43) @project(Dweller Inventory)
   ✔ gather @done(20-11-09 05:46) @project(Dweller Assignments)
     berries(at least to start with)
