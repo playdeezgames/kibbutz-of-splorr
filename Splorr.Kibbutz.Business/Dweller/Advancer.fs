@@ -22,24 +22,31 @@ type private Direction =
             | East -> "east"
             | South -> "south"
             | West -> "west"
-            
 
 module internal DwellerAdvancer = 
+    let private AddFatigueForAssignment
+            (context : CommonContext)
+            (identifier : DwellerIdentifier)
+            (assignment : Assignment)
+            : unit =
+        match assignment with
+        | Rest ->
+            -1.0
+        | _ ->
+            0.5
+        |> DwellerStatistic.ChangeBy context identifier Fatigue
+
     let private AddHungerForAssignment
             (context : CommonContext)
             (identifier : DwellerIdentifier)
             (assignment : Assignment)
             : unit =
-        let amount = 
-            match assignment with
-            | Rest ->
-                0.05
-            | _ ->
-                0.1
-        let value = 
-            DwellerStatisticRepository.Get context (identifier, Hunger)
-            |> Option.defaultValue 0.0
-        DwellerStatisticRepository.Put context (identifier, Hunger, Some (value + amount))
+        match assignment with
+        | Rest ->
+            0.05
+        | _ ->
+            0.1
+        |> DwellerStatistic.ChangeBy context identifier Hunger
 
     let private Rest
             (context : CommonContext)
@@ -88,6 +95,7 @@ module internal DwellerAdvancer =
             (identifier : DwellerIdentifier)
             (dweller : Dweller)
             : Message list =
+        AddFatigueForAssignment context identifier dweller.assignment
         AddHungerForAssignment context identifier dweller.assignment
         match dweller.assignment with
         | Explore ->

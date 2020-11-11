@@ -15,6 +15,7 @@
     <Compile Include="Session\SessionRepository.fs" />
     <Compile Include="Messages\Messages.fs" />
     <Compile Include="Dweller\Session.fs" />
+    <Compile Include="Dweller\DwellerStatistic.fs" />
     <Compile Include="Dweller\Explainer.fs" />
     <Compile Include="Dweller\Creator.fs" />
     <Compile Include="Dweller\Assigner.fs" />

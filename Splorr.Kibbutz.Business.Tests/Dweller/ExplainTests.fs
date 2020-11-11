@@ -17,11 +17,11 @@ let ``Explain.It returns messages explaining a dweller when that dweller exists.
     (context :> DwellerRepository.GetContext).dwellerSingleSource := Spies.SourceTable(callsForGetDweller, Dummies.ValidDwellerTable)
     (context :> DwellerHistoryRepository.GetBriefHistoryContext).dwellerBriefHistorySource := Spies.SourceCounter(callsForBriefHistory, [(0UL, Line "I am a message.")])
     let actual = Dweller.Explain context Dummies.ValidSessionIdentifier Dummies.ValidDwellerIdentifier
-    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 7)
+    Assertions.ValidateMessageIsGroupWithGivenItemCount(actual, 8)
     Assert.AreEqual(1UL, callsForGetDweller.Value)
     Assert.IsTrue(calledGetDwellerList.Value)
     Assert.AreEqual(1UL, callsForBriefHistory.Value)
-    Assert.AreEqual(1UL, callsForGetStatistic.Value)
+    Assert.AreEqual(2UL, callsForGetStatistic.Value)
 
 
 [<Test>]

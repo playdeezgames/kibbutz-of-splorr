@@ -4,4 +4,5 @@ open System
 
 type DwellerStatisticIdentifier =
     | Hunger
+    | Fatigue
 
