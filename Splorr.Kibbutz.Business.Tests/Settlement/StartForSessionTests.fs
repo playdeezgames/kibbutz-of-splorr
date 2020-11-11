@@ -27,7 +27,10 @@ let ``StartSettlementForSession.It creates a new settlement when a settlement do
     let callsForCheckName = ref 0UL
     let callsForAddName = ref 0UL
     let callsForLogForDweller = ref 0UL
+    let callsForPutDwellerStatistic = ref 0UL
     let context = Contexts.TestContext()
+    (context :> DwellerStatisticRepository.PutContext).dwellerStatisticSink :=
+        Spies.SinkCounter(callsForPutDwellerStatistic)
     (context :> DwellerRepository.GenerateIdentifierContext).dwellerIdentifierSource := 
         Spies.SourceHook(callsForGenerateIdentifier, 
             fun () -> Guid.NewGuid())
@@ -63,5 +66,6 @@ let ``StartSettlementForSession.It creates a new settlement when a settlement do
     Assert.AreEqual(3UL, callsForCheckName.Value)
     Assert.AreEqual(3UL, callsForAddName.Value)
     Assert.AreEqual(3UL, callsForLogForDweller.Value)
+    Assert.AreEqual(6UL, callsForPutDwellerStatistic.Value)
 
 
