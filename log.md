@@ -1,7 +1,12 @@
-Day #13: Test Driven Development in F# of a Text-Based City Management Game
+Day #14: Test Driven Development in F# of a Text-Based City Management Game
+# Day 14 - 20201111
+
+* custom hotkeys
+
 # Day 13 - 20201110
 
 * dedup history and inventory
+* hunger
 
 # Day 12 - 20201109
 

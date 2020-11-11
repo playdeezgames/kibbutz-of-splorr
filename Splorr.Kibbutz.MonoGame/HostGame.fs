@@ -51,10 +51,84 @@ type HostGame(context : CommonContext) as this =
         else
             this.Exit()
 
+    let hotKeys : Map<Keys, string * Command> ref=
+        ref
+            ([
+                Keys.F1, ("help", Command.Help)
+                Keys.F2, ("advance", Command.Advance)
+            ]
+            |> Map.ofList)
+
+    let AttemptSettingHotkey
+            (tokens : string list)
+            (key : Keys)
+            : bool =
+        match tokens |> CommandParser.Parse context session.Value.Value with
+        | None ->
+            false
+        | Some (Invalid _) ->
+            OutputImplementation.Write (Message.Line "")
+            OutputImplementation.Write (Message.Hued (Red, Message.Line "That hotkey command did not parse!"))
+            false
+        | Some command ->
+            let commandText = tokens |> List.reduce (fun a b -> a + " " + b)
+            OutputImplementation.Write (Message.Line "")
+            OutputImplementation.Write (Message.Hued (Green, Message.Line (sprintf "Set hotkey %s to '%s'" (key.ToString()) commandText)))
+            hotKeys:= 
+                hotKeys.Value 
+                |> Map.add key ((commandText, command))
+            true
+
+    let keyMap : Map<string, Keys> =
+        [
+            "f1", Keys.F1
+            "f2", Keys.F2
+            "f3", Keys.F3
+            "f4", Keys.F4
+            "f5", Keys.F5
+            "f6", Keys.F6
+            "f7", Keys.F7
+            "f8", Keys.F8
+            "f9", Keys.F9
+            "f10", Keys.F10
+            "f11", Keys.F11
+            "f12", Keys.F12
+        ]
+        |> Map.ofList
+
+    let PreparseHotkey
+            (tokens : string list)
+            : bool =
+        match tokens with
+        | keyName :: tail ->
+            keyMap
+            |> Map.tryFind keyName
+            |> Option.map
+                (AttemptSettingHotkey tail)
+            |> Option.defaultValue false
+        | _ ->
+            false
+
+    let PreparseCommand 
+            (tokens : string list)
+            : bool =
+        match tokens with
+        | "hotkey" :: tail ->
+            PreparseHotkey tail
+        | _ ->
+            false
+
     let ParseCommand () : Command option =
-        keybuffer.Value.ToLower().Split(' ') 
-        |> Array.toList 
-        |> CommandParser.Parse context session.Value.Value
+        let tokens = 
+            keybuffer.Value.ToLower().Split(' ') 
+            |> Array.toList 
+        if PreparseCommand tokens then
+            OutputImplementation.Write (Message.Line "")
+            UpdateScreen()
+            None
+        else
+            tokens
+            |> CommandParser.Parse context session.Value.Value
 
     let DispatchCommand (command:Command) : unit =
         GameImplementation.commandQueue := List.append GameImplementation.commandQueue.Value [ command ]
@@ -107,14 +181,14 @@ type HostGame(context : CommonContext) as this =
         keybuffer := ""
 
     let HandleKeyDown (args:InputKeyEventArgs) : unit =
-        if args.Key=Keys.F1 then
-            HandleQuickCommand "help" Command.Help
-        elif args.Key = Keys.F2 then
-            HandleQuickCommand "advance" Command.Advance
-        elif args.Key = Keys.Up then
-            ResetKeyBuffer()
-            OutputImplementation.Write (Message.Line lastKeyBuffer.Value)
-            keybuffer := lastKeyBuffer.Value
+        match hotKeys.Value.TryFind args.Key with
+        | Some (text, command) ->
+            HandleQuickCommand text command
+        | None ->
+            if args.Key = Keys.Up then
+                ResetKeyBuffer()
+                OutputImplementation.Write (Message.Line lastKeyBuffer.Value)
+                keybuffer := lastKeyBuffer.Value
 
     let InitializeGraphics() : unit =
         graphics.PreferredBackBufferWidth <- OutputImplementation.screenWidth
