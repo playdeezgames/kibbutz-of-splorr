@@ -19,3 +19,10 @@ module DwellerStatisticRepository =
             (context : CommonContext) =
         (context :?> PutContext).dwellerStatisticSink.Value
 
+    type DwellerStatisticPurger = DwellerIdentifier -> unit
+    type PurgeContext =
+        abstract member dwellerStatisticPurger : DwellerStatisticPurger ref
+    let internal Purge
+            (context : CommonContext) =
+        (context :?> PurgeContext).dwellerStatisticPurger.Value
+

@@ -62,6 +62,8 @@ type PersistenceContext() =
         member this.dwellerStatisticSource = ref DwellerStatisticStore.Get
     interface DwellerStatisticRepository.PutContext with
         member this.dwellerStatisticSink = ref DwellerStatisticStore.Put
+    interface DwellerStatisticRepository.PurgeContext with
+        member this.dwellerStatisticPurger = ref DwellerStatisticStore.Purge
 
 
 
