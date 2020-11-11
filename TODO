@@ -2,7 +2,8 @@ Dedup:
   ✔ KibbutzContext @done(20-11-10 06:14)
     difference between console client and monogame client is only a handful of interfaces so having to update this twice each time i add a new context is bleh
 Customizable Hotkeys (monogame only):
-  ☐ a command to associate a function key (F1-F12) with a particular command
+  ☐ the code is very repeaty so refactor it
+  ✔ a command to associate a function key (F1-F12) with a particular command @done(20-11-11 04:32)
     f1 is help by default
     f2 is advance by default
     command is "hotkey <key> (rest of command)

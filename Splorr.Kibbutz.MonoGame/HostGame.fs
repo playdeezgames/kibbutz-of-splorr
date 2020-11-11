@@ -51,23 +51,81 @@ type HostGame(context : CommonContext) as this =
         else
             this.Exit()
 
-    let hotKeys : Map<Keys, string * Command> =
-        [
-            Keys.F1, ("help", Command.Help)
-            Keys.F2, ("advance", Command.Advance)
-        ]
-        |> Map.ofList
+    let hotKeys : Map<Keys, string * Command> ref=
+        ref
+            ([
+                Keys.F1, ("help", Command.Help)
+                Keys.F2, ("advance", Command.Advance)
+            ]
+            |> Map.ofList)
+
+    let AttemptSettingHotkey
+            (key : Keys)
+            (tokens : string list)
+            : bool =
+        match tokens |> CommandParser.Parse context session.Value.Value with
+        | None ->
+            false
+        | Some (Invalid _) ->
+            OutputImplementation.Write (Message.Line "")
+            OutputImplementation.Write (Message.Hued (Red, Message.Line "That hotkey command did not parse!"))
+            false
+        | Some command ->
+            let commandText = tokens |> List.reduce (fun a b -> a + " " + b)
+            OutputImplementation.Write (Message.Line "")
+            OutputImplementation.Write (Message.Hued (Green, Message.Line (sprintf "Set hotkey %s to '%s'" (key.ToString()) commandText)))
+            hotKeys:= 
+                hotKeys.Value 
+                |> Map.add key ((commandText, command))
+            true
+
+    let PreparseHotkey
+            (tokens : string list)
+            : bool =
+        match tokens with
+        | "f1" :: tail ->
+            AttemptSettingHotkey Keys.F1 tail
+        | "f2" :: tail ->
+            AttemptSettingHotkey Keys.F2 tail
+        | "f3" :: tail ->
+            AttemptSettingHotkey Keys.F3 tail
+        | "f4" :: tail ->
+            AttemptSettingHotkey Keys.F4 tail
+        | "f5" :: tail ->
+            AttemptSettingHotkey Keys.F5 tail
+        | "f6" :: tail ->
+            AttemptSettingHotkey Keys.F6 tail
+        | "f7" :: tail ->
+            AttemptSettingHotkey Keys.F7 tail
+        | "f8" :: tail ->
+            AttemptSettingHotkey Keys.F8 tail
+        | "f9" :: tail ->
+            AttemptSettingHotkey Keys.F9 tail
+        | "f10" :: tail ->
+            AttemptSettingHotkey Keys.F10 tail
+        | "f11" :: tail ->
+            AttemptSettingHotkey Keys.F11 tail
+        | "f12" :: tail ->
+            AttemptSettingHotkey Keys.F12 tail
+        | _ ->
+            false
 
     let PreparseCommand 
             (tokens : string list)
             : bool =
-        false
+        match tokens with
+        | "hotkey" :: tail ->
+            PreparseHotkey tail
+        | _ ->
+            false
 
     let ParseCommand () : Command option =
         let tokens = 
             keybuffer.Value.ToLower().Split(' ') 
             |> Array.toList 
         if PreparseCommand tokens then
+            OutputImplementation.Write (Message.Line "")
+            UpdateScreen()
             None
         else
             tokens
@@ -124,7 +182,7 @@ type HostGame(context : CommonContext) as this =
         keybuffer := ""
 
     let HandleKeyDown (args:InputKeyEventArgs) : unit =
-        match hotKeys.TryFind args.Key with
+        match hotKeys.Value.TryFind args.Key with
         | Some (text, command) ->
             HandleQuickCommand text command
         | None ->
