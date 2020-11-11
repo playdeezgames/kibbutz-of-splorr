@@ -49,8 +49,8 @@ let private WithCommonAssignmentContext
     Assert.AreEqual(3UL, callsForLogForDweller.Value)
     Assert.IsTrue(calledGetDwellerList.Value)
     Assert.AreEqual(3UL, callsForGetDweller.Value)
-    Assert.AreEqual(3UL, callsForGetStatistic.Value)
-    Assert.AreEqual(3UL, callsForSetStatistic.Value)
+    Assert.AreEqual(6UL, callsForGetStatistic.Value)
+    Assert.AreEqual(6UL, callsForSetStatistic.Value)
 
 [<Test>]
 let ``Advance.It advances an existing settlement by one turn when all dwellers are resting.`` () =
