@@ -115,7 +115,7 @@ module internal SettlementExistence =
             : unit =
         let dweller = 
             GenerateDwellerName context session settlement
-            |> DwellerCreator.Create context
+            |> DwellerExistence.Create context
         let identifier = DwellerRepository.GenerateIdentifier context
         DwellerRepository.Put context identifier (Some dweller)
         DwellerHistoryRepository.AddHistory context (identifier, settlement.turnCounter, Line "Came into being.")
@@ -158,7 +158,7 @@ module internal SettlementExistence =
             : unit = 
         DwellerRepository.GetListForSession context session
         |> List.iter
-            (DwellerCreator.Abandon context)
+            (DwellerExistence.Abandon context)
 
 
     let private ActuallyAbandonSettlementForSession

@@ -4,7 +4,7 @@ open Splorr.Common
 open System
 open Splorr.Kibbutz.Model
 
-module DwellerCreator = 
+module DwellerExistence = 
     let private sexGenesTable =
         [
             (Some XX), 49.5
