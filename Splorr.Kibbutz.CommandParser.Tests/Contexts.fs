@@ -62,6 +62,9 @@ type TestContext() =
         member val dwellerStatisticSource = ref (Fakes.Source ("DwellerStatisticRepository.GetContext", None))
     interface DwellerStatisticRepository.PutContext with
         member val dwellerStatisticSink = ref (Fakes.Sink "DwellerStatisticRepository.PutContext")
+    interface DwellerStatisticRepository.PurgeContext with
+        member val dwellerStatisticPurger = ref (Fakes.Sink "DwellerStatisticRepository.PurgeContext")
+
 
 
 

@@ -26,3 +26,13 @@ module DwellerStatisticStore =
                 store.Value
                 |> Map.remove (identifier, statistic)
 
+    let Purge
+            (identifier : DwellerIdentifier)
+            : unit =
+        store.Value
+        |> Map.filter
+            (fun (i, _) _ -> i = identifier)
+        |> Map.toList
+        |> List.iter 
+            (fun ((i, s),_) -> Put (i, s, None))
+
