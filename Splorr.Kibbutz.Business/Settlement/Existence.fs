@@ -158,7 +158,7 @@ module internal SettlementExistence =
             : unit = 
         DwellerRepository.GetListForSession context session
         |> List.iter
-            (DwellerExistence.Abandon context)
+            (DwellerCreator.Abandon context)
 
 
     let private ActuallyAbandonSettlementForSession

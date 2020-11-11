@@ -25,3 +25,14 @@ module DwellerCreator =
             location = Location.Default
             assignment = Assignment.Default
         }
+
+    let internal Abandon 
+            (context : CommonContext) 
+            (identifier : DwellerIdentifier)
+            : unit =
+        DwellerInventoryRepository.PurgeItems context identifier
+        DwellerHistoryRepository.PurgeHistory context identifier
+        DwellerStatisticRepository.Purge context identifier
+        DwellerRepository.Put context identifier None
+        DwellerRepository.RemoveFromSession context identifier
+

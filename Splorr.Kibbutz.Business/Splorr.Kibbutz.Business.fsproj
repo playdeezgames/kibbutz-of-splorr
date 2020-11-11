@@ -23,7 +23,6 @@
     <Compile Include="Dweller\DwellerPageGenerator.fs" />
     <Compile Include="Dweller\History.fs" />
     <Compile Include="Dweller\Inventory.fs" />
-    <Compile Include="Dweller\Existence.fs" />
     <Compile Include="Dweller\Dweller.fs" />
     <Compile Include="Settlement\Advancer.fs" />
     <Compile Include="Settlement\Existence.fs" />
