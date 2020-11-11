@@ -60,8 +60,8 @@ type HostGame(context : CommonContext) as this =
             |> Map.ofList)
 
     let AttemptSettingHotkey
-            (key : Keys)
             (tokens : string list)
+            (key : Keys)
             : bool =
         match tokens |> CommandParser.Parse context session.Value.Value with
         | None ->
@@ -79,34 +79,33 @@ type HostGame(context : CommonContext) as this =
                 |> Map.add key ((commandText, command))
             true
 
+    let keyMap : Map<string, Keys> =
+        [
+            "f1", Keys.F1
+            "f2", Keys.F2
+            "f3", Keys.F3
+            "f4", Keys.F4
+            "f5", Keys.F5
+            "f6", Keys.F6
+            "f7", Keys.F7
+            "f8", Keys.F8
+            "f9", Keys.F9
+            "f10", Keys.F10
+            "f11", Keys.F11
+            "f12", Keys.F12
+        ]
+        |> Map.ofList
+
     let PreparseHotkey
             (tokens : string list)
             : bool =
         match tokens with
-        | "f1" :: tail ->
-            AttemptSettingHotkey Keys.F1 tail
-        | "f2" :: tail ->
-            AttemptSettingHotkey Keys.F2 tail
-        | "f3" :: tail ->
-            AttemptSettingHotkey Keys.F3 tail
-        | "f4" :: tail ->
-            AttemptSettingHotkey Keys.F4 tail
-        | "f5" :: tail ->
-            AttemptSettingHotkey Keys.F5 tail
-        | "f6" :: tail ->
-            AttemptSettingHotkey Keys.F6 tail
-        | "f7" :: tail ->
-            AttemptSettingHotkey Keys.F7 tail
-        | "f8" :: tail ->
-            AttemptSettingHotkey Keys.F8 tail
-        | "f9" :: tail ->
-            AttemptSettingHotkey Keys.F9 tail
-        | "f10" :: tail ->
-            AttemptSettingHotkey Keys.F10 tail
-        | "f11" :: tail ->
-            AttemptSettingHotkey Keys.F11 tail
-        | "f12" :: tail ->
-            AttemptSettingHotkey Keys.F12 tail
+        | keyName :: tail ->
+            keyMap
+            |> Map.tryFind keyName
+            |> Option.map
+                (AttemptSettingHotkey tail)
+            |> Option.defaultValue false
         | _ ->
             false
 
