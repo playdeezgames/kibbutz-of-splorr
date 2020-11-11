@@ -51,4 +51,21 @@ module internal DwellerStatistic =
             (context : CommonContext) =
         Get context Fatigue
 
+    let private dwellerStatisticTemplates : Map<DwellerStatisticIdentifier, DwellerStatistic> =
+        [
+            Hunger, 0.0
+            Fatigue, 0.0
+        ]
+        |> Map.ofList
+
+    let internal InitializeStatistics
+            (context : CommonContext)
+            (identfier : DwellerIdentifier)
+            : unit =
+        dwellerStatisticTemplates
+        |> Map.iter
+            (fun statistic value ->
+                DwellerStatisticRepository.Put context (identfier, statistic, Some value))
+
+
 

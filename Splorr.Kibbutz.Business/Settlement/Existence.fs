@@ -113,12 +113,8 @@ module internal SettlementExistence =
             (session : SessionIdentifier)
             (settlement : Settlement)
             : unit =
-        let dweller = 
-            GenerateDwellerName context session settlement
-            |> DwellerExistence.Create context
-        let identifier = DwellerRepository.GenerateIdentifier context
-        DwellerRepository.Put context identifier (Some dweller)
-        DwellerHistoryRepository.AddHistory context (identifier, settlement.turnCounter, Line "Came into being.")
+        let dwellerName = GenerateDwellerName context session settlement
+        let identifier = DwellerExistence.Generate context dwellerName settlement.turnCounter
         DwellerRepository.AssignToSession context session identifier
 
     let private GenerateDwellers

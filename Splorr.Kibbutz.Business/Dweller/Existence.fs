@@ -13,7 +13,7 @@ module DwellerExistence =
         ]
         |> Map.ofList
 
-    let internal Create
+    let private CreateDweller
             (context : CommonContext)
             (name : string)
             : Dweller =
@@ -25,6 +25,20 @@ module DwellerExistence =
             location = Location.Default
             assignment = Assignment.Default
         }
+
+    let internal Generate
+            (context : CommonContext)
+            (dwellerName : string)
+            (turn : TurnCounter)
+            : DwellerIdentifier =
+        let dweller = 
+            dwellerName
+            |> CreateDweller context
+        let identifier = DwellerRepository.GenerateIdentifier context
+        DwellerRepository.Put context identifier (Some dweller)
+        DwellerHistoryRepository.AddHistory context (identifier, turn, Line "Came into being.")
+        DwellerStatistic.InitializeStatistics context identifier
+        identifier
 
     let internal Abandon 
             (context : CommonContext) 
