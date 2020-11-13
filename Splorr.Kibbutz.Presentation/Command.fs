@@ -8,6 +8,7 @@ type Command =
     | AbandonSettlement
     | Advance
     | Assign of DwellerIdentifier * Assignment
+    | ExplainArea of Location
     | ExplainDweller of DwellerIdentifier
     | Help
     | History of DwellerIdentifier * uint64

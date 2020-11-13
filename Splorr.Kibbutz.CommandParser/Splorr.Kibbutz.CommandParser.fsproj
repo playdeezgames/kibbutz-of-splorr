@@ -10,6 +10,7 @@
     <Compile Include="DwellerCommandParser.fs" />
     <Compile Include="InventoryCommandParser.fs" />
     <Compile Include="HistoryCommandParser.fs" />
+    <Compile Include="AreaCommandParser.fs" />
     <Compile Include="CommandParser.fs" />
   </ItemGroup>
 

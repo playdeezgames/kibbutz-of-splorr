@@ -1,4 +1,13 @@
-Day #14: Test Driven Development in F# of a Text-Based City Management Game
+Day #16: Test Driven Development in F# of a Text-Based City Management Game
+
+# Day 16 - 20201113
+
+* refactor towards sqlite
+
+# Day 15 - 20201112
+
+* ~stockpile feature~
+
 # Day 14 - 20201111
 
 * custom hotkeys
