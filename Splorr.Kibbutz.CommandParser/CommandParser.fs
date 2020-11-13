@@ -13,6 +13,8 @@ module CommandParser =
             (tokens : string list)
             : Command option =
         match tokens with
+        | [ "area"; x; y ] ->
+            AreaCommandParser.Parse context session x y
         | "assign" :: tail ->
             AssignCommandParser.Parse context session tail
         | [ "dweller"; dwellerName ] ->

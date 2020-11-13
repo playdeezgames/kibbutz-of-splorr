@@ -20,6 +20,7 @@
     <Compile Include="AbandonSettlementCommandTests.fs" />
     <Compile Include="AdvanceCommandTests.fs" />
     <Compile Include="AssignCommandTests.fs" />
+    <Compile Include="ExplainAreaCommandTests.fs" />
     <Compile Include="ExplainDwellerCommandTests.fs" />
     <Compile Include="HelpCommandTests.fs" />
     <Compile Include="InventoryCommandTests.fs" />

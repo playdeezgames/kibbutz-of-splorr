@@ -18,6 +18,8 @@ module internal CommandHandler =
             AdvanceCommandHandler.Handle context session
         | Assign (identifier, assignment) ->
             AssignCommandHandler.Handle context session identifier assignment
+        | ExplainArea location ->
+            ExplainAreaCommandHandler.Handle context session location
         | ExplainDweller identifier ->
             ExplainDwellerCommandHandler.Handle context session identifier
         | Help ->
